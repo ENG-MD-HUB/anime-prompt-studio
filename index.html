@@ -19,15 +19,7 @@
 .t-aurora  {--p:#0ea5e9;--pl:#38bdf8;--ac:#a78bfa;--glow:rgba(14,165,233,.5);}
 .t-sakura  {--p:#db2777;--pl:#f472b6;--ac:#fda4af;--glow:rgba(219,39,119,.5);}
 .t-forest  {--p:#15803d;--pl:#4ade80;--ac:#34d399;--glow:rgba(21,128,61,.5);}
-.t-crimson {--p:#b91c1c;--pl:#f87171;--ac:#f97316;--glow:rgba(185,28,28,.5);}
-.t-ocean   {--p:#0e7490;--pl:#22d3ee;--ac:#34d399;--glow:rgba(14,116,144,.5);}
-.t-grape   {--p:#6d28d9;--pl:#a78bfa;--ac:#f472b6;--glow:rgba(109,40,217,.5);}
-.t-copper  {--p:#b45309;--pl:#f59e0b;--ac:#fde68a;--glow:rgba(180,83,9,.5);}
-.t-neon    {--p:#16a34a;--pl:#4ade80;--ac:#facc15;--bg:#050a05;--surf:#0a1a0a;--surf2:#0f2a0f;--brd:rgba(74,222,128,.2);--brd2:rgba(74,222,128,.08);--glow:rgba(22,163,74,.7);}
-.t-peach   {--p:#ea580c;--pl:#fdba74;--ac:#fbbf24;--glow:rgba(234,88,12,.5);}
-.t-cobalt  {--p:#1d4ed8;--pl:#60a5fa;--ac:#38bdf8;--glow:rgba(29,78,216,.5);}
-.t-coral   {--p:#e11d48;--pl:#fb7185;--ac:#f9a8d4;--glow:rgba(225,29,72,.5);}
-.t-mono    {--p:#737373;--pl:#d4d4d4;--ac:#a3a3a3;--bg:#0a0a0a;--surf:#171717;--surf2:#262626;--brd:rgba(212,212,212,.15);--brd2:rgba(212,212,212,.07);--glow:rgba(115,115,115,.4);}
+.t-gold    {--p:#ca8a04;--pl:#fbbf24;--ac:#fde68a;--glow:rgba(202,138,4,.55);}
 
 /* ══ BASE ══ */
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -55,14 +47,14 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .ttray{display:none;position:absolute;top:40px;right:0;background:var(--surf);border:1px solid var(--brd);border-radius:14px;padding:.85rem;z-index:400;width:300px;box-shadow:0 16px 48px rgba(0,0,0,.6);}
 .ttray.open{display:block;}
 .ttray-lbl{font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tx3);margin-bottom:.65rem;}
-.tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem;}
+.tgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem;}
 .tdot{width:100%;aspect-ratio:1;border-radius:8px;border:2px solid transparent;cursor:pointer;transition:all .2s;display:flex;align-items:flex-end;justify-content:center;padding-bottom:3px;}
 .tdot:hover,.tdot.on{border-color:white;transform:scale(1.08);}
-.tdot span{font-size:.48rem;color:rgba(255,255,255,.9);font-weight:700;}
+.tdot span{font-size:.62rem;color:rgba(255,255,255,.95);font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.5);}
 
 /* ══ LAYOUT ══ */
-.layout{display:grid;grid-template-columns:1fr 520px;height:calc(100vh - 56px);position:relative;z-index:1;}
-.lp{overflow-y:auto;padding:1.2rem 1.4rem;border-right:1px solid var(--brd2);scrollbar-width:thin;scrollbar-color:var(--p) transparent;}
+.layout{display:flex;flex-direction:row-reverse;height:calc(100vh - 56px);position:relative;z-index:1;}
+.lp{overflow-y:auto;padding:1.2rem 1.4rem;border-left:none;scrollbar-width:thin;scrollbar-color:var(--p) transparent;flex:1;min-width:0;}
 .lp::-webkit-scrollbar{width:3px;}
 .lp::-webkit-scrollbar-thumb{background:var(--p);border-radius:10px;}
 
@@ -89,16 +81,16 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   border-color:var(--p);
   color:var(--tx2);
   background:rgba(99,102,241,.04);
-  transform:translateY(-1px);
 }
+
 .tab.on{
   background:linear-gradient(135deg,var(--p),var(--ac));
   border-color:transparent;
   color:#fff;
   box-shadow:0 4px 12px var(--glow);
   font-weight:800;
-  transform:translateY(-1px);
 }
+
 .tab:hover{border-color:var(--p);color:var(--tx2);}.tab i{font-size:.72rem;color:var(--tx3);transition:color .2s;}.tab:hover i,.tab.on i{color:currentColor;}
 .tab.on{background:var(--p);border-color:var(--p);color:#fff;}
 .cat{display:none;}.cat.on{display:block;}
@@ -123,6 +115,14 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .og{display:grid;grid-template-columns:1fr 1fr;gap:.38rem;}
 .og.c3{grid-template-columns:repeat(3,1fr);}
 .og.c4{grid-template-columns:repeat(4,1fr);}
+.og-sep{
+  grid-column:1/-1;
+  font-size:.6rem;font-weight:800;text-transform:uppercase;
+  letter-spacing:.08em;color:var(--tx3);
+  padding:.45rem .2rem .1rem;
+  border-bottom:1px solid var(--brd2);
+  margin-bottom:.1rem;
+}
 
 /* ══ OPTION BUTTON — enhanced ══ */
 .ob{
@@ -177,10 +177,10 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .ob.on{
   border-color:transparent;
   color:#fff;
-  box-shadow:0 8px 24px var(--glow);
+  box-shadow:0 0 8px var(--glow), 0 0 16px var(--glow);
   border-radius:var(--rs) !important;
-  transform:translateY(-2px);
 }
+
 .ob.on::before{opacity:1;}
 
 /* NSFW red button — EXACT same size as SFW */
@@ -295,23 +295,22 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 }
 .bp-grid{
   display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:8px;
+  grid-template-columns:1fr 1fr 1fr 1fr;
+  gap:5px;
   perspective:1000px;
 }
 .bp-cell{
   display:flex;
   align-items:center;
-  gap:.35rem;
+  gap:.25rem;
   background:var(--surf2);
-  border:1.5px solid var(--brd2);
-  border-radius:8px;
-  padding:.32rem .55rem;
+  border:1px solid var(--brd2);
+  border-radius:6px;
+  padding:.22rem .4rem;
   position:relative;
   overflow:hidden;
   transition:all .3s cubic-bezier(.4,.0,.2,1);
   cursor:pointer;
-  backdrop-filter:blur(2px);
 }
 .bp-cell::before{
   content:'';
@@ -338,34 +337,28 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 }
 .bp-cell.on::before{width:100%;}
 .bp-cell i{
-  font-size:.7rem;
+  font-size:.6rem;
   color:var(--tx3);
   position:relative;
   z-index:2;
   flex-shrink:0;
-  width:14px;
+  width:12px;
   text-align:center;
   transition:all .3s ease;
-  filter:drop-shadow(0 0 0 transparent);
 }
-.bp-cell:hover i{
-  color:var(--p);
-  filter:drop-shadow(0 0 3px rgba(99,102,241,.3));
-}
+.bp-cell:hover i{color:var(--p);}
 .bp-cell.on i{
   color:var(--pl);
-  filter:drop-shadow(0 0 4px var(--glow));
-  transform:scale(1.15);
+  filter:drop-shadow(0 0 3px var(--glow));
 }
 .bp-lbl{
-  font-size:.65rem;
+  font-size:.64rem;
   font-weight:700;
   color:var(--tx3);
   flex:1;
   position:relative;
   z-index:2;
   transition:all .3s ease;
-  letter-spacing:.01em;
 }
 .bp-cell:hover .bp-lbl{
   color:var(--tx2);
@@ -394,10 +387,10 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .bp-cell.pop{animation:bpPop .35s cubic-bezier(.34,1.56,.64,1);}
 .bp-val{
   font-family:'DM Mono',monospace;
-  font-size:.6rem;
+  font-size:.55rem;
   color:var(--tx3);
   text-align:right;
-  max-width:90px;
+  max-width:75px;
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;
@@ -605,7 +598,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .psm-issue i{font-size:.6rem;margin-top:.15rem;flex-shrink:0;}
 
 /* ══ RIGHT PANEL ══ */
-.rp{display:flex;flex-direction:column;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--p) transparent;}
+.rp{display:flex;flex-direction:column;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--p) transparent;width:520px;min-width:280px;max-width:700px;flex-shrink:0;border-right:1px solid var(--brd2);}
 .rp::-webkit-scrollbar{width:3px;}
 .rp::-webkit-scrollbar-thumb{background:var(--p);border-radius:10px;}
 
@@ -633,8 +626,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   border:1.5px solid var(--brd);
   border-radius:var(--r);
   padding:.9rem 1.2rem;
-  min-height:100px;
-  max-height:200px;
+  min-height:170px;
+  max-height:170px;
   overflow-y:auto;
   border-left:4px solid var(--p);
   transition:all .3s cubic-bezier(.4,.0,.2,1);
@@ -670,9 +663,10 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   background:linear-gradient(135deg,var(--surf),rgba(99,102,241,.02));
 }
 .ptxt.neg{
-  border-left-color:#ef4444;
+  border-left-color:var(--ac);
+  min-height:102px;
+  max-height:102px;
 }
-.ptxt.neg{border-left-color:var(--ac);}
 .ptxt.flash{box-shadow:0 0 0 2px rgba(16,185,129,.22);border-color:var(--ok);}
 .ptxt.empty{font-family:'DM Mono',monospace;font-size:.86rem;color:var(--tx3);font-style:italic;display:block;}
 /* Prompt section chips */
@@ -755,7 +749,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 }
 .w-tip-reset:hover{border-color:#f87171;color:#f87171;background:rgba(239,68,68,.06);}
 
-.wc{font-size:.6rem;color:var(--tx3);text-align:right;margin-top:.18rem;}
+.wc{font-size:.6rem;color:var(--tx3);margin-left:auto;font-family:'DM Mono',monospace;font-weight:600;}
 
 /* ══ ACTIONS ══ */
 .acts{padding:.9rem 1.3rem 1.3rem;display:flex;flex-direction:column;gap:.48rem;}
@@ -863,7 +857,29 @@ body.light .preset-item{background:#dde2ef;}
 body.light .ttray{background:#f4f6fc;}
 body.light .tag-box{background:#f0f2fa;}
 
-@media(max-width:900px){.layout{grid-template-columns:1fr;height:auto;}.rp{border-top:1px solid var(--brd2);}.hdr-mid .btn-h span{display:none;}}
+/* ══ RESIZABLE DIVIDER ══ */
+.layout-resizer{
+  width:8px;flex-shrink:0;
+  cursor:col-resize;
+  background:transparent;
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s;
+  z-index:10;
+}
+.layout-resizer:hover,.layout-resizer.dragging{background:rgba(99,102,241,.08);}
+.resizer-handle{
+  width:3px;height:40px;
+  border-radius:4px;
+  background:var(--brd2);
+  transition:background .2s, height .2s;
+}
+.layout-resizer:hover .resizer-handle,
+.layout-resizer.dragging .resizer-handle{
+  background:var(--p);
+  height:60px;
+}
+@media(max-width:900px){.layout{flex-direction:column;height:auto;}.rp{width:100%!important;min-width:0;max-width:100%;border-left:none;border-top:1px solid var(--brd2);}.hdr-mid .btn-h span{display:none;}.layout-resizer{display:none;}}
 
 /* ══ AGE GATE MODAL ══ */
 .ag-overlay{
@@ -936,109 +952,119 @@ body.light .tag-box{background:#f0f2fa;}
 .ag-btn-cancel:hover{border-color:var(--tx2);color:var(--tx);}
 .ag-footer{font-size:.62rem;color:var(--tx3);line-height:1.5;direction:rtl;}
 
-/* ══ ANALYZE MODAL ══ */
-.analyze-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:900;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
-.analyze-overlay.open{display:flex;}
-.analyze-modal{
-  background:var(--surf);border:1px solid var(--brd);border-radius:20px;
-  width:min(860px,95vw);max-height:90vh;display:flex;flex-direction:column;
-  box-shadow:0 32px 80px rgba(0,0,0,.7);overflow:hidden;
+/* ══ FOOTER ══ */
+.site-footer{
+  border-top:1px solid var(--brd2);
+  background:var(--surf);
+  padding:.45rem 1.4rem;
+  flex-shrink:0;
 }
-.analyze-hd{
-  padding:1.1rem 1.4rem .8rem;border-bottom:1px solid var(--brd2);
-  display:flex;align-items:center;gap:.7rem;flex-shrink:0;
-  background:linear-gradient(135deg,rgba(99,102,241,.04),rgba(244,114,182,.03));
+.footer-inner{display:flex;align-items:center;justify-content:center;gap:.7rem;}
+.footer-logo{font-size:.68rem;font-weight:800;color:var(--pl);flex:1;}
+.footer-ver{
+  font-size:.6rem;font-weight:700;font-family:'DM Mono',monospace;
+  color:var(--tx3);background:var(--surf2);
+  padding:.12rem .4rem;border-radius:20px;border:1px solid var(--brd);
 }
-.analyze-hd-ico{width:34px;height:34px;background:linear-gradient(135deg,var(--p),var(--ac));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:0 4px 14px var(--glow);flex-shrink:0;}
-.analyze-hd-title{font-size:1rem;font-weight:800;flex:1;}
-.analyze-hd-sub{font-size:.72rem;color:var(--tx3);}
-.analyze-close{width:30px;height:30px;border:1px solid var(--brd2);background:transparent;border-radius:8px;cursor:pointer;color:var(--tx3);display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:all .2s;}
-.analyze-close:hover{border-color:#ef4444;color:#ef4444;background:rgba(239,68,68,.08);}
-.analyze-body{flex:1;overflow-y:auto;padding:1.2rem 1.4rem;display:flex;flex-direction:column;gap:1rem;scrollbar-width:thin;scrollbar-color:var(--p) transparent;}
-
-/* Drop zone */
-.drop-zone{
-  border:2px dashed var(--brd);border-radius:16px;
-  padding:2rem;text-align:center;cursor:pointer;
-  transition:all .3s ease;background:rgba(99,102,241,.02);
-  position:relative;overflow:hidden;
+/* Info tray */
+.info-tray{min-width:160px;padding:.5rem;}
+.info-tray-item{
+  display:flex;align-items:center;gap:.55rem;
+  width:100%;background:none;border:none;cursor:pointer;
+  font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:600;
+  color:var(--tx2);padding:.45rem .6rem;border-radius:8px;
+  transition:all .2s;text-align:left;
 }
-.drop-zone:hover,.drop-zone.drag-over{border-color:var(--p);background:rgba(99,102,241,.06);box-shadow:0 0 0 4px rgba(99,102,241,.08);}
-.drop-zone-ico{font-size:2.2rem;margin-bottom:.6rem;display:block;filter:drop-shadow(0 0 12px var(--glow));}
-.drop-zone-ttl{font-size:.9rem;font-weight:700;color:var(--tx);margin-bottom:.3rem;}
-.drop-zone-sub{font-size:.74rem;color:var(--tx3);}
-.drop-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
-.drop-zone-preview{display:none;position:relative;}
-.drop-zone-preview img{width:100%;max-height:200px;object-fit:contain;border-radius:10px;border:1px solid var(--brd2);}
-.drop-zone-preview .dz-change{position:absolute;top:.5rem;right:.5rem;background:rgba(0,0,0,.6);border:1px solid var(--brd);color:var(--tx2);border-radius:8px;padding:.3rem .6rem;font-size:.68rem;cursor:pointer;backdrop-filter:blur(4px);transition:all .2s;}
-.drop-zone-preview .dz-change:hover{border-color:var(--p);color:var(--tx);}
-
-/* AI analyze btn */
-.analyze-btn{
-  width:100%;padding:.8rem;border-radius:12px;border:none;cursor:pointer;
-  font-family:'DM Sans',sans-serif;font-weight:700;font-size:.88rem;
-  display:flex;align-items:center;justify-content:center;gap:.5rem;
-  transition:all .25s;
+.info-tray-item:hover{background:var(--surf2);color:var(--pl);}
+.info-tray-item i{font-size:.72rem;color:var(--pl);width:14px;text-align:center;}
+/* Inline tag box — matches ptxt styling */
+.inline-tag-box{
+  margin-top:.3rem;
+  border:1px dashed var(--brd);
+  border-radius:var(--rs);
+  background:rgba(99,102,241,.03);
+  padding:.45rem .65rem;
+  display:flex;flex-wrap:wrap;gap:.28rem;
+  min-height:36px;cursor:text;
+  transition:border-color .2s, background .2s;
 }
-.analyze-btn.primary{background:linear-gradient(135deg,var(--p),var(--ac));color:#fff;box-shadow:0 4px 18px var(--glow);}
-.analyze-btn.primary:hover{transform:translateY(-2px);box-shadow:0 8px 26px var(--glow);}
-.analyze-btn.primary:disabled{opacity:.45;transform:none;cursor:not-allowed;}
-.analyze-btn.secondary{background:var(--surf2);color:var(--tx2);border:1px solid var(--brd);}
-.analyze-btn.secondary:hover{border-color:var(--p);color:var(--tx);}
-.analyze-spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none;}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* Results panels */
-.az-section{background:var(--surf2);border:1px solid var(--brd2);border-radius:14px;overflow:hidden;}
-.az-sec-hd{
-  padding:.65rem 1rem;border-bottom:1px solid var(--brd2);
-  display:flex;align-items:center;gap:.5rem;
-  background:linear-gradient(90deg,rgba(99,102,241,.04),transparent);
+.inline-tag-box:focus-within{
+  border-color:var(--p);
+  background:rgba(99,102,241,.06);
+  border-style:solid;
 }
-.az-sec-hd i{font-size:.8rem;color:var(--p);width:14px;text-align:center;}
-.az-sec-title{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--tx2);flex:1;}
-.az-sec-badge{font-size:.6rem;padding:.15rem .45rem;border-radius:100px;font-weight:700;}
-.az-sec-badge.comfy{background:rgba(99,102,241,.15);color:var(--pl);}
-.az-sec-badge.a1111{background:rgba(249,115,22,.15);color:#fb923c;}
-.az-sec-badge.ai{background:linear-gradient(135deg,rgba(99,102,241,.2),rgba(244,114,182,.15));color:var(--pl);}
-.az-sec-badge.exif{background:rgba(34,197,94,.12);color:#4ade80;}
-.az-sec-body{padding:.8rem 1rem;display:flex;flex-direction:column;gap:.55rem;}
-
-/* Metadata rows */
-.meta-row{display:grid;grid-template-columns:120px 1fr auto;align-items:start;gap:.5rem;padding:.4rem .5rem;border-radius:8px;transition:background .2s;}
-.meta-row:hover{background:rgba(99,102,241,.04);}
-.meta-key{font-size:.68rem;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;padding-top:.1rem;}
-.meta-val{font-family:'DM Mono',monospace;font-size:.73rem;color:var(--tx);line-height:1.5;word-break:break-all;}
-.meta-val.prompt-text{color:var(--pl);background:rgba(99,102,241,.06);padding:.4rem .6rem;border-radius:6px;border-left:3px solid var(--p);}
-.meta-val.neg-text{color:#fda4af;background:rgba(244,114,182,.06);padding:.4rem .6rem;border-radius:6px;border-left:3px solid var(--ac);}
-.meta-copy{flex-shrink:0;background:none;border:1px solid var(--brd2);border-radius:6px;color:var(--tx3);cursor:pointer;font-size:.65rem;padding:.18rem .42rem;transition:all .2s;white-space:nowrap;}
-.meta-copy:hover{border-color:var(--p);color:var(--pl);}
-.meta-copy.ok{border-color:var(--ok);color:var(--ok);}
-
-/* Import to studio button */
-.az-import-row{display:flex;gap:.5rem;margin-top:.3rem;}
-.az-import-btn{flex:1;padding:.55rem;border-radius:10px;border:1px solid;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.76rem;display:flex;align-items:center;justify-content:center;gap:.35rem;transition:all .2s;}
-.az-import-pos{background:rgba(99,102,241,.1);border-color:rgba(99,102,241,.25);color:var(--pl);}
-.az-import-pos:hover{background:rgba(99,102,241,.18);}
-.az-import-neg{background:rgba(244,114,182,.08);border-color:rgba(244,114,182,.2);color:var(--ac);}
-.az-import-neg:hover{background:rgba(244,114,182,.16);}
-
-/* AI suggestion area */
-.ai-suggestion{
-  font-size:.78rem;color:var(--tx);line-height:1.7;
-  background:rgba(99,102,241,.04);border:1px solid var(--brd2);
-  border-radius:10px;padding:.8rem 1rem;font-family:'DM Mono',monospace;
-  min-height:60px;
+.neg-box.inline-tag-box:focus-within{border-color:var(--ac);}
+.inline-tag-box .tag-input{
+  font-size:.78rem;
+  color:var(--tx2);
+  background:transparent;border:none;outline:none;
+  font-family:'DM Mono',monospace;
+  min-width:120px;flex:1;padding:.08rem .18rem;
 }
-.ai-suggestion.loading{color:var(--tx3);font-style:italic;}
-.ai-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:.5rem;}
-.ai-tag{padding:.2rem .55rem;border-radius:5px;font-size:.72rem;font-family:'DM Mono',monospace;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);color:var(--pl);cursor:pointer;transition:all .15s;}
-.ai-tag:hover{background:rgba(99,102,241,.2);border-color:var(--p);}
-.ai-tag.added{background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.3);color:var(--ok);}
-
-/* No result state */
-.az-empty{text-align:center;padding:1.5rem;color:var(--tx3);font-size:.8rem;}
-.az-empty i{font-size:1.8rem;display:block;margin-bottom:.5rem;opacity:.4;}
+.inline-tag-box .tag-input::placeholder{
+  color:var(--tx3);
+  opacity:.8;
+  font-style:italic;
+}
+/* ══ INFO MODALS (About / Features / Tips) ══ */
+.info-overlay{
+  display:none;position:fixed;inset:0;z-index:950;
+  background:rgba(0,0,0,.8);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;padding:1rem;
+}
+.info-overlay.open{display:flex;}
+.info-modal{
+  background:var(--surf);border:1px solid var(--brd2);
+  border-radius:20px;padding:2rem 1.8rem 1.6rem;
+  max-width:680px;width:100%;max-height:88vh;overflow-y:auto;
+  position:relative;animation:agPop .2s cubic-bezier(.34,1.4,.64,1);
+}
+.info-modal-wide{max-width:680px;}
+.info-close{
+  position:absolute;top:1rem;right:1rem;
+  background:var(--surf2);border:1px solid var(--brd);
+  border-radius:8px;width:28px;height:28px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--tx2);font-size:.75rem;transition:all .2s;
+}
+.info-close:hover{background:var(--brd2);color:var(--tx);}
+.info-icon{
+  width:48px;height:48px;border-radius:14px;
+  background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(168,85,247,.1));
+  border:1px solid rgba(99,102,241,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;color:var(--pl);margin-bottom:.8rem;
+}
+.info-title{font-size:1.1rem;font-weight:900;color:var(--tx);margin-bottom:1rem;}
+.info-body{font-size:.78rem;color:var(--tx2);line-height:1.75;}
+.info-body p{margin:.5rem 0;}
+.info-sig{margin-top:1.2rem;font-size:.72rem;color:var(--tx3);font-style:italic;}
+/* Features grid */
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}
+.feat-item{
+  display:flex;align-items:flex-start;gap:.7rem;
+  padding:.55rem .7rem;border-radius:10px;
+  background:var(--surf2);border:1px solid var(--brd);
+}
+.feat-item>i{font-size:.85rem;color:var(--pl);margin-top:.15rem;flex-shrink:0;width:16px;text-align:center;}
+.feat-item div{display:flex;flex-direction:column;gap:.1rem;}
+.feat-item strong{font-size:.75rem;color:var(--tx);font-weight:700;}
+.feat-item span{font-size:.68rem;color:var(--tx3);}
+/* Tips list */
+.tip-list{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+.tip-item{
+  display:flex;align-items:flex-start;gap:.8rem;
+  padding:.6rem .75rem;border-radius:10px;
+  background:var(--surf2);border:1px solid var(--brd);
+}
+.tip-num{
+  font-size:.65rem;font-weight:900;font-family:'DM Mono',monospace;
+  color:var(--pl);background:rgba(99,102,241,.1);
+  border-radius:6px;padding:.2rem .4rem;flex-shrink:0;
+  border:1px solid rgba(99,102,241,.2);line-height:1.4;
+}
+.tip-item strong{font-size:.75rem;color:var(--tx);font-weight:700;display:block;margin-bottom:.2rem;}
+.tip-item p{margin:0;font-size:.68rem;color:var(--tx3);line-height:1.6;}
 
 </style>
 </head>
@@ -1048,13 +1074,11 @@ body.light .tag-box{background:#f0f2fa;}
 <div class="hdr">
   <div class="logo">
     <div class="logo-ico">✦</div>
-    <span class="logo-txt">Anime Prompt Studio</span>
-    <span class="logo-by">by Mohammad M. Aamoudi</span>
+    <span class="logo-txt">Anime Prompt Studio©</span>
   </div>
   <div class="hdr-mid">
     <button class="btn-h" id="randomBtn"><i class="fas fa-shuffle"></i> <span>Random</span></button>
     <button class="btn-h" id="nsfwBtn"><i class="fas fa-fire"></i> <span>NSFW</span></button>
-    <button class="btn-h" id="analyzeBtn"><i class="fas fa-magnifying-glass-chart"></i> <span>Analyze Image</span></button>
   </div>
   <div class="hdr-right">
     <div class="dvd"></div>
@@ -1067,21 +1091,22 @@ body.light .tag-box{background:#f0f2fa;}
           <div class="tdot" style="background:linear-gradient(135deg,#0ea5e9,#a78bfa)" data-t="aurora"><span>Aurora</span></div>
           <div class="tdot" style="background:linear-gradient(135deg,#db2777,#fda4af)" data-t="sakura"><span>Sakura</span></div>
           <div class="tdot" style="background:linear-gradient(135deg,#15803d,#34d399)" data-t="forest"><span>Forest</span></div>
-          <div class="tdot" style="background:linear-gradient(135deg,#b91c1c,#f97316)" data-t="crimson"><span>Crimson</span></div>
-          <div class="tdot" style="background:linear-gradient(135deg,#0e7490,#34d399)" data-t="ocean"><span>Ocean</span></div>
-          <div class="tdot" style="background:linear-gradient(135deg,#6d28d9,#f472b6)" data-t="grape"><span>Grape</span></div>
-          <div class="tdot" style="background:linear-gradient(135deg,#b45309,#fde68a)" data-t="copper"><span>Copper</span></div>
-          <div class="tdot" style="background:linear-gradient(135deg,#16a34a,#facc15)" data-t="neon"><span>Neon</span></div>
-          <div class="tdot" style="background:linear-gradient(135deg,#ea580c,#fbbf24)" data-t="peach"><span>Peach</span></div>
-          <div class="tdot" style="background:linear-gradient(135deg,#1d4ed8,#38bdf8)" data-t="cobalt"><span>Cobalt</span></div>
-          <div class="tdot" style="background:linear-gradient(135deg,#e11d48,#f9a8d4)" data-t="coral"><span>Coral</span></div>
-          <div class="tdot" style="background:linear-gradient(135deg,#525252,#d4d4d4)" data-t="mono"><span>Mono</span></div>
+          <div class="tdot" style="background:linear-gradient(135deg,#ca8a04,#fde68a)" data-t="gold"><span>Gold</span></div>
         </div>
       </div>
     </div>
     <button class="btn-ico" id="lightBtn" title="Light Mode"><i class="fas fa-circle-half-stroke"></i></button>
-  </div>
-</div>
+    <div class="tw">
+      <button class="btn-ico btn-info" id="infoMenuBtn" title="About · Features · Tips"><i class="fas fa-circle-info"></i></button>
+      <div class="ttray info-tray" id="infoTray">
+        <div class="ttray-lbl">Help & Info</div>
+        <button class="info-tray-item" id="infoAbout"><i class="fas fa-wand-magic-sparkles"></i> About</button>
+        <button class="info-tray-item" id="infoFeatures"><i class="fas fa-star"></i> Features</button>
+        <button class="info-tray-item" id="infoTips"><i class="fas fa-lightbulb"></i> Tips & Tricks</button>
+      </div>
+    </div>
+  </div><!-- /hdr-right -->
+</div><!-- /hdr -->
 
 <div class="layout">
 <!-- ═══ LEFT PANEL ═══ -->
@@ -1319,6 +1344,11 @@ body.light .tag-box{background:#f0f2fa;}
 
 </div><!-- /lp -->
 
+<!-- ═══ RESIZER ═══ -->
+<div class="layout-resizer" id="layoutResizer">
+  <div class="resizer-handle"></div>
+</div>
+
 <!-- ═══ RIGHT PANEL ═══ -->
 <div class="rp">
 
@@ -1345,22 +1375,14 @@ body.light .tag-box{background:#f0f2fa;}
   <!-- Prompts -->
   <div class="pw">
     <div>
-      <div class="pb-lbl"><div class="pdot"></div> Positive Prompt</div>
+      <div class="pb-lbl"><div class="pdot"></div> Positive Prompt <span class="wc" id="posWC"></span></div>
       <div class="ptxt empty" id="promptText">Start selecting options on the left…</div>
-      <div class="wc" id="posWC"></div>
+      <div class="tag-box inline-tag-box" id="posTagBox"><input class="tag-input" id="posTagInput" placeholder="＋ Extra Positive Tags — Enter or Tab"></div>
     </div>
-    <div>
-      <div class="pb-lbl"><div class="pdot usr"></div> Extra Positive Tags <span class="pb-hint">— Enter or Tab</span></div>
-      <div class="tag-box" id="posTagBox"><input class="tag-input" id="posTagInput" placeholder="glowing eyes, dramatic lighting…"></div>
-    </div>
-    <div style="border-top:1px solid var(--brd2);padding-top:.7rem;margin-top:.2rem;">
-      <div class="pb-lbl"><div class="pdot neg"></div> Negative Prompt</div>
+    <div style="border-top:1px solid var(--brd2);padding-top:.7rem;margin-top:.4rem;">
+      <div class="pb-lbl"><div class="pdot neg"></div> Negative Prompt <span class="wc" id="negWC"></span></div>
       <div class="ptxt neg empty" id="negativeText">Select avoids above, or use the tag box below…</div>
-      <div class="wc" id="negWC"></div>
-    </div>
-    <div>
-      <div class="pb-lbl"><div class="pdot neg"></div> Extra Negative Tags <span class="pb-hint">— Enter or Tab</span></div>
-      <div class="tag-box neg-box" id="negTagBox"><input class="tag-input" id="negTagInput" placeholder="extra fingers, clones, watermark…"></div>
+      <div class="tag-box neg-box inline-tag-box" id="negTagBox"><input class="tag-input" id="negTagInput" placeholder="＋ Extra Negative Tags — Enter or Tab"></div>
     </div>
   </div>
 
@@ -1387,6 +1409,100 @@ body.light .tag-box{background:#f0f2fa;}
   </div>
 </div><!-- /rp -->
 </div><!-- /layout -->
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-logo">Anime Prompt Studio © 2026. All rights reserved.</span>
+    <span class="footer-ver">v1.0.0</span>
+  </div>
+</footer>
+
+<!-- ── ABOUT MODAL ── -->
+<div class="info-overlay" id="aboutOverlay">
+  <div class="info-modal">
+    <button class="info-close" id="aboutClose"><i class="fas fa-xmark"></i></button>
+    <div class="info-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+    <div class="info-title">About</div>
+    <div class="info-body">
+      <p>Anime Prompt Studio is a free, browser-based tool designed to help artists and enthusiasts craft detailed, high-quality prompts for AI image generation.</p>
+      <p>Built with a focus on anime and illustration styles, it gives you full control over character appearance, outfit, mood, scene, lighting, camera, and more — all in one place.</p>
+      <p>No account required. No data collected. Everything runs locally in your browser.</p>
+      <div class="info-sig">— Made with ✦ by MD.AI SYSTEMS</div>
+      <div style="margin-top:.5rem;display:inline-flex;align-items:center;gap:.4rem;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.2);border-radius:100px;padding:.22rem .7rem;font-size:.65rem;font-family:'DM Mono',monospace;color:var(--pl);font-weight:700;">v1.0.0</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FEATURES MODAL ── -->
+<div class="info-overlay" id="featuresOverlay">
+  <div class="info-modal">
+    <button class="info-close" id="featuresClose"><i class="fas fa-xmark"></i></button>
+    <div class="info-icon"><i class="fas fa-star"></i></div>
+    <div class="info-title">Features</div>
+    <div class="info-body">
+      <div class="feat-grid">
+        <div class="feat-item"><i class="fas fa-palette"></i><div><strong>13 Color Themes</strong><span>Fully themed UI that adapts to your style</span></div></div>
+        <div class="feat-item"><i class="fas fa-person"></i><div><strong>Full Character Builder</strong><span>Hair, eyes, skin, body, outfit and more</span></div></div>
+        <div class="feat-item"><i class="fas fa-shirt"></i><div><strong>50+ Clothing Options</strong><span>Organized by category — tops, bottoms, full outfits</span></div></div>
+        <div class="feat-item"><i class="fas fa-film"></i><div><strong>Anime Studio Styles</strong><span>Ghibli, Ufotable, MAPPA, Makoto Shinkai and more</span></div></div>
+        <div class="feat-item"><i class="fas fa-droplet"></i><div><strong>Color Grading</strong><span>16 palette options from pastel to cyberpunk</span></div></div>
+        <div class="feat-item"><i class="fas fa-camera"></i><div><strong>Camera Controls</strong><span>Shot range, angle, lens type and focus effects</span></div></div>
+        <div class="feat-item"><i class="fas fa-bolt"></i><div><strong>Prompt Strength Meter</strong><span>Detects conflicts, overloads and missing elements</span></div></div>
+        <div class="feat-item"><i class="fas fa-weight-hanging"></i><div><strong>Tag Weight Slider</strong><span>Click any tag to boost or reduce its influence</span></div></div>
+        <div class="feat-item"><i class="fas fa-heart"></i><div><strong>Favourites System</strong><span>Save and reload your best prompt combinations</span></div></div>
+        <div class="feat-item"><i class="fas fa-magnifying-glass-chart"></i><div><strong>Image Analyzer</strong><span>Extract and reverse-engineer prompts from images</span></div></div>
+        <div class="feat-item"><i class="fas fa-shuffle"></i><div><strong>Randomizer</strong><span>Generate a full random character in one click</span></div></div>
+        <div class="feat-item"><i class="fas fa-fire"></i><div><strong>NSFW Mode</strong><span>Age-gated adult content section</span></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TIPS MODAL ── -->
+<div class="info-overlay" id="tipsOverlay">
+  <div class="info-modal info-modal-wide">
+    <button class="info-close" id="tipsClose"><i class="fas fa-xmark"></i></button>
+    <div class="info-icon"><i class="fas fa-lightbulb"></i></div>
+    <div class="info-title">Tips & Tricks</div>
+    <div class="info-body">
+      <div class="tip-list">
+        <div class="tip-item">
+          <div class="tip-num">01</div>
+          <div><strong>Start with Style</strong><p>Always pick an Art Style or Anime Studio first — it's the single most impactful tag for the final look.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num">02</div>
+          <div><strong>Use the Strength Meter</strong><p>Watch the Prompt Strength score. Conflicts (red) hurt quality the most — fix those before adding more tags.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num">03</div>
+          <div><strong>Lighting is Everything</strong><p>Add at least one lighting type. Rim Light + one ambient source gives dramatic, professional-looking results.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num">04</div>
+          <div><strong>Tag Weight Slider</strong><p>Click any tag in the prompt box to open the weight slider. Boost key elements like style or lighting above 1.3 for more impact.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num">05</div>
+          <div><strong>Quality Tags Matter</strong><p>Always include 3–4 quality tags: Masterpiece, Best Quality, Ultra Detailed. These are expected by most anime models.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num">06</div>
+          <div><strong>Less is More</strong><p>3–4 lighting types or 5+ effects will confuse the model. Keep each category focused — the Overload warning will alert you.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num">07</div>
+          <div><strong>Save Your Favourites</strong><p>Found a great combination? Hit the ♡ button to save it. You can load it any time from the Favourites menu.</p></div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-num">08</div>
+          <div><strong>Use Extra Tags</strong><p>The Extra Positive Tags field is perfect for model-specific tokens or very niche details not covered by the builder.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Modal for naming -->
 <div class="modal-overlay" id="modalOverlay">
@@ -1434,53 +1550,6 @@ body.light .tag-box{background:#f0f2fa;}
     5. buildPosText(): if(S.myKey) p.push(S.myKey);
 ════════════════════════════════════════
 -->
-
-<!-- ═══ ANALYZE IMAGE MODAL ═══ -->
-
-
-<div class="analyze-overlay" id="analyzeOverlay">
-  <div class="analyze-modal">
-    <div class="analyze-hd">
-      <div class="analyze-hd-ico"><i class="fas fa-magnifying-glass-chart"></i></div>
-      <div style="flex:1">
-        <div class="analyze-hd-title">Image Analyzer</div>
-        <div class="analyze-hd-sub">Extract metadata from ComfyUI, A1111, or any image — then import to studio</div>
-      </div>
-      <button class="analyze-close" id="analyzeClose"><i class="fas fa-xmark"></i></button>
-    </div>
-    <div class="analyze-body" id="analyzeBody">
-
-      <!-- Drop Zone -->
-      <div class="drop-zone" id="dropZone">
-        <div id="dzContent">
-          <span class="drop-zone-ico">🖼️</span>
-          <div class="drop-zone-ttl">Drop image here or click to browse</div>
-          <div class="drop-zone-sub">Supports PNG (ComfyUI / A1111) · JPEG · WEBP</div>
-        </div>
-        <div class="drop-zone-preview" id="dzPreview">
-          <img id="dzImg" src="" alt="Preview">
-          <button class="dz-change" id="dzChange"><i class="fas fa-arrow-rotate-left"></i> Change</button>
-        </div>
-        <input type="file" id="analyzeFileInput" accept="image/*">
-      </div>
-
-      <!-- Action buttons -->
-      <div style="display:flex;gap:.5rem;">
-        <button class="analyze-btn primary" id="extractMetaBtn" disabled>
-          <i class="fas fa-code"></i> Extract Metadata
-        </button>
-        <button class="analyze-btn primary" id="aiAnalyzeBtn" disabled style="background:linear-gradient(135deg,#7c3aed,#db2777);">
-          <div class="analyze-spinner" id="aiSpinner"></div>
-          <i class="fas fa-wand-magic-sparkles" id="aiIcon"></i> AI Analyze
-        </button>
-      </div>
-
-      <!-- Results area -->
-      <div id="analyzeResults"></div>
-
-    </div>
-  </div>
-</div>
 
 <!-- ═══ AGE GATE MODAL ═══ -->
 <div class="ag-overlay" id="agOverlay">
@@ -1630,10 +1699,16 @@ const D={
   },
   age:{lbl:['Toddler (0–3)','Child (4–8)','Preteen (9–12)','Teen (13–17)','Young Adult (18–25)','Adult (26–35)','Middle-Aged (36–50)','Elderly (51+)'],val:['toddler','child','preteen','teen','young adult','adult','middle-aged','elderly'],k:'age'},
   gender:{lbl:['Feminine','Masculine','Androgynous'],val:['feminine','masculine','androgynous'],k:'gender'},
-  body:{lbl:['Petite','Slim','Athletic','Curvy','Muscular','Chubby'],val:['petite','slim','athletic build','curvy','muscular','chubby'],k:'body'},
+  body:{lbl:['Petite','Slim','Athletic','Toned','Curvy','Hourglass','Muscular','Chubby','Tall','Short'],val:['petite body','slim body','athletic body','toned body','curvy body','hourglass figure','muscular body','chubby body','tall figure','short figure'],k:'body'},
   hairstyle:{lbl:['Long Straight','Long Wavy','Long Curly','Twin Tails','High Ponytail','Side Ponytail','Braid','Double Braid','Bun','Messy Bun','Short Bob','Pixie Cut','Hime Cut','Fluffy'],k:'hairstyle'},
   eyeShape:{lbl:['Large Round','Almond','Upturned','Downturned','Cat-like','Doe Eyes','Hooded'],k:'eyeShape'},
-  clothing:{lbl:['School Uniform','Sailor Uniform','Casual Street','Magical Girl','Maid Outfit','Gothic Lolita','Sweet Lolita','Sportswear','Sleepwear','Cyberpunk','Kimono','Formal Suit','Hoodie','Fantasy Armor','Wedding Dress','Idol Outfit'],k:'clothing'},
+  clothing:{lbl:[
+    '— Tops —','T-Shirt','Crop Top','Tied Crop Top','Off-Shoulder Top','Tank Top','Tube Top','Sleeveless Top','Long Sleeve Shirt','Button-Up Shirt','Oversized Shirt','Graphic Tee','Polo Shirt','Ribbed Top','Halter Top','Hoodie','Zip-Up Hoodie','Oversized Hoodie','Sweatshirt',
+    '— Bottoms —','Jeans','Skinny Jeans','Wide-Leg Jeans','Ripped Jeans','Shorts','Denim Shorts','Mini Shorts','High-Waist Shorts','Jogger Pants','Sweatpants','Cargo Pants','Leggings','Pleated Skirt','Mini Skirt','Plaid Skirt','Long Skirt','Denim Skirt',
+    '— Full Outfits —','School Uniform','Sailor Uniform','Tracksuit','Casual Streetwear','Sporty Outfit','Sleepwear / Pajamas','Swimsuit','One-Piece Swimsuit',
+    '— Formal & Elegant —','Formal Suit','Blazer & Pants','Little Black Dress','Evening Gown','Wedding Dress',
+    '— Themed —','Magical Girl','Maid Outfit','Gothic Lolita','Sweet Lolita','Idol Outfit','Cyberpunk Outfit','Kimono','Yukata','Fantasy Armor','Ninja Outfit','Military Uniform'
+  ],k:'clothing'},
   clothingAcc:{lbl:['Ribbon Bow','Belt','Choker','Backpack','Suspenders','Gloves','Scarf','Cape','Apron','Tie'],arr:'clothingAcc'},
   bodyParts:{lbl:['Penis (Male)','Vagina','Anus','Nipples','Breasts','Cleavage','Bare Legs','Bare Midriff'],arr:'bodyParts',nsfw:true},
   sockColor:{lbl:['White','Black','Pink','Navy','Striped','Sheer'],k:'sockColor'},
@@ -1649,15 +1724,13 @@ const D={
   electronics:{lbl:['Smartphone','Tablet','Laptop','Gaming Controller','Headphones','Digital Camera','TV Remote','Smart Watch','VR Headset','Drone'],arr:'electronics'},
   otherItems:{lbl:['Crown','Scepter','Mask','Mirror','Hourglass','Scroll','Map','Compass','Bomb','Flag'],arr:'otherItems'},
   environment:{lbl:['School','Rooftop','Beach','Forest','City Street','Cherry Blossom Park','Fantasy Realm','Bedroom','Café','Mountains','Desert','Space','Castle','Night City','Onsen'],k:'environment'},
-  style:{lbl:['Anime','Manga/Ink','Digital Painting','Oil Painting','Watercolor','Fantasy Art','Chibi','Retro 90s'],k:'style'},
+  style:{lbl:['Anime','Manga / Ink','Digital Painting','Oil Painting','Watercolor','Fantasy Art','Chibi','Retro 90s Anime','Pixel Art','16-bit Pixel Art','32-bit Pixel Art','Sprite Art','Voxel Art','Low Poly','Flat Design','Vector Art','Sketch / Pencil','Cel Shading','Painterly','Concept Art'],k:'style'},
   era:{lbl:['1980s','1990s','2000s','2010s','2020s'],k:'era'},
   animeStudio:{lbl:[
-    'Studio Ghibli','Makoto Shinkai','Kyoto Animation','Ufotable',
-    'MAPPA','Trigger','Gainax','Shaft',
-    'Madhouse','Production I.G','Bones','A-1 Pictures',
-    'Demon Slayer style','Attack on Titan style','One Piece style','Naruto style',
-    'Dragon Ball style','Sailor Moon style','Evangelion style','Akira style',
-    'Ghost in the Shell style','Cowboy Bebop style','Your Name style','Spirited Away style'
+    'Studio Ghibli style','Makoto Shinkai style','Kyoto Animation style','Ufotable style',
+    'MAPPA style','Trigger style','Gainax style','Madhouse style',
+    'Demon Slayer style','Attack on Titan style','Naruto style','Dragon Ball style',
+    'Sailor Moon style','Evangelion style','Akira style','Your Name style'
   ],k:'animeStudio'},
   colorGrade:{lbl:['Pastel Palette','Vibrant / Saturated','HDR Colors','Muted / Desaturated','Black & White','Warm Tones','Cool Tones','Dark Ink','Neon Palette','Vintage / Faded','Duotone','Monochrome Blue','Monochrome Red','Golden Hour Tones','Cyberpunk Colors','Earthy Tones'],arr:'colorGrade'},
   stroke:{lbl:['No Outline','Thin Lines','Medium Lines','Thick Lines','Bold Lines','Soft Edges'],k:'stroke'},
@@ -1668,7 +1741,7 @@ const D={
   smooth:{lbl:['Normal','Smooth Skin','Porcelain','Silky','Textured'],k:'smooth'},
   angle:{lbl:['Eye Level','Low Angle','High Angle',"Bird's Eye",'Side Profile','Over Shoulder'],k:'angle'},
   shot:{lbl:['Extreme Closeup','Face Closeup','Headshot','Bust Shot','Waist Up','Full Body','Full Environment'],k:'shot'},
-  look:{lbl:['At Camera','Down','Up','Away','To the Side','Eyes Closed'],k:'look'},
+  look:{lbl:['At Viewer','Down','Up','Away','To the Side','Eyes Closed'],k:'look'},
   lens:{lbl:['Standard','Wide Angle','Telephoto','Fisheye','Macro','85mm Portrait'],k:'lens'},
   lensEffect:{lbl:['None','Bokeh / Blurred BG','Depth of Field','Soft Focus','Focus Face','Focus Body'],k:'lensEffect'},
   negBody:{lbl:['Bad Anatomy','Deformed Hands','Mutated Fingers','Extra Fingers','Missing Fingers','Extra Limbs','Floating Limbs','Deformed Legs','Missing Legs','Extra Legs','Bad Feet','Disconnected Body','Ugly Face','Weird Proportions','Duplicate Character'],arr:'negBody'},
@@ -1707,6 +1780,14 @@ function buildBlueprint(){
 function makeSingle(gid,lbl,val,k){
   const g=document.getElementById(gid);if(!g)return;
   lbl.forEach((l,i)=>{
+    // Category header — non-clickable divider
+    if(l.startsWith('—')){
+      const sep=document.createElement('div');
+      sep.className='og-sep';
+      sep.textContent=l.replace(/—/g,'').trim();
+      g.appendChild(sep);
+      return;
+    }
     const v=val?val[i]:l.toLowerCase();
     const b=document.createElement('button');
     b.className='ob'+(S[k]===v?' on':'');
@@ -2733,6 +2814,44 @@ function initModal(){
     if(e.key==='Enter'){document.getElementById('modalOk').click();}
     if(e.key==='Escape'){document.getElementById('modalCancel').click();}
   });
+
+  // Info tray toggle
+  const infoTray = document.getElementById('infoTray');
+  document.getElementById('infoMenuBtn').addEventListener('click', e=>{
+    e.stopPropagation();
+    infoTray.classList.toggle('open');
+  });
+  document.addEventListener('click', ()=> infoTray.classList.remove('open'));
+  infoTray.addEventListener('click', e=> e.stopPropagation());
+
+  // Info tray → modals
+  document.getElementById('infoAbout').addEventListener('click',()=>{
+    infoTray.classList.remove('open');
+    document.getElementById('aboutOverlay').classList.add('open');
+  });
+  document.getElementById('infoFeatures').addEventListener('click',()=>{
+    infoTray.classList.remove('open');
+    document.getElementById('featuresOverlay').classList.add('open');
+  });
+  document.getElementById('infoTips').addEventListener('click',()=>{
+    infoTray.classList.remove('open');
+    document.getElementById('tipsOverlay').classList.add('open');
+  });
+
+  // Footer modals — close buttons and overlay click
+  ['about','features','tips'].forEach(id=>{
+    const overlay = document.getElementById(id+'Overlay');
+    document.getElementById(id+'Close').addEventListener('click',()=>overlay.classList.remove('open'));
+    overlay.addEventListener('click',e=>{ if(e.target===overlay) overlay.classList.remove('open'); });
+  });
+
+  // Close all on Escape
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){
+      ['about','features','tips'].forEach(id=> document.getElementById(id+'Overlay').classList.remove('open'));
+      infoTray.classList.remove('open');
+    }
+  });
 }
 
 /* ═══════════════════════════════════
@@ -2832,498 +2951,6 @@ function toast(msg,type=''){
 }
 
 /* ═══════════════════════════════════
-   IMAGE ANALYZER
-═══════════════════════════════════ */
-(function(){
-document.addEventListener("DOMContentLoaded",function(){
-  let _file=null, _imgBase64=null;
-
-  // Open / Close
-  document.getElementById('analyzeBtn').addEventListener('click',()=>{
-    document.getElementById('analyzeOverlay').classList.add('open');
-  });
-  document.getElementById('analyzeClose').addEventListener('click',closeAnalyze);
-  document.getElementById('analyzeOverlay').addEventListener('click',e=>{
-    if(e.target===document.getElementById('analyzeOverlay')) closeAnalyze();
-  });
-  function closeAnalyze(){document.getElementById('analyzeOverlay').classList.remove('open');}
-
-  // File input
-  const fileInput=document.getElementById('analyzeFileInput');
-  const dropZone=document.getElementById('dropZone');
-
-  fileInput.addEventListener('change',e=>{if(e.target.files[0])loadFile(e.target.files[0]);});
-  dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('drag-over');});
-  dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('drag-over'));
-  dropZone.addEventListener('drop',e=>{
-    e.preventDefault();dropZone.classList.remove('drag-over');
-    if(e.dataTransfer.files[0])loadFile(e.dataTransfer.files[0]);
-  });
-  document.getElementById('dzChange').addEventListener('click',e=>{
-    e.stopPropagation();
-    // Reset to drop zone
-    _file=null;_imgBase64=null;
-    document.getElementById('dzContent').style.display='';
-    document.getElementById('dzPreview').style.display='none';
-    document.getElementById('extractMetaBtn').disabled=true;
-    document.getElementById('aiAnalyzeBtn').disabled=true;
-    document.getElementById('analyzeResults').innerHTML='';
-    fileInput.value='';
-  });
-
-  function loadFile(file){
-    _file=file;
-    const reader=new FileReader();
-    reader.onload=ev=>{
-      const url=ev.target.result;
-      _imgBase64=url.split(',')[1];
-      document.getElementById('dzImg').src=url;
-      document.getElementById('dzContent').style.display='none';
-      document.getElementById('dzPreview').style.display='';
-      document.getElementById('extractMetaBtn').disabled=false;
-      document.getElementById('aiAnalyzeBtn').disabled=false;
-      document.getElementById('analyzeResults').innerHTML='';
-    };
-    reader.readAsDataURL(file);
-  }
-
-  // ── EXTRACT METADATA ──
-  document.getElementById('extractMetaBtn').addEventListener('click',()=>{
-    if(!_file)return;
-    const reader=new FileReader();
-    reader.onload=ev=>{
-      const buf=ev.target.result;
-      const result=parseImageMeta(buf,_file.name,_file.type);
-      renderMetaResults(result);
-    };
-    reader.readAsArrayBuffer(_file);
-  });
-
-  function parseImageMeta(buf,fname,ftype){
-    const bytes=new Uint8Array(buf);
-    const out={source:'unknown',comfy:null,a1111:null,exif:{},raw:null};
-
-    // ── Try ComfyUI: read PNG tEXt chunks for 'workflow' or 'prompt' ──
-    if(ftype==='image/png'||fname.toLowerCase().endsWith('.png')){
-      const chunks=parsePNGChunks(bytes);
-      for(const ch of chunks){
-        if(ch.type==='tEXt'||ch.type==='iTXt'){
-          const str=decodeChunk(ch.data);
-          if(str.startsWith('workflow\0')||str.startsWith('prompt\0')){
-            const jsonStr=str.slice(str.indexOf('\0')+1);
-            try{
-              const j=JSON.parse(jsonStr);
-              out.comfy=j; out.source='comfy';
-              out.raw=jsonStr;
-            }catch(e){}
-          }
-          // A1111 stores params in tEXt with key 'parameters'
-          if(str.startsWith('parameters\0')){
-            out.a1111=str.slice(str.indexOf('\0')+1);
-            out.source='a1111';
-          }
-          // Also check for pure JSON (ComfyUI newer format)
-          if(!out.comfy && str.includes('"class_type"')){
-            const start=str.indexOf('{');
-            if(start>=0){
-              try{const j=JSON.parse(str.slice(start));out.comfy=j;out.source='comfy';}catch(e){}
-            }
-          }
-        }
-      }
-      // EXIF in PNG (eXIf chunk)
-      for(const ch of chunks){
-        if(ch.type==='eXIf'||ch.type==='zTXt'){
-          out.exif.hasExif=true;
-        }
-      }
-    }
-
-    // ── Try JPEG EXIF ──
-    if(ftype==='image/jpeg'||fname.toLowerCase().match(/\.jpe?g$/)){
-      const exif=parseJPEGExif(bytes);
-      if(Object.keys(exif).length) {out.exif=exif; if(out.source==='unknown') out.source='exif';}
-    }
-
-    return out;
-  }
-
-  function parsePNGChunks(bytes){
-    const chunks=[];
-    let i=8; // skip PNG signature
-    while(i<bytes.length-12){
-      const len=(bytes[i]<<24|bytes[i+1]<<16|bytes[i+2]<<8|bytes[i+3])>>>0;
-      const type=String.fromCharCode(bytes[i+4],bytes[i+5],bytes[i+6],bytes[i+7]);
-      const data=bytes.slice(i+8,i+8+len);
-      chunks.push({type,data});
-      i+=12+len;
-      if(type==='IEND')break;
-    }
-    return chunks;
-  }
-
-  function decodeChunk(data){
-    try{return new TextDecoder('utf-8').decode(data);}
-    catch(e){return String.fromCharCode(...data);}
-  }
-
-  function parseJPEGExif(bytes){
-    const tags={};
-    // Look for APP1 marker FF E1
-    for(let i=0;i<bytes.length-4;i++){
-      if(bytes[i]===0xFF&&bytes[i+1]===0xE1){
-        const len=(bytes[i+2]<<8|bytes[i+3]);
-        const seg=bytes.slice(i+4,i+2+len);
-        const hdr=String.fromCharCode(...seg.slice(0,6));
-        if(hdr.startsWith('Exif')){
-          // Basic: just note EXIF present
-          tags.hasExif=true;
-          tags.segmentLen=len;
-          // Try to extract ASCII strings
-          const txt=new TextDecoder('ascii',{fatal:false}).decode(seg);
-          const dateMatch=txt.match(/\d{4}:\d{2}:\d{2} \d{2}:\d{2}:\d{2}/);
-          if(dateMatch) tags.dateTime=dateMatch[0].replace(/:/g,'-').replace('-','-').slice(0,10);
-        }
-        break;
-      }
-    }
-    return tags;
-  }
-
-  // ── RENDER META RESULTS ──
-  function renderMetaResults(result){
-    const el=document.getElementById('analyzeResults');
-    el.innerHTML='';
-
-    if(result.source==='unknown'&&!result.comfy&&!result.a1111){
-      el.innerHTML=`<div class="az-empty"><i class="fas fa-circle-exclamation"></i>No embedded metadata found in this image.<br><small>Try AI Analyze to describe it with AI.</small></div>`;
-      return;
-    }
-
-    // ComfyUI
-    if(result.comfy){
-      const sec=makeSection('ComfyUI Workflow','fa-diagram-project','comfy');
-      const body=sec.querySelector('.az-sec-body');
-
-      // Extract prompts from ComfyUI nodes
-      const extracted=extractComfyPrompts(result.comfy);
-
-      if(extracted.positive){
-        body.appendChild(makeMetaRow('Positive','prompt-text',extracted.positive,true));
-      }
-      if(extracted.negative){
-        body.appendChild(makeMetaRow('Negative','neg-text',extracted.negative,true));
-      }
-      // Model / Sampler info
-      if(extracted.model) body.appendChild(makeMetaRow('Model','',extracted.model));
-      if(extracted.sampler) body.appendChild(makeMetaRow('Sampler','',extracted.sampler));
-      if(extracted.steps) body.appendChild(makeMetaRow('Steps','',String(extracted.steps)));
-      if(extracted.cfg!==undefined) body.appendChild(makeMetaRow('CFG Scale','',String(extracted.cfg)));
-      if(extracted.seed!==undefined) body.appendChild(makeMetaRow('Seed','',String(extracted.seed)));
-      if(extracted.width) body.appendChild(makeMetaRow('Resolution','',`${extracted.width} × ${extracted.height}`));
-
-      // Import buttons
-      if(extracted.positive||extracted.negative){
-        body.appendChild(makeImportRow(extracted.positive,extracted.negative));
-      }
-
-      // Raw nodes count
-      const nodeCount=typeof result.comfy==='object'?Object.keys(result.comfy).length:0;
-      if(nodeCount>0){
-        const info=document.createElement('div');
-        info.style.cssText='font-size:.65rem;color:var(--tx3);text-align:right;margin-top:.2rem;';
-        info.textContent=`${nodeCount} workflow nodes detected`;
-        body.appendChild(info);
-      }
-
-      el.appendChild(sec);
-    }
-
-    // A1111 / WEBUI
-    if(result.a1111){
-      const sec=makeSection('Automatic1111 Parameters','fa-sliders','a1111');
-      const body=sec.querySelector('.az-sec-body');
-      const parsed=parseA1111(result.a1111);
-
-      if(parsed.positive) body.appendChild(makeMetaRow('Positive','prompt-text',parsed.positive,true));
-      if(parsed.negative) body.appendChild(makeMetaRow('Negative','neg-text',parsed.negative,true));
-      if(parsed.model) body.appendChild(makeMetaRow('Model','',parsed.model));
-      if(parsed.sampler) body.appendChild(makeMetaRow('Sampler','',parsed.sampler));
-      if(parsed.steps) body.appendChild(makeMetaRow('Steps','',parsed.steps));
-      if(parsed.cfg) body.appendChild(makeMetaRow('CFG Scale','',parsed.cfg));
-      if(parsed.seed) body.appendChild(makeMetaRow('Seed','',parsed.seed));
-      if(parsed.size) body.appendChild(makeMetaRow('Resolution','',parsed.size));
-      if(parsed.clipSkip) body.appendChild(makeMetaRow('Clip Skip','',parsed.clipSkip));
-      if(parsed.denoising) body.appendChild(makeMetaRow('Denoising','',parsed.denoising));
-      if(parsed.vae) body.appendChild(makeMetaRow('VAE','',parsed.vae));
-
-      if(parsed.positive||parsed.negative){
-        body.appendChild(makeImportRow(parsed.positive,parsed.negative));
-      }
-      el.appendChild(sec);
-    }
-
-    // Basic EXIF
-    if(Object.keys(result.exif).length&&result.source==='exif'){
-      const sec=makeSection('EXIF Data','fa-circle-info','exif');
-      const body=sec.querySelector('.az-sec-body');
-      if(result.exif.dateTime) body.appendChild(makeMetaRow('Date','',result.exif.dateTime));
-      body.appendChild(makeMetaRow('Type','',_file.type));
-      body.appendChild(makeMetaRow('Size','',(_file.size/1024).toFixed(1)+' KB'));
-      el.appendChild(sec);
-    }
-  }
-
-  function extractComfyPrompts(wf){
-    const out={positive:'',negative:'',model:'',sampler:'',steps:0,cfg:0,seed:0,width:0,height:0};
-    if(!wf||typeof wf!=='object') return out;
-    const nodes=Object.values(wf);
-    for(const node of nodes){
-      if(!node||!node.class_type) continue;
-      const ct=node.class_type.toLowerCase();
-      const inp=node.inputs||{};
-      // Text encoders → prompts
-      if(ct.includes('cliptextencode')||ct.includes('textencode')){
-        const txt=inp.text||inp.Text||'';
-        if(typeof txt==='string'){
-          // Heuristic: first clip = positive, second = negative
-          if(!out.positive) out.positive=txt;
-          else if(!out.negative&&txt!==out.positive) out.negative=txt;
-        }
-      }
-      // KSampler
-      if(ct.includes('ksampler')){
-        if(inp.steps) out.steps=inp.steps;
-        if(inp.cfg) out.cfg=inp.cfg;
-        if(inp.seed) out.seed=inp.seed;
-        if(inp.sampler_name) out.sampler=inp.sampler_name;
-        if(inp.scheduler) out.sampler+=(out.sampler?' / ':'')+inp.scheduler;
-      }
-      // Loader
-      if(ct.includes('checkpointloader')||ct.includes('unetloader')){
-        out.model=inp.ckpt_name||inp.unet_name||inp.model_name||'';
-      }
-      // Empty latent
-      if(ct.includes('emptylatent')||ct.includes('emptysd3latent')){
-        out.width=inp.width||0; out.height=inp.height||0;
-      }
-    }
-    return out;
-  }
-
-  function parseA1111(raw){
-    const out={positive:'',negative:'',sampler:'',steps:'',cfg:'',seed:'',size:'',model:'',clipSkip:'',denoising:'',vae:''};
-    // Split at "Negative prompt:" line
-    const negIdx=raw.indexOf('Negative prompt:');
-    const paramIdx=raw.search(/\nSteps:/);
-    if(negIdx>0){
-      out.positive=raw.slice(0,negIdx).trim();
-      if(paramIdx>negIdx) out.negative=raw.slice(negIdx+16,paramIdx).trim();
-      else out.negative=raw.slice(negIdx+16).trim();
-    } else if(paramIdx>0){
-      out.positive=raw.slice(0,paramIdx).trim();
-    } else {
-      out.positive=raw.trim();
-    }
-    // Parse key: value params
-    const paramStr=paramIdx>0?raw.slice(paramIdx):'';
-    const kvs=paramStr.matchAll(/(\w[\w\s]*):\s*([^,\n]+)/g);
-    for(const m of kvs){
-      const k=m[1].trim().toLowerCase(), v=m[2].trim();
-      if(k==='steps') out.steps=v;
-      else if(k==='sampler'||k==='sampler name') out.sampler=v;
-      else if(k==='cfg scale'||k==='cfg') out.cfg=v;
-      else if(k==='seed') out.seed=v;
-      else if(k==='size') out.size=v;
-      else if(k==='model'||k==='model hash') out.model=v;
-      else if(k==='clip skip') out.clipSkip=v;
-      else if(k==='denoising strength') out.denoising=v;
-      else if(k==='vae') out.vae=v;
-    }
-    return out;
-  }
-
-  function makeSection(title,icon,badgeType){
-    const sec=document.createElement('div');
-    sec.className='az-section';
-    const badgeLabels={comfy:'ComfyUI',a1111:'A1111',exif:'EXIF',ai:'AI'};
-    sec.innerHTML=`
-      <div class="az-sec-hd">
-        <i class="fas ${icon}"></i>
-        <span class="az-sec-title">${title}</span>
-        <span class="az-sec-badge ${badgeType}">${badgeLabels[badgeType]||''}</span>
-      </div>
-      <div class="az-sec-body"></div>`;
-    return sec;
-  }
-
-  function makeMetaRow(key,valCls,val,copyable=false){
-    const row=document.createElement('div');
-    row.className='meta-row';
-    row.innerHTML=`
-      <span class="meta-key">${key}</span>
-      <span class="meta-val${valCls?' '+valCls:''}">${escHtml(val)}</span>
-      ${copyable?`<button class="meta-copy" title="Copy"><i class="fas fa-copy"></i></button>`:'<span></span>'}
-    `;
-    if(copyable){
-      row.querySelector('.meta-copy').addEventListener('click',function(){
-        navigator.clipboard.writeText(val).then(()=>{
-          this.innerHTML='<i class="fas fa-check"></i>';
-          this.classList.add('ok');
-          setTimeout(()=>{this.innerHTML='<i class="fas fa-copy"></i>';this.classList.remove('ok');},1500);
-        });
-      });
-    }
-    return row;
-  }
-
-  function makeImportRow(pos,neg){
-    const row=document.createElement('div');
-    row.className='az-import-row';
-    if(pos){
-      const b=document.createElement('button');
-      b.className='az-import-btn az-import-pos';
-      b.innerHTML='<i class="fas fa-arrow-down-to-line"></i> Import to Positive';
-      b.addEventListener('click',()=>{
-        // Add to extraPos
-        if(pos){S.extraPos=[pos];renderTagBoxes();rebuild();toast('✓ Positive imported!');}
-        document.getElementById('analyzeOverlay').classList.remove('open');
-      });
-      row.appendChild(b);
-    }
-    if(neg){
-      const b=document.createElement('button');
-      b.className='az-import-btn az-import-neg';
-      b.innerHTML='<i class="fas fa-arrow-down-to-line"></i> Import to Negative';
-      b.addEventListener('click',()=>{
-        if(neg){S.extraNeg=[neg];renderTagBoxes();rebuild();toast('✓ Negative imported!');}
-        document.getElementById('analyzeOverlay').classList.remove('open');
-      });
-      row.appendChild(b);
-    }
-    return row;
-  }
-
-  function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-
-  // ── AI ANALYZE (Claude API) ──
-  document.getElementById('aiAnalyzeBtn').addEventListener('click', async ()=>{
-    if(!_imgBase64) return;
-    const btn=document.getElementById('aiAnalyzeBtn');
-    const spinner=document.getElementById('aiSpinner');
-    const icon=document.getElementById('aiIcon');
-    btn.disabled=true; spinner.style.display='block'; icon.style.display='none';
-
-    const el=document.getElementById('analyzeResults');
-
-    // Add AI section placeholder
-    const sec=makeSection('AI Image Analysis','fa-wand-magic-sparkles','ai');
-    const body=sec.querySelector('.az-sec-body');
-    const aiBox=document.createElement('div');
-    aiBox.className='ai-suggestion loading';
-    aiBox.textContent='Analyzing image with AI…';
-    body.appendChild(aiBox);
-    // Check if meta results already there; if so prepend, else set
-    const existingSecs=el.querySelectorAll('.az-section');
-    if(existingSecs.length>0){
-      el.insertBefore(sec,existingSecs[0]);
-    } else {
-      el.innerHTML='';
-      el.appendChild(sec);
-    }
-
-    try{
-      const resp=await fetch('https://api.anthropic.com/v1/messages',{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({
-          model:'claude-sonnet-4-20250514',
-          max_tokens:1000,
-          messages:[{
-            role:'user',
-            content:[
-              {type:'image',source:{type:'base64',media_type:_file.type||'image/png',data:_imgBase64}},
-              {type:'text',text:`Analyze this anime/illustration image and respond ONLY with valid JSON, no markdown, no extra text:
-{
-  "description": "2-3 sentence description of the image",
-  "prompt": "comma-separated positive prompt tags for recreating this image in an AI image generator (20-35 tags, start with quality tags like masterpiece, best quality)",
-  "negative": "comma-separated negative prompt tags (10-15 tags)",
-  "style": "art style name",
-  "mood": "overall mood/atmosphere",
-  "tags": ["tag1","tag2","tag3","tag4","tag5","tag6","tag7","tag8"]
-}`}
-            ]
-          }]
-        })
-      });
-      const data=await resp.json();
-      const raw=data.content?.map(x=>x.text||'').join('').trim();
-      let parsed;
-      try{
-        const clean=raw.replace(/```json|```/g,'').trim();
-        parsed=JSON.parse(clean);
-      }catch(e){
-        parsed={description:raw,prompt:'',negative:'',tags:[]};
-      }
-
-      aiBox.classList.remove('loading');
-      aiBox.innerHTML='';
-
-      if(parsed.description){
-        const desc=document.createElement('p');
-        desc.style.cssText='font-size:.78rem;color:var(--tx2);line-height:1.6;margin-bottom:.6rem;font-family:inherit;';
-        desc.textContent=parsed.description;
-        aiBox.appendChild(desc);
-      }
-
-      if(parsed.style||parsed.mood){
-        const meta=document.createElement('div');
-        meta.style.cssText='display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.6rem;';
-        if(parsed.style) meta.innerHTML+=`<span style="background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.2);color:var(--pl);padding:.18rem .55rem;border-radius:100px;font-size:.68rem;font-weight:700;">🎨 ${parsed.style}</span>`;
-        if(parsed.mood) meta.innerHTML+=`<span style="background:rgba(244,114,182,.1);border:1px solid rgba(244,114,182,.2);color:var(--ac);padding:.18rem .55rem;border-radius:100px;font-size:.68rem;font-weight:700;">✨ ${parsed.mood}</span>`;
-        aiBox.appendChild(meta);
-      }
-
-      if(parsed.tags&&parsed.tags.length){
-        const tagsLbl=document.createElement('div');
-        tagsLbl.style.cssText='font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--tx3);margin-bottom:.35rem;';
-        tagsLbl.textContent='Quick-add tags';
-        aiBox.appendChild(tagsLbl);
-        const tagsRow=document.createElement('div');
-        tagsRow.className='ai-tags';
-        parsed.tags.forEach(t=>{
-          const span=document.createElement('span');
-          span.className='ai-tag';
-          span.textContent=t;
-          span.addEventListener('click',function(){
-            if(!S.extraPos.includes(t)){S.extraPos.push(t);renderTagBoxes();rebuild();}
-            this.classList.add('added');
-            this.textContent='✓ '+t;
-          });
-          tagsRow.appendChild(span);
-        });
-        aiBox.appendChild(tagsRow);
-      }
-
-      // Import row for full prompt
-      if(parsed.prompt||parsed.negative){
-        body.appendChild(makeMetaRow('Positive','prompt-text',parsed.prompt||'',true));
-        if(parsed.negative) body.appendChild(makeMetaRow('Negative','neg-text',parsed.negative,true));
-        body.appendChild(makeImportRow(parsed.prompt,parsed.negative));
-      }
-
-    }catch(err){
-      aiBox.classList.remove('loading');
-      aiBox.textContent='Error: '+err.message;
-    }finally{
-      btn.disabled=false; spinner.style.display='none'; icon.style.display='';
-    }
-  });
-
-}); // end DOMContentLoaded
-})(); // end IIFE
-
-/* ═══════════════════════════════════
    RADAR / HUD BACKGROUND ANIMATION
 ═══════════════════════════════════ */
 (function initRadar(){
@@ -3331,8 +2958,6 @@ document.addEventListener("DOMContentLoaded",function(){
   if(!canvas) return;
   const ctx = canvas.getContext('2d');
   let W, H;
-  let scanY = 0;
-  let animId;
 
   function resize(){
     const bp = canvas.parentElement;
@@ -3342,6 +2967,7 @@ document.addEventListener("DOMContentLoaded",function(){
       canvas.height = Math.round(rect.height);
       W = canvas.width;
       H = canvas.height;
+      draw();
     }
   }
 
@@ -3359,104 +2985,84 @@ document.addEventListener("DOMContentLoaded",function(){
 
   function draw(){
     ctx.clearRect(0, 0, W, H);
-
     const accent = getAccent();
     let rgb;
     try{ rgb = hexToRgb(accent); } catch(e){ rgb=[99,102,241]; }
     const [r,g,b] = rgb;
     const col = (a) => `rgba(${r},${g},${b},${a})`;
 
-    // ── Grid lines (horizontal) ──
-    const hLines = 6;
+    // Horizontal grid lines
+    const hLines = 8;
     for(let i=1; i<hLines; i++){
       const y = H * i / hLines;
-      ctx.beginPath();
-      ctx.moveTo(0, y);
-      ctx.lineTo(W, y);
-      ctx.strokeStyle = col(0.08);
-      ctx.lineWidth = 0.6;
-      ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y);
+      ctx.strokeStyle = col(0.09); ctx.lineWidth = 0.6; ctx.stroke();
     }
-
-    // ── Grid lines (vertical) ──
-    const vLines = 8;
+    // Vertical grid lines
+    const vLines = 10;
     for(let i=1; i<vLines; i++){
       const x = W * i / vLines;
-      ctx.beginPath();
-      ctx.moveTo(x, 0);
-      ctx.lineTo(x, H);
-      ctx.strokeStyle = col(0.06);
-      ctx.lineWidth = 0.6;
-      ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H);
+      ctx.strokeStyle = col(0.06); ctx.lineWidth = 0.6; ctx.stroke();
     }
-
-    // ── Glow trail above scan line ──
-    const trailH = H * 0.32;
-    const trailTop = Math.max(0, scanY - trailH);
-    const grad = ctx.createLinearGradient(0, trailTop, 0, scanY);
-    grad.addColorStop(0,   col(0));
-    grad.addColorStop(0.6, col(0.03));
-    grad.addColorStop(1,   col(0.13));
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, trailTop, W, scanY - trailTop);
-
-    // ── Main scan line ──
-    const lineGrad = ctx.createLinearGradient(0, 0, W, 0);
-    lineGrad.addColorStop(0,   col(0));
-    lineGrad.addColorStop(0.1, col(0.6));
-    lineGrad.addColorStop(0.5, col(0.9));
-    lineGrad.addColorStop(0.9, col(0.6));
-    lineGrad.addColorStop(1,   col(0));
-    ctx.beginPath();
-    ctx.moveTo(0, scanY);
-    ctx.lineTo(W, scanY);
-    ctx.strokeStyle = lineGrad;
-    ctx.lineWidth = 1.5;
-    ctx.shadowColor = `rgba(${r},${g},${b},0.8)`;
-    ctx.shadowBlur = 6;
-    ctx.stroke();
-    ctx.shadowBlur = 0;
-
-    // ── Soft glow line below (reflection) ──
-    ctx.beginPath();
-    ctx.moveTo(0, scanY + 2);
-    ctx.lineTo(W, scanY + 2);
-    ctx.strokeStyle = col(0.15);
-    ctx.lineWidth = 4;
-    ctx.stroke();
-
-    // ── Corner tick marks ──
-    const tick = 10;
-    ctx.strokeStyle = col(0.2);
-    ctx.lineWidth = 1;
+    // Corner tick marks
+    const tick = 8;
+    ctx.strokeStyle = col(0.22); ctx.lineWidth = 1;
     [[0,0,1,0,0,1],[W,0,-1,0,0,1],[0,H,1,0,0,-1],[W,H,-1,0,0,-1]].forEach(([x,y,dx1,dy1,dx2,dy2])=>{
-      ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+dx1*tick, y+dy1*tick); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+dx2*tick, y+dy2*tick); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+dx1*tick,y+dy1*tick); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+dx2*tick,y+dy2*tick); ctx.stroke();
     });
-
-    // Advance scan line — speed: full height in ~8 seconds at 60fps
-    scanY += H / (60 * 8);
-    if(scanY > H + 20) scanY = -20;
-
-    animId = requestAnimationFrame(draw);
+    // Subtle center crosshair
+    ctx.beginPath(); ctx.moveTo(W/2-6,H/2); ctx.lineTo(W/2+6,H/2);
+    ctx.strokeStyle = col(0.18); ctx.lineWidth = 0.8; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(W/2,H/2-6); ctx.lineTo(W/2,H/2+6); ctx.stroke();
   }
 
   resize();
-  draw();
 
   let resizeTimer;
   function debouncedResize(){
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(resize, 150);
   }
-
   if(window.ResizeObserver){
     new ResizeObserver(debouncedResize).observe(canvas.parentElement);
   }
   window.addEventListener('resize', debouncedResize);
+  // Redraw on theme change
+  document.body.addEventListener('themechange', draw);
 })();
 
 /* ── START ── */
+/* ── RESIZABLE PANEL DIVIDER ── */
+(function(){
+  const resizer = document.getElementById('layoutResizer');
+  const rp = document.querySelector('.rp');
+  if(!resizer || !rp) return;
+  let startX, startW;
+  resizer.addEventListener('mousedown', e=>{
+    startX = e.clientX;
+    startW = rp.offsetWidth;
+    resizer.classList.add('dragging');
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+    function onMove(e){
+      const dx = e.clientX - startX;
+      const newW = Math.min(700, Math.max(280, startW + dx));
+      rp.style.width = newW + 'px';
+    }
+    function onUp(){
+      resizer.classList.remove('dragging');
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+    }
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+  });
+})();
+
 initModal();
 init();
 </script>
