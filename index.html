@@ -1049,7 +1049,7 @@ body.light .tag-box{background:#f0f2fa;}
   <div class="logo">
     <div class="logo-ico">✦</div>
     <span class="logo-txt">Anime Prompt Studio</span>
-    <span class="logo-by">MD.AI Systems © 2026</span>
+    <span class="logo-by">by Mohammad M. Aamoudi</span>
   </div>
   <div class="hdr-mid">
     <button class="btn-h" id="randomBtn"><i class="fas fa-shuffle"></i> <span>Random</span></button>
@@ -1488,7 +1488,7 @@ body.light .tag-box{background:#f0f2fa;}
     <div class="ag-warning-icon">
       <i class="fas fa-triangle-exclamation"></i>
     </div>
-    <div class="ag-title">Adults Content</div>
+    <div class="ag-title">Adults Only — 18+</div>
     <div class="ag-title-en">NSFW Content Warning</div>
     <div class="ag-divider"></div>
     <div class="ag-body">
@@ -1926,7 +1926,7 @@ function attachEvents(){
       rebuild();
     } else {
       // Turning ON — check if already confirmed
-      if(localStorage.getItem('aps_age_confirmed') === '1'){
+      if(sessionStorage.getItem('aps_age_confirmed') === '1'){
         S.nsfw = true;
         document.getElementById('nsfwBtn').classList.add('on');
         toggleNSFW(true);
@@ -1939,7 +1939,7 @@ function attachEvents(){
   });
 
   document.getElementById('agConfirm').addEventListener('click',()=>{
-    localStorage.setItem('aps_age_confirmed','1');
+    sessionStorage.setItem('aps_age_confirmed','1');
     document.getElementById('agOverlay').classList.remove('open');
     S.nsfw = true;
     document.getElementById('nsfwBtn').classList.add('on');
