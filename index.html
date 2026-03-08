@@ -865,6 +865,77 @@ body.light .tag-box{background:#f0f2fa;}
 
 @media(max-width:900px){.layout{grid-template-columns:1fr;height:auto;}.rp{border-top:1px solid var(--brd2);}.hdr-mid .btn-h span{display:none;}}
 
+/* ══ AGE GATE MODAL ══ */
+.ag-overlay{
+  display:none;position:fixed;inset:0;z-index:1000;
+  background:rgba(0,0,0,.85);
+  align-items:center;justify-content:center;
+  backdrop-filter:blur(8px);
+}
+.ag-overlay.open{display:flex;}
+.ag-modal{
+  background:var(--surf);
+  border:1px solid rgba(239,68,68,.3);
+  border-radius:20px;
+  padding:2rem 1.8rem 1.5rem;
+  max-width:360px;width:90%;
+  text-align:center;
+  box-shadow:0 0 60px rgba(239,68,68,.15), 0 24px 60px rgba(0,0,0,.6);
+  animation:agPop .22s cubic-bezier(.34,1.4,.64,1);
+}
+@keyframes agPop{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+.ag-warning-icon{
+  width:64px;height:64px;border-radius:50%;
+  background:rgba(239,68,68,.1);border:2px solid rgba(239,68,68,.3);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto .9rem;
+  animation:agPulse 2s ease-in-out infinite;
+}
+@keyframes agPulse{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.3)}50%{box-shadow:0 0 0 10px rgba(239,68,68,.0)}}
+.ag-warning-icon i{font-size:1.8rem;color:#f87171;}
+.ag-title{font-size:1.1rem;font-weight:900;color:#f87171;margin-bottom:.2rem;}
+.ag-title-en{font-size:.72rem;color:var(--tx3);margin-bottom:.7rem;letter-spacing:.05em;}
+.ag-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(239,68,68,.25),transparent);margin-bottom:.9rem;}
+.ag-body{font-size:.78rem;color:var(--tx2);line-height:1.7;margin-bottom:.85rem;}
+.ag-body p{margin:.2rem 0;}
+.ag-checks{
+  background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.12);
+  border-radius:10px;padding:.7rem .9rem;
+  margin-bottom:.75rem;text-align:left;
+}
+.ag-check{
+  font-size:.75rem;color:var(--tx2);padding:.25rem 0;
+  display:flex;align-items:center;gap:.5rem;justify-content:flex-start;
+}
+.ag-check i{color:#f87171;font-size:.7rem;flex-shrink:0;}
+.ag-disclaimer{
+  background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.15);
+  border-radius:10px;padding:.65rem .8rem;
+  margin-bottom:1rem;
+  display:flex;align-items:flex-start;gap:.5rem;
+  font-size:.68rem;color:var(--tx3);line-height:1.6;
+}
+.ag-disclaimer i{color:var(--pl);font-size:.75rem;margin-top:.1rem;flex-shrink:0;}
+.ag-disclaimer strong{color:var(--tx2);}
+.ag-actions{display:flex;flex-direction:column;gap:.5rem;margin-bottom:.75rem;}
+.ag-btn-confirm{
+  padding:.75rem;border-radius:10px;border:none;cursor:pointer;
+  background:linear-gradient(135deg,#dc2626,#b91c1c);
+  color:#fff;font-family:'DM Sans',sans-serif;font-weight:800;font-size:.85rem;
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  transition:all .2s;box-shadow:0 4px 16px rgba(220,38,38,.35);
+}
+.ag-btn-confirm:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(220,38,38,.45);}
+.ag-btn-cancel{
+  padding:.6rem;border-radius:10px;border:1px solid var(--brd);
+  background:transparent;color:var(--tx3);
+  font-family:'DM Sans',sans-serif;font-weight:600;font-size:.78rem;
+  cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;justify-content:center;gap:.4rem;
+}
+.ag-btn-cancel:hover{border-color:var(--tx2);color:var(--tx);}
+.ag-footer{font-size:.62rem;color:var(--tx3);line-height:1.5;direction:rtl;}
+
 /* ══ ANALYZE MODAL ══ */
 .analyze-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:900;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
 .analyze-overlay.open{display:flex;}
@@ -978,7 +1049,7 @@ body.light .tag-box{background:#f0f2fa;}
   <div class="logo">
     <div class="logo-ico">✦</div>
     <span class="logo-txt">Anime Prompt Studio</span>
-    <span class="logo-by">by Mohammad M. Aamoudi</span>
+    <span class="logo-by">MD.AI Systems © 2026</span>
   </div>
   <div class="hdr-mid">
     <button class="btn-h" id="randomBtn"><i class="fas fa-shuffle"></i> <span>Random</span></button>
@@ -1365,6 +1436,8 @@ body.light .tag-box{background:#f0f2fa;}
 -->
 
 <!-- ═══ ANALYZE IMAGE MODAL ═══ -->
+
+
 <div class="analyze-overlay" id="analyzeOverlay">
   <div class="analyze-modal">
     <div class="analyze-hd">
@@ -1405,6 +1478,43 @@ body.light .tag-box{background:#f0f2fa;}
       <!-- Results area -->
       <div id="analyzeResults"></div>
 
+    </div>
+  </div>
+</div>
+
+<!-- ═══ AGE GATE MODAL ═══ -->
+<div class="ag-overlay" id="agOverlay">
+  <div class="ag-modal">
+    <div class="ag-warning-icon">
+      <i class="fas fa-triangle-exclamation"></i>
+    </div>
+    <div class="ag-title">Adults Content</div>
+    <div class="ag-title-en">NSFW Content Warning</div>
+    <div class="ag-divider"></div>
+    <div class="ag-body">
+      <p>This section contains mature content intended for adults only.</p>
+      <p>By proceeding, you confirm the following:</p>
+    </div>
+    <div class="ag-checks">
+      <div class="ag-check"><i class="fas fa-circle-check"></i> I am 18 years of age or older</div>
+      <div class="ag-check"><i class="fas fa-circle-check"></i> I take full responsibility for my use of this content</div>
+      <div class="ag-check"><i class="fas fa-circle-check"></i> Accessing this content is legal in my country or region</div>
+      <div class="ag-check"><i class="fas fa-circle-check"></i> I will not use generated prompts to create illegal content</div>
+    </div>
+    <div class="ag-disclaimer">
+      <i class="fas fa-shield-halved"></i>
+      <span>The creator of this tool bears <strong>no responsibility</strong> for any misuse, harmful content generation, or violation of third-party platform terms. This tool generates text prompts only. You are solely responsible for how you use them.</span>
+    </div>
+    <div class="ag-actions">
+      <button class="ag-btn-confirm" id="agCancel">
+        <i class="fas fa-xmark"></i> No, I am Under 18
+      </button>
+      <button class="ag-btn-cancel" id="agConfirm">
+        <i class="fas fa-check"></i> Yes, I am 18 or Older
+      </button>
+    </div>
+    <div class="ag-footer">
+      ⚠️ For artistic prompt generation purposes only
     </div>
   </div>
 </div>
@@ -1808,10 +1918,43 @@ function attachEvents(){
 
   /* NSFW */
   document.getElementById('nsfwBtn').addEventListener('click',()=>{
-    S.nsfw=!S.nsfw;
-    document.getElementById('nsfwBtn').classList.toggle('on',S.nsfw);
-    toggleNSFW(S.nsfw);
+    if(S.nsfw){
+      // Already ON — just toggle off
+      S.nsfw = false;
+      document.getElementById('nsfwBtn').classList.remove('on');
+      toggleNSFW(false);
+      rebuild();
+    } else {
+      // Turning ON — check if already confirmed
+      if(localStorage.getItem('aps_age_confirmed') === '1'){
+        S.nsfw = true;
+        document.getElementById('nsfwBtn').classList.add('on');
+        toggleNSFW(true);
+        rebuild();
+      } else {
+        // Show age gate
+        document.getElementById('agOverlay').classList.add('open');
+      }
+    }
+  });
+
+  document.getElementById('agConfirm').addEventListener('click',()=>{
+    localStorage.setItem('aps_age_confirmed','1');
+    document.getElementById('agOverlay').classList.remove('open');
+    S.nsfw = true;
+    document.getElementById('nsfwBtn').classList.add('on');
+    toggleNSFW(true);
     rebuild();
+  });
+
+  document.getElementById('agCancel').addEventListener('click',()=>{
+    document.getElementById('agOverlay').classList.remove('open');
+  });
+
+  // Close on overlay click
+  document.getElementById('agOverlay').addEventListener('click', e=>{
+    if(e.target === document.getElementById('agOverlay'))
+      document.getElementById('agOverlay').classList.remove('open');
   });
 
   /* Favourites dropdown */
@@ -3318,13 +3461,4 @@ initModal();
 init();
 </script>
 </body>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VRCZPX4KMN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-VRCZPX4KMN');
-</script>
 </html>
