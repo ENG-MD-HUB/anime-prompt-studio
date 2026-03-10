@@ -28,7 +28,7 @@
 <!-- Favicon (SVG inline — no external file needed) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%236366f1'/><text x='16' y='23' font-size='18' text-anchor='middle' fill='white'>✦</text></svg>">
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%236366f1'/><text x='16' y='23' font-size='18' text-anchor='middle' fill='white'>✦</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=DM+Mono:wght@400;500&family=Cairo:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <style>
 /* ══ THEMES ══ */
@@ -50,6 +50,7 @@
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden;font-size:15px;}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 40% at 20% 20%,rgba(99,102,241,.07),transparent 70%),radial-gradient(ellipse 40% 60% at 80% 80%,rgba(244,114,182,.05),transparent 70%);pointer-events:none;z-index:0;}
 
+
 /* ══ HEADER ══ */
 .hdr{position:sticky;top:0;z-index:300;background:rgba(7,9,15,.96);backdrop-filter:blur(24px);border-bottom:1px solid var(--brd);padding:0 1.4rem;height:56px;display:flex;align-items:center;gap:.8rem;}
 .logo{display:flex;align-items:center;gap:.6rem;font-size:1.05rem;font-weight:800;white-space:nowrap;flex-shrink:0;}
@@ -65,6 +66,59 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .btn-ico:hover{border-color:var(--p);color:var(--tx);}
 .btn-ico.on{background:var(--p);border-color:var(--p);color:#fff;}
 .dvd{width:1px;height:20px;background:var(--brd2);flex-shrink:0;}
+
+/* ══ LANGUAGE SWITCHER ══ */
+.lang-opt{
+  width:100%;padding:.4rem .6rem;background:none;border:1px solid transparent;
+  border-radius:7px;cursor:pointer;font-family:'DM Sans',sans-serif;
+  font-size:.78rem;color:var(--tx2);text-align:left;transition:all .15s;
+}
+.lang-opt:hover{border-color:var(--brd);background:var(--surf2);color:var(--tx);}
+.lang-opt.on{background:rgba(99,102,241,.12);border-color:rgba(99,102,241,.25);color:var(--pl);font-weight:700;}
+
+/* ══ JAPANESE OVERRIDES ══ */
+[lang="ja"] body,[lang="ja"] .ob,[lang="ja"] .btn-h,[lang="ja"] .sec-clr,
+[lang="ja"] .pb-lbl,[lang="ja"] .sec-title,[lang="ja"] .neg-group-lbl,
+[lang="ja"] .tab,[lang="ja"] .ttray-lbl,[lang="ja"] .lang-opt,[lang="ja"] .bs,
+[lang="ja"] .btn-cp,[lang="ja"] .info-tray-item,[lang="ja"] .char-gender-lbl {
+  font-family: 'Noto Sans JP', sans-serif !important;
+}
+[lang="ja"] .ob { font-size:.78rem !important; letter-spacing:0 !important; }
+[lang="ja"] .sec-title { font-size:.75rem !important; letter-spacing:0 !important; text-transform:none !important; }
+[lang="ja"] .neg-group-lbl { letter-spacing:0 !important; text-transform:none !important; }
+[lang="ja"] .ttray-lbl { letter-spacing:0 !important; text-transform:none !important; }
+[lang="ja"] .tab { font-size:.76rem !important; }
+
+/* ══ ARABIC / RTL OVERRIDES ══ */
+[lang="ar"] body,
+[lang="ar"] .ob,
+[lang="ar"] .btn-h,
+[lang="ar"] .sec-clr,
+[lang="ar"] .pb-lbl,
+[lang="ar"] .sec-title,
+[lang="ar"] .neg-group-lbl,
+[lang="ar"] .tab,
+[lang="ar"] .ttray-lbl,
+[lang="ar"] .lang-opt,
+[lang="ar"] .bs,
+[lang="ar"] .btn-cp,
+[lang="ar"] #promptText,
+[lang="ar"] #negativeText,
+[lang="ar"] .info-tray-item,
+[lang="ar"] .char-gender-lbl,
+[lang="ar"] .cat-btn {
+  font-family: 'Cairo', sans-serif !important;
+}
+/* Option buttons in Arabic — slightly bigger for readability */
+[lang="ar"] .ob { font-size:.82rem !important; letter-spacing:0 !important; }
+[lang="ar"] .sec-title { font-size:.79rem !important; letter-spacing:0 !important; text-transform:none !important; }
+[lang="ar"] .neg-group-lbl { font-size:.79rem !important; letter-spacing:0 !important; text-transform:none !important; }
+[lang="ar"] .ttray-lbl { letter-spacing:0 !important; text-transform:none !important; font-size:.72rem !important; }
+[lang="ar"] .tab { font-size:.79rem !important; }
+[lang="ar"] .btn-h { font-size:.83rem !important; }
+[lang="ar"] .bs, [lang="ar"] .btn-cp { font-size:.8rem !important; }
+/* RTL layout fixes */
+
 
 /* ══ THEME TRAY ══ */
 .tw{position:relative;}
@@ -848,6 +902,77 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .toast.show{transform:translateX(-50%) translateY(0);}
 .toast.warn{border-color:#f97316;color:#f97316;box-shadow:0 8px 28px rgba(249,115,22,.28);}
 
+/* ══ CHARACTER CARDS ══ */
+.char-cards-row{display:flex;gap:.75rem;align-items:flex-start;padding:.2rem 0 .5rem;flex-wrap:wrap;}
+.char-card{
+  position:relative;width:86px;height:108px;
+  border:2px dashed var(--brd);border-radius:14px;
+  background:var(--surf);cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.22rem;
+  transition:all .25s cubic-bezier(.4,0,.2,1);flex-shrink:0;user-select:none;
+}
+.char-card:hover{border-color:var(--p);background:rgba(99,102,241,.05);transform:translateY(-2px);box-shadow:0 8px 20px rgba(99,102,241,.12);}
+.char-card.active.gc-female{background:linear-gradient(160deg,rgba(244,114,182,.09),rgba(251,191,36,.03));border:2px solid rgba(244,114,182,.5);box-shadow:0 0 16px rgba(244,114,182,.22);}
+.char-card.active.gc-male  {background:linear-gradient(160deg,rgba(59,130,246,.09),rgba(34,197,94,.03)); border:2px solid rgba(59,130,246,.5); box-shadow:0 0 16px rgba(59,130,246,.22);}
+.char-card.active.gc-futa  {background:linear-gradient(160deg,rgba(168,85,247,.09),rgba(244,114,182,.04));border:2px solid rgba(168,85,247,.5);box-shadow:0 0 16px rgba(168,85,247,.22);}
+
+/* Silhouette */
+.char-silhouette{width:50px;height:52px;display:flex;align-items:center;justify-content:center;pointer-events:none;transition:transform .2s;flex-shrink:0;}
+.char-card:hover .char-silhouette{transform:scale(1.07);}
+.char-silhouette svg{width:100%;height:100%;}
+.char-silhouette i{font-size:2.4rem;transition:color .2s;}
+.char-card:not(.active) .char-silhouette i{color:var(--tx3);opacity:.35;}
+.char-card:not(.active):hover .char-silhouette i{opacity:.55;}
+.char-card.gc-female .char-silhouette i{color:var(--ac);}
+.char-card.gc-male   .char-silhouette i{color:#60a5fa;}
+.char-card.gc-futa   .char-silhouette i{color:#c084fc;}
+.char-card.gc-female .char-silhouette svg{fill:rgba(249,168,212,.75);filter:drop-shadow(0 0 6px rgba(244,114,182,.5));}
+.char-card.gc-male   .char-silhouette svg{fill:rgba(147,197,253,.75);filter:drop-shadow(0 0 6px rgba(59,130,246,.5));}
+.char-card.gc-futa   .char-silhouette svg{fill:rgba(216,180,254,.75);filter:drop-shadow(0 0 6px rgba(168,85,247,.5));}
+
+.char-card-num{font-size:.54rem;font-weight:800;color:var(--tx3);text-transform:uppercase;letter-spacing:.06em;pointer-events:none;}
+.char-card-badge{font-size:.59rem;font-weight:700;padding:.1rem .36rem;border-radius:20px;white-space:nowrap;pointer-events:none;}
+.char-card-badge.unset {background:rgba(99,102,241,.07);color:var(--tx3);border:1px solid var(--brd2);}
+.char-card-badge.female{background:rgba(244,114,182,.15);color:#fbcfe8;border:1px solid rgba(244,114,182,.25);}
+.char-card-badge.male  {background:rgba(59,130,246,.15); color:#bfdbfe;border:1px solid rgba(59,130,246,.25);}
+.char-card-badge.futa  {background:rgba(168,85,247,.15); color:#e9d5ff;border:1px solid rgba(168,85,247,.25);}
+
+.char-card-del{position:absolute;top:-7px;right:-7px;width:18px;height:18px;border-radius:50%;background:#ef4444;border:2px solid var(--bg);color:#fff;font-size:.58rem;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:10;transition:all .15s;}
+.char-card.active:hover .char-card-del{display:flex;}
+.char-card-del:hover{background:#dc2626;transform:scale(1.15);}
+
+/* Warning */
+.char-warn{display:none;align-items:flex-start;gap:.4rem;background:rgba(251,146,60,.07);border:1px solid rgba(251,146,60,.22);border-radius:8px;padding:.46rem .6rem;margin-top:.5rem;font-size:.65rem;color:#fdba74;line-height:1.45;}
+.char-warn.vis{display:flex;}
+.char-warn i{font-size:.63rem;margin-top:.12rem;flex-shrink:0;}
+
+/* ══ GENDER MODAL ══ */
+.gender-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:900;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
+.gender-overlay.open{display:flex;}
+.gender-modal{background:var(--surf);border:1px solid var(--brd);border-radius:20px;padding:1.4rem 1.3rem 1.2rem;width:290px;box-shadow:0 24px 64px rgba(0,0,0,.7);animation:wSlideIn .18s cubic-bezier(.4,0,.2,1);position:relative;}
+.gender-modal-title{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;text-align:center;margin-bottom:.25rem;background:linear-gradient(90deg,var(--p),var(--ac));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.gender-modal-sub{font-size:.66rem;color:var(--tx3);text-align:center;margin-bottom:.9rem;-webkit-text-fill-color:var(--tx3);}
+.gender-opts{display:flex;flex-direction:column;gap:.42rem;}
+.gender-opt-btn{width:100%;padding:.62rem .85rem;border:1.5px solid var(--brd2);border-radius:12px;background:var(--surf2);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.84rem;font-weight:600;color:var(--tx2);display:flex;align-items:center;gap:.65rem;transition:all .2s cubic-bezier(.4,0,.2,1);text-align:left;}
+.gender-opt-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.2);}
+.gender-opt-btn.opt-female:hover,.gender-opt-btn.sel-female{border-color:rgba(244,114,182,.55);background:rgba(244,114,182,.1);color:#fbcfe8;}
+.gender-opt-btn.opt-male:hover,  .gender-opt-btn.sel-male  {border-color:rgba(59,130,246,.55); background:rgba(59,130,246,.1); color:#bfdbfe;}
+.gender-opt-btn.opt-futa:hover,  .gender-opt-btn.sel-futa  {border-color:rgba(168,85,247,.55); background:rgba(168,85,247,.1); color:#e9d5ff;}
+.gender-opt-sil{width:38px;height:40px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.gender-opt-sil i{font-size:1.9rem;}
+.gender-opt-btn.opt-female .gender-opt-sil i{color:rgba(249,168,212,.9);}
+.gender-opt-btn.opt-male   .gender-opt-sil i{color:rgba(147,197,253,.9);}
+.gender-opt-btn.opt-futa   .gender-opt-sil i{color:rgba(216,180,254,.9);}
+.gender-opt-btn:hover .gender-opt-sil i,.gender-opt-btn[class*="sel-"] .gender-opt-sil i{filter:drop-shadow(0 0 5px currentColor);}
+.gender-opt-info{display:flex;flex-direction:column;gap:.06rem;}
+.gender-opt-name{font-size:.84rem;font-weight:700;}
+.gender-opt-tag{font-size:.6rem;color:var(--tx3);font-weight:500;font-family:'DM Mono',monospace;}
+.gender-opt-btn:hover .gender-opt-tag,.gender-opt-btn[class*="sel-"] .gender-opt-tag{color:inherit;opacity:.6;}
+.gender-modal-close{position:absolute;top:.65rem;right:.75rem;background:none;border:none;cursor:pointer;color:var(--tx3);font-size:.8rem;width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.gender-modal-close:hover{color:var(--tx);background:var(--surf2);}
+.gender-modal-reset{width:100%;margin-top:.4rem;padding:.38rem;border:1px solid var(--brd2);background:transparent;color:var(--tx3);border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.64rem;transition:all .15s;}
+.gender-modal-reset:hover{border-color:#ef4444;color:#ef4444;background:rgba(239,68,68,.06);}
+
 /* ══ LIGHT MODE — softer, readable ══ */
 body.light{
   --bg:#e8ecf5;--surf:#f4f6fc;--surf2:#dde2ef;
@@ -904,6 +1029,111 @@ body.light .tag-box{background:#f0f2fa;}
   height:60px;
 }
 @media(max-width:900px){.layout{flex-direction:column;height:auto;}.rp{width:100%!important;min-width:0;max-width:100%;border-left:none;border-top:1px solid var(--brd2);}.hdr-mid .btn-h span{display:none;}.layout-resizer{display:none;}}
+
+/* ══ WELCOME MODAL ══ */
+.wlc-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.82);
+  z-index:1000;align-items:center;justify-content:center;
+  backdrop-filter:blur(10px);
+}
+.wlc-overlay.open{display:flex;}
+.wlc-modal{
+  background:var(--surf);
+  border:1px solid var(--brd);
+  border-radius:22px;
+  width:min(560px,94vw);
+  max-height:92vh;
+  overflow-y:auto;
+  position:relative;
+  animation:agPop .3s cubic-bezier(.34,1.4,.64,1);
+  scrollbar-width:thin;
+  scrollbar-color:var(--p) transparent;
+}
+.wlc-bar{
+  height:4px;
+  background:linear-gradient(90deg,var(--p),var(--ac),var(--p));
+  background-size:200%;
+  animation:wlcShimmer 3s linear infinite;
+  border-radius:22px 22px 0 0;
+}
+@keyframes wlcShimmer{0%{background-position:0%}100%{background-position:200%}}
+.wlc-top{
+  display:flex;align-items:center;justify-content:center;
+  gap:.7rem;padding:1.6rem 1.8rem .4rem;
+}
+.wlc-logo-ico{
+  width:42px;height:42px;
+  background:linear-gradient(135deg,var(--p),var(--ac));
+  border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;box-shadow:0 0 24px var(--glow);
+}
+.wlc-badge{
+  background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);
+  color:var(--pl);border-radius:100px;
+  padding:.2rem .7rem;font-size:.65rem;font-family:'DM Mono',monospace;font-weight:700;
+}
+.wlc-title{
+  text-align:center;font-size:1.55rem;font-weight:900;
+  background:linear-gradient(135deg,var(--pl),var(--ac));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  padding:0 1.8rem;
+}
+.wlc-sub{
+  text-align:center;font-size:.8rem;color:var(--tx3);
+  padding:.4rem 2rem .6rem;line-height:1.5;
+}
+.wlc-divider{height:1px;background:var(--brd2);margin:0 1.8rem;}
+.wlc-features{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:.55rem;padding:1rem 1.8rem;
+}
+.wlc-feat{
+  display:flex;align-items:flex-start;gap:.55rem;
+  background:var(--surf2);border:1px solid var(--brd2);
+  border-radius:10px;padding:.6rem .75rem;
+  transition:border-color .2s;
+}
+.wlc-feat:hover{border-color:var(--brd);}
+.wlc-feat-ico{
+  width:28px;height:28px;border-radius:8px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--p),var(--ac));
+  display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;color:#fff;
+}
+.wlc-feat-txt{display:flex;flex-direction:column;gap:.1rem;}
+.wlc-feat-txt strong{font-size:.73rem;color:var(--tx);font-weight:700;}
+.wlc-feat-txt span{font-size:.63rem;color:var(--tx3);line-height:1.4;}
+.wlc-about{
+  display:flex;gap:.75rem;align-items:flex-start;
+  background:rgba(99,102,241,.05);border:1px solid rgba(99,102,241,.12);
+  border-radius:12px;padding:.85rem 1rem;margin:.2rem 1.8rem .8rem;
+}
+.wlc-about-ico{
+  width:32px;height:32px;border-radius:9px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--p),var(--ac));
+  display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;color:#fff;
+}
+.wlc-about-body strong{font-size:.75rem;color:var(--tx);font-weight:700;display:block;margin-bottom:.3rem;}
+.wlc-about-body p{font-size:.72rem;color:var(--tx3);line-height:1.65;margin:0;}
+.wlc-brand{color:var(--pl);font-weight:700;-webkit-text-fill-color:var(--pl);}
+.wlc-btn{
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  width:calc(100% - 3.6rem);margin:0 1.8rem;
+  padding:.85rem;border:none;border-radius:12px;
+  background:linear-gradient(135deg,var(--p),var(--ac));
+  color:#fff;font-family:'DM Sans',sans-serif;font-weight:800;font-size:.95rem;
+  cursor:pointer;transition:all .2s;
+  box-shadow:0 6px 24px var(--glow);
+}
+.wlc-btn:hover{transform:translateY(-2px);box-shadow:0 10px 32px var(--glow);}
+.wlc-no-show{
+  text-align:center;padding:.8rem 1.8rem 1.4rem;
+  font-size:.68rem;color:var(--tx3);
+}
+.wlc-no-show label{display:flex;align-items:center;justify-content:center;gap:.4rem;cursor:pointer;}
+.wlc-no-show input{accent-color:var(--p);cursor:pointer;}
 
 /* ══ AGE GATE MODAL ══ */
 .ag-overlay{
@@ -974,7 +1204,7 @@ body.light .tag-box{background:#f0f2fa;}
   display:flex;align-items:center;justify-content:center;gap:.4rem;
 }
 .ag-btn-cancel:hover{border-color:var(--tx2);color:var(--tx);}
-.ag-footer{font-size:.62rem;color:var(--tx3);line-height:1.5;direction:rtl;}
+.ag-footer{font-size:.62rem;color:var(--tx3);line-height:1.5;}
 
 /* ══ FOOTER ══ */
 .site-footer{
@@ -1101,15 +1331,28 @@ body.light .tag-box{background:#f0f2fa;}
     <span class="logo-txt">Anime Prompt Studio©</span>
   </div>
   <div class="hdr-mid">
-    <button class="btn-h" id="randomBtn"><i class="fas fa-shuffle"></i> <span>Random</span></button>
-    <button class="btn-h" id="nsfwBtn"><i class="fas fa-fire"></i> <span>NSFW</span></button>
+    <button class="btn-h" id="randomBtn"><i class="fas fa-shuffle"></i> <span data-i18n="random">Random</span></button>
+    <button class="btn-h" id="nsfwBtn"><i class="fas fa-fire"></i> <span data-i18n="nsfw">NSFW</span></button>
   </div>
   <div class="hdr-right">
+    <div class="dvd"></div>
+    <!-- Language Switcher -->
+    <div class="tw" id="langWrap">
+      <button class="btn-ico" id="langBtn" title="Language" style="width:auto;padding:0 .6rem;font-size:.72rem;font-weight:800;letter-spacing:.04em;"><span id="langFlag">EN</span></button>
+      <div class="ttray" id="langTray" style="width:130px;">
+        <div class="ttray-lbl" data-i18n="language">Language</div>
+        <div style="display:flex;flex-direction:column;gap:.3rem;">
+          <button class="lang-opt on" data-lang="en">🇺🇸 English</button>
+          <button class="lang-opt" data-lang="ar" style="font-family:'Cairo',sans-serif;">🇸🇦 العربية</button>
+          <button class="lang-opt" data-lang="ja">🇯🇵 日本語</button>
+        </div>
+      </div>
+    </div>
     <div class="dvd"></div>
     <div class="tw">
       <button class="btn-ico" id="themeBtn" title="Themes"><i class="fas fa-palette"></i></button>
       <div class="ttray" id="ttray">
-        <div class="ttray-lbl">Color Themes</div>
+        <div class="ttray-lbl" data-i18n="color_themes">Color Themes</div>
         <div class="tgrid">
           <div class="tdot on" style="background:linear-gradient(135deg,#6366f1,#f472b6)" data-t=""><span>✦ Indigo</span></div>
           <div class="tdot" style="background:linear-gradient(135deg,#0ea5e9,#a78bfa)" data-t="aurora"><span>Aurora</span></div>
@@ -1123,10 +1366,10 @@ body.light .tag-box{background:#f0f2fa;}
     <div class="tw">
       <button class="btn-ico btn-info" id="infoMenuBtn" title="About · Features · Tips"><i class="fas fa-circle-info"></i></button>
       <div class="ttray info-tray" id="infoTray">
-        <div class="ttray-lbl">Help & Info</div>
-        <button class="info-tray-item" id="infoAbout"><i class="fas fa-wand-magic-sparkles"></i> About</button>
-        <button class="info-tray-item" id="infoFeatures"><i class="fas fa-star"></i> Features</button>
-        <button class="info-tray-item" id="infoTips"><i class="fas fa-lightbulb"></i> Tips & Tricks</button>
+        <div class="ttray-lbl" data-i18n="help_info">Help & Info</div>
+        <button class="info-tray-item" id="infoAbout"><i class="fas fa-wand-magic-sparkles"></i> <span data-i18n="about">About</span></button>
+        <button class="info-tray-item" id="infoFeatures"><i class="fas fa-star"></i> <span data-i18n="features">Features</span></button>
+        <button class="info-tray-item" id="infoTips"><i class="fas fa-lightbulb"></i> <span data-i18n="tips">Tips & Tricks</span></button>
       </div>
     </div>
   </div><!-- /hdr-right -->
@@ -1137,50 +1380,50 @@ body.light .tag-box{background:#f0f2fa;}
 <div class="lp" id="leftPanel">
   <!-- Tab group labels -->
   <div class="tabs">
-    <button class="tab on" data-c="style"><i class="fas fa-paintbrush"></i> Style</button>
-    <button class="tab" data-c="character"><i class="fas fa-user"></i> Character</button>
-    <button class="tab" data-c="appearance"><i class="fas fa-eye"></i> Look</button>
-    <button class="tab" data-c="outfit"><i class="fas fa-shirt"></i> Outfit</button>
-    <button class="tab" data-c="mood"><i class="fas fa-face-smile"></i> Mood</button>
-    <button class="tab" data-c="tools"><i class="fas fa-sword"></i> Tools</button>
-    <button class="tab" data-c="scene"><i class="fas fa-mountain-sun"></i> Scene</button>
-    <button class="tab" data-c="camera"><i class="fas fa-camera"></i> Camera</button>
-    <button class="tab" data-c="quality"><i class="fas fa-sparkles"></i> Quality</button>
-    <button class="tab" data-c="negative"><i class="fas fa-ban"></i> Avoid</button>
+    <button class="tab on" data-c="style"><i class="fas fa-paintbrush"></i> <span data-i18n="tab_style">Style</span></button>
+    <button class="tab" data-c="character"><i class="fas fa-user"></i> <span data-i18n="tab_character">Character</span></button>
+    <button class="tab" data-c="appearance"><i class="fas fa-eye"></i> <span data-i18n="tab_look">Look</span></button>
+    <button class="tab" data-c="outfit"><i class="fas fa-shirt"></i> <span data-i18n="tab_outfit">Outfit</span></button>
+    <button class="tab" data-c="mood"><i class="fas fa-face-smile"></i> <span data-i18n="tab_mood">Mood</span></button>
+    <button class="tab" data-c="tools"><i class="fas fa-sword"></i> <span data-i18n="tab_tools">Tools</span></button>
+    <button class="tab" data-c="scene"><i class="fas fa-mountain-sun"></i> <span data-i18n="tab_scene">Scene</span></button>
+    <button class="tab" data-c="camera"><i class="fas fa-camera"></i> <span data-i18n="tab_camera">Camera</span></button>
+    <button class="tab" data-c="quality"><i class="fas fa-sparkles"></i> <span data-i18n="tab_quality">Quality</span></button>
+    <button class="tab" data-c="negative"><i class="fas fa-ban"></i> <span data-i18n="tab_avoid">Avoid</span></button>
   </div>
 
   <!-- ── STYLE (NEW FIRST TAB) ── -->
   <div class="cat on" id="cat-style">
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-palette"></i></div><span class="sec-title">Color Grading</span></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-palette"></i></div><span class="sec-title" data-i18n="sec_color_grading">Color Grading</span></div>
       <div class="og c3" id="colorGradeGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-film"></i></div><span class="sec-title">Anime Studio / Director Style</span><button class="sec-clr" data-k="animeStudio">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-film"></i></div><span class="sec-title" data-i18n="sec_anime_studio">Anime Studio / Director Style</span><button class="sec-clr" data-k="animeStudio"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="animeStudioGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-paintbrush"></i></div><span class="sec-title">Art Style</span><button class="sec-clr" data-k="style">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-paintbrush"></i></div><span class="sec-title" data-i18n="sec_art_style">Art Style</span><button class="sec-clr" data-k="style"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="styleGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-hourglass-half"></i></div><span class="sec-title">Era</span><button class="sec-clr" data-k="era">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-hourglass-half"></i></div><span class="sec-title" data-i18n="sec_era">Era</span><button class="sec-clr" data-k="era"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="eraGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-pen-nib"></i></div><span class="sec-title">Line Style</span><button class="sec-clr" data-k="stroke">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-pen-nib"></i></div><span class="sec-title" data-i18n="sec_line_style">Line Style</span><button class="sec-clr" data-k="stroke"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="strokeGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-cloud-sun"></i></div><span class="sec-title">Shadows</span><button class="sec-clr" data-k="shadow">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-cloud-sun"></i></div><span class="sec-title" data-i18n="sec_shadows">Shadows</span><button class="sec-clr" data-k="shadow"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="shadowGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-circle-dot"></i></div><span class="sec-title">Glow & Bloom</span><button class="sec-clr" data-k="glow">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-circle-dot"></i></div><span class="sec-title" data-i18n="sec_glow">Glow & Bloom</span><button class="sec-clr" data-k="glow"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="glowGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-hand-dots"></i></div><span class="sec-title">Skin Smoothness</span><button class="sec-clr" data-k="smooth">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-hand-dots"></i></div><span class="sec-title" data-i18n="sec_skin_smooth">Skin Smoothness</span><button class="sec-clr" data-k="smooth"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="smoothGrid"></div>
     </div>
   </div>
@@ -1188,11 +1431,11 @@ body.light .tag-box{background:#f0f2fa;}
   <!-- ── QUALITY ── -->
   <div class="cat" id="cat-quality">
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-sparkles"></i></div><span class="sec-title">Quality Tags</span></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-sparkles"></i></div><span class="sec-title" data-i18n="sec_quality_tags">Quality Tags</span></div>
       <div class="og c3" id="qualityGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-lightbulb"></i></div><span class="sec-title">Lighting</span></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-lightbulb"></i></div><span class="sec-title" data-i18n="sec_lighting">Lighting</span></div>
       <div class="og c3" id="lightGrid"></div>
     </div>
   </div>
@@ -1200,19 +1443,27 @@ body.light .tag-box{background:#f0f2fa;}
   <!-- ── CHARACTER ── -->
   <div class="cat" id="cat-character">
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-users"></i></div><span class="sec-title">Characters in Scene</span><button class="sec-clr" data-k="charCount">Clear</button></div>
-      <div class="og c4" id="charCountGrid"></div>
+      <div class="sec-hd">
+        <div class="sec-ico"><i class="fas fa-users"></i></div>
+        <span class="sec-title" data-i18n="sec_characters">Characters in Scene</span>
+        <button class="sec-clr" id="charCardsClrBtn"><span data-i18n="clear">Clear</span></button>
+      </div>
+      <div class="char-cards-row" id="charCardsRow"></div>
+      <div class="char-warn" id="charWarn">
+        <i class="fas fa-triangle-exclamation"></i>
+        <span>Using 2+ characters may confuse the model — results can be inconsistent. Works best with 1 character.</span>
+      </div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-cake-candles"></i></div><span class="sec-title">Age Group</span><button class="sec-clr" data-k="age">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-cake-candles"></i></div><span class="sec-title" data-i18n="sec_age">Age Group</span><button class="sec-clr" data-k="age"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="ageGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-user-circle"></i></div><span class="sec-title">Skin Tone</span><button class="sec-clr" data-k="skin">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-user-circle"></i></div><span class="sec-title" data-i18n="sec_skin_tone">Skin Tone</span><button class="sec-clr" data-k="skin"><span data-i18n="clear">Clear</span></button></div>
       <div class="skin-grid" id="skinGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-dumbbell"></i></div><span class="sec-title">Body Type</span><button class="sec-clr" data-k="body">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-dumbbell"></i></div><span class="sec-title" data-i18n="sec_body">Body Type</span><button class="sec-clr" data-k="body"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="bodyGrid"></div>
       <div class="og c3" id="nsfwBodyGrid"></div>
     </div>
@@ -1221,23 +1472,23 @@ body.light .tag-box{background:#f0f2fa;}
   <!-- ── APPEARANCE ── -->
   <div class="cat" id="cat-appearance">
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-scissors"></i></div><span class="sec-title">Hairstyle</span><button class="sec-clr" data-k="hairstyle">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-scissors"></i></div><span class="sec-title" data-i18n="sec_hairstyle">Hairstyle</span><button class="sec-clr" data-k="hairstyle"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="hairstyleGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-palette"></i></div><span class="sec-title">Hair Color (Primary)</span><button class="sec-clr" data-k="hairColor1">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-palette"></i></div><span class="sec-title" data-i18n="sec_hair_color1">Hair Color (Primary)</span><button class="sec-clr" data-k="hairColor1"><span data-i18n="clear">Clear</span></button></div>
       <div class="cg" id="hairColorGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-arrow-trend-up"></i></div><span class="sec-title">Hair Ombré (2nd Color)</span><button class="sec-clr" data-k="hairColor2">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-arrow-trend-up"></i></div><span class="sec-title" data-i18n="sec_hair_color2">Hair Ombré (2nd Color)</span><button class="sec-clr" data-k="hairColor2"><span data-i18n="clear">Clear</span></button></div>
       <div class="cg" id="hairColor2Grid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-star"></i></div><span class="sec-title">Eye Shape</span><button class="sec-clr" data-k="eyeShape">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-star"></i></div><span class="sec-title" data-i18n="sec_eye_shape">Eye Shape</span><button class="sec-clr" data-k="eyeShape"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="eyeShapeGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-eye"></i></div><span class="sec-title">Eye Color</span><button class="sec-clr" data-k="eyeColor">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-eye"></i></div><span class="sec-title" data-i18n="sec_eye_color">Eye Color</span><button class="sec-clr" data-k="eyeColor"><span data-i18n="clear">Clear</span></button></div>
       <div class="cg" id="eyeColorGrid"></div>
     </div>
   </div>
@@ -1245,28 +1496,28 @@ body.light .tag-box{background:#f0f2fa;}
   <!-- ── OUTFIT ── -->
   <div class="cat" id="cat-outfit">
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-shirt"></i></div><span class="sec-title">Clothing Type</span><button class="sec-clr" data-k="clothing">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-shirt"></i></div><span class="sec-title" data-i18n="sec_clothing">Clothing Type</span><button class="sec-clr" data-k="clothing"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="clothingGrid"></div>
       <div class="og c3" id="nsfwClothingGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-ring"></i></div><span class="sec-title">Clothing Accessories</span></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-ring"></i></div><span class="sec-title" data-i18n="sec_clothing_acc">Clothing Accessories</span></div>
       <div class="og c3" id="clothingAccGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-socks"></i></div><span class="sec-title">Sock Color</span><button class="sec-clr" data-k="sockColor">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-socks"></i></div><span class="sec-title" data-i18n="sec_sock_color">Sock Color</span><button class="sec-clr" data-k="sockColor"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="sockColorGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-socks"></i></div><span class="sec-title">Sock Length</span><button class="sec-clr" data-k="sockLength">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-socks"></i></div><span class="sec-title" data-i18n="sec_sock_length">Sock Length</span><button class="sec-clr" data-k="sockLength"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="sockLengthGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-shoe-prints"></i></div><span class="sec-title">Footwear</span><button class="sec-clr" data-k="shoes">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-shoe-prints"></i></div><span class="sec-title" data-i18n="sec_footwear">Footwear</span><button class="sec-clr" data-k="shoes"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="shoesGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-glasses"></i></div><span class="sec-title">Face Accessories</span></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-glasses"></i></div><span class="sec-title" data-i18n="sec_face_acc">Face Accessories</span></div>
       <div class="og c3" id="faceAccGrid"></div>
     </div>
   </div>
@@ -1274,20 +1525,20 @@ body.light .tag-box{background:#f0f2fa;}
   <!-- ── MOOD ── -->
   <div class="cat" id="cat-mood">
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-face-smile"></i></div><span class="sec-title">Expression</span><button class="sec-clr" data-k="expression">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-face-smile"></i></div><span class="sec-title" data-i18n="sec_expression">Expression</span><button class="sec-clr" data-k="expression"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="expressionGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-person-walking"></i></div><span class="sec-title">Pose & Action</span></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-person-walking"></i></div><span class="sec-title" data-i18n="sec_pose">Pose & Action</span></div>
       <div class="og c3" id="poseGrid"></div>
       <div class="og c3" id="nsfwPoseGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-wand-magic-sparkles"></i></div><span class="sec-title">Special Effects</span></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-wand-magic-sparkles"></i></div><span class="sec-title" data-i18n="sec_effects">Special Effects</span></div>
       <div class="og c3" id="effectsGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-droplet"></i></div><span class="sec-title">Liquids & Materials</span></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-droplet"></i></div><span class="sec-title" data-i18n="sec_liquids">Liquids & Materials</span></div>
       <div class="og c3" id="liquidsGrid"></div>
       <div class="og c3" id="nsfwFluidGrid"></div>
     </div>
@@ -1296,28 +1547,62 @@ body.light .tag-box{background:#f0f2fa;}
   <!-- ── TOOLS ── -->
   <div class="cat" id="cat-tools">
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-sword"></i></div><span class="sec-title">Weapons</span></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-sword"></i></div><span class="sec-title" data-i18n="sec_weapons">Weapons</span></div>
       <div class="og c3" id="weaponGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-toolbox"></i></div><span class="sec-title">Props & Objects</span></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-toolbox"></i></div><span class="sec-title" data-i18n="sec_props">Props & Objects</span></div>
       <div class="og c3" id="propsGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-mobile-screen"></i></div><span class="sec-title">Electronics</span></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-mobile-screen"></i></div><span class="sec-title" data-i18n="sec_electronics">Electronics</span></div>
       <div class="og c3" id="electronicsGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-boxes-stacked"></i></div><span class="sec-title">Other Items</span></div>
-      <div class="og c3" id="otherItemsGrid"></div>
-      <div class="og c3" id="nsfwIndicatorGrid"></div>
+      <div class="sec-hd"><div class="sec-ico" style="background:rgba(99,102,241,.12);border-color:rgba(99,102,241,.3);color:var(--pl);"><i class="fas fa-wand-magic-sparkles"></i></div><span class="sec-title">AI Prompt Optimizer</span></div>
+      <p style="font-size:.76rem;color:var(--tx2);margin-bottom:.75rem;line-height:1.5;">اكتب أي وصف بالعربي أو الإنجليزي وسيتحول إلى برومبت احترافي لموديلات الأنمي.</p>
+      <textarea id="optimizerInput" placeholder="e.g. anime girl with red hair sitting in a garden at sunset... أو: بنت أنمي بشعر أحمر جالسة في حديقة وقت الغروب" style="
+        width:100%;min-height:90px;resize:vertical;
+        background:var(--surf2);border:1.5px solid var(--brd);border-radius:10px;
+        color:var(--tx);font-family:inherit;font-size:.82rem;padding:.65rem .75rem;
+        line-height:1.55;outline:none;transition:border-color .2s;
+      " onfocus="this.style.borderColor='var(--p)'" onblur="this.style.borderColor='var(--brd)'"></textarea>
+      <div style="display:flex;gap:.5rem;margin-top:.55rem;align-items:center;flex-wrap:wrap;">
+        <button id="optimizerBtn" style="
+          display:flex;align-items:center;gap:.45rem;
+          background:linear-gradient(135deg,var(--p),var(--pl));
+          color:#fff;border:none;border-radius:9px;padding:.52rem 1.1rem;
+          font-size:.82rem;font-weight:600;cursor:pointer;
+          transition:opacity .2s,transform .15s;
+        " onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">
+          <i class="fas fa-wand-magic-sparkles"></i> Optimize Prompt / تحسين
+        </button>
+        <button id="optimizerInsertBtn" style="
+          display:none;align-items:center;gap:.4rem;
+          background:rgba(16,185,129,.12);color:#10b981;
+          border:1.5px solid rgba(16,185,129,.3);border-radius:9px;
+          padding:.5rem .9rem;font-size:.8rem;font-weight:600;cursor:pointer;
+          transition:opacity .2s;
+        ">
+          <i class="fas fa-plus"></i> إضافة للبرومبت
+        </button>
+        <span id="optimizerStatus" style="font-size:.76rem;color:var(--tx3);"></span>
+      </div>
+      <div id="optimizerOutput" style="
+        display:none;margin-top:.75rem;
+        background:rgba(99,102,241,.06);border:1.5px solid rgba(99,102,241,.2);
+        border-radius:10px;padding:.75rem;
+        font-size:.8rem;line-height:1.6;color:var(--tx);
+        font-family:'DM Mono',monospace;
+        white-space:pre-wrap;word-break:break-word;
+      "></div>
     </div>
   </div>
 
   <!-- ── SCENE ── -->
   <div class="cat" id="cat-scene">
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-mountain-sun"></i></div><span class="sec-title">Environment</span><button class="sec-clr" data-k="environment">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-mountain-sun"></i></div><span class="sec-title" data-i18n="sec_environment">Environment</span><button class="sec-clr" data-k="environment"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="envGrid"></div>
       <div class="og c3" id="nsfwEnvGrid"></div>
     </div>
@@ -1326,29 +1611,29 @@ body.light .tag-box{background:#f0f2fa;}
   <!-- ── CAMERA ── -->
   <div class="cat" id="cat-camera">
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-camera-rotate"></i></div><span class="sec-title">Camera Angle</span><button class="sec-clr" data-k="angle">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-camera-rotate"></i></div><span class="sec-title" data-i18n="sec_camera_angle">Camera Angle</span><button class="sec-clr" data-k="angle"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="angleGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-expand"></i></div><span class="sec-title">Shot Range</span><button class="sec-clr" data-k="shot">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-expand"></i></div><span class="sec-title" data-i18n="sec_shot_range">Shot Range</span><button class="sec-clr" data-k="shot"><span data-i18n="clear">Clear</span></button></div>
       <div class="og" id="shotGrid"></div>
       <div class="og c3" id="nsfwShotGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-eye"></i></div><span class="sec-title">Looking Direction</span><button class="sec-clr" data-k="look">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-eye"></i></div><span class="sec-title" data-i18n="sec_looking">Looking Direction</span><button class="sec-clr" data-k="look"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="lookGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-camera"></i></div><span class="sec-title">Lens Type</span><button class="sec-clr" data-k="lens">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-camera"></i></div><span class="sec-title" data-i18n="sec_lens_type">Lens Type</span><button class="sec-clr" data-k="lens"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="lensGrid"></div>
     </div>
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-filter"></i></div><span class="sec-title">Lens Effect</span><button class="sec-clr" data-k="lensEffect">Clear</button></div>
+      <div class="sec-hd"><div class="sec-ico"><i class="fas fa-filter"></i></div><span class="sec-title" data-i18n="sec_lens_effect">Lens Effect</span><button class="sec-clr" data-k="lensEffect"><span data-i18n="clear">Clear</span></button></div>
       <div class="og c3" id="lensEffectGrid"></div>
     </div>
     <div class="sec nsfw-only-sec">
-      <div class="sec-hd"><div class="sec-ico" style="background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.22);color:#f87171;"><i class="fas fa-crosshairs"></i></div><span class="sec-title">Body Parts Focus</span></div>
-      <p style="font-size:.74rem;color:var(--tx3);margin-bottom:.55rem;">Focus camera on specific body parts — NSFW mode only.</p>
+      <div class="sec-hd"><div class="sec-ico" style="background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.22);color:#f87171;"><i class="fas fa-crosshairs"></i></div><span class="sec-title" data-i18n="sec_body_parts">Body Parts Focus</span></div>
+      <p style="font-size:.74rem;color:var(--tx3);margin-bottom:.55rem;" data-i18n="body_parts_note">Focus camera on specific body parts — NSFW mode only.</p>
       <div class="og c3" id="bodyPartsGrid"></div>
     </div>
   </div>
@@ -1356,12 +1641,12 @@ body.light .tag-box{background:#f0f2fa;}
   <!-- ── NEGATIVE ── -->
   <div class="cat" id="cat-negative">
     <div class="sec">
-      <div class="sec-hd"><div class="sec-ico" style="color:#f87171;border-color:rgba(239,68,68,.22);background:rgba(239,68,68,.08);"><i class="fas fa-ban"></i></div><span class="sec-title" style="color:#f87171;">What To Avoid</span></div>
-      <p style="font-size:.76rem;color:var(--tx3);margin-bottom:.7rem;">Select anything you want excluded from the final image.</p>
-      <div class="neg-group-lbl"><i class="fas fa-person"></i>&nbsp;Body & Anatomy</div>
+      <div class="sec-hd"><div class="sec-ico" style="color:#f87171;border-color:rgba(239,68,68,.22);background:rgba(239,68,68,.08);"><i class="fas fa-ban"></i></div><span class="sec-title" style="color:#f87171;" data-i18n="what_to_avoid">What To Avoid</span></div>
+      <p style="font-size:.76rem;color:var(--tx3);margin-bottom:.7rem;" data-i18n="avoid_desc">Select anything you want excluded from the final image.</p>
+      <div class="neg-group-lbl"><i class="fas fa-person"></i>&nbsp;<span data-i18n="neg_body_anatomy">Body & Anatomy</span></div>
       <div class="og c3" id="negBodyGrid"></div>
       <div style="margin-top:1.8rem;"></div>
-      <div class="neg-group-lbl"><i class="fas fa-image"></i>&nbsp;Image Quality</div>
+      <div class="neg-group-lbl"><i class="fas fa-image"></i>&nbsp;<span data-i18n="neg_image_quality">Image Quality</span></div>
       <div class="og c3" id="negQualityGrid"></div>
     </div>
   </div>
@@ -1379,14 +1664,14 @@ body.light .tag-box{background:#f0f2fa;}
   <!-- Character Blueprint -->
   <div class="blueprint">
     <canvas class="bp-radar" id="bpRadar"></canvas>
-    <div class="blueprint-ttl">Character Blueprint</div>
+    <div class="blueprint-ttl" data-i18n="blueprint_ttl">Character Blueprint</div>
     <div id="bpGrid"></div>
   </div>
 
   <!-- Prompt Strength Meter -->
   <div class="psm" id="psmBox">
     <div class="psm-top">
-      <span class="psm-label">Prompt Strength</span>
+      <span class="psm-label" data-i18n="prompt_strength">Prompt Strength</span>
       <span class="psm-score" id="psmScore">—</span>
       <span class="psm-grade" id="psmGrade"></span>
     </div>
@@ -1399,37 +1684,37 @@ body.light .tag-box{background:#f0f2fa;}
   <!-- Prompts -->
   <div class="pw">
     <div>
-      <div class="pb-lbl"><div class="pdot"></div> Positive Prompt <span class="wc" id="posWC"></span></div>
+      <div class="pb-lbl"><div class="pdot"></div> <span data-i18n="positive_prompt">Positive Prompt</span> <span class="wc" id="posWC"></span></div>
       <div class="ptxt empty" id="promptText">Start selecting options on the left…</div>
       <div class="tag-box inline-tag-box" id="posTagBox"><input class="tag-input" id="posTagInput" placeholder="＋ Extra Positive Tags — Enter or Tab"></div>
     </div>
     <div style="border-top:1px solid var(--brd2);padding-top:.7rem;margin-top:.4rem;">
-      <div class="pb-lbl"><div class="pdot neg"></div> Negative Prompt <span class="wc" id="negWC"></span></div>
+      <div class="pb-lbl"><div class="pdot neg"></div> <span data-i18n="negative_prompt">Negative Prompt</span> <span class="wc" id="negWC"></span></div>
       <div class="ptxt neg empty" id="negativeText">Select avoids above, or use the tag box below…</div>
       <div class="tag-box neg-box inline-tag-box" id="negTagBox"><input class="tag-input" id="negTagInput" placeholder="＋ Extra Negative Tags — Enter or Tab"></div>
     </div>
   </div>
 
   <div class="acts">
-    <button class="btn-cp" id="copyBtn"><i class="fas fa-copy"></i> Copy Full Prompt</button>
+    <button class="btn-cp" id="copyBtn"><i class="fas fa-copy"></i> <span data-i18n="copy_full">Copy Full Prompt</span></button>
     <div class="brow">
-      <button class="bs b-pos" id="copyPosBtn"><i class="fas fa-arrow-up"></i> Positive</button>
-      <button class="bs b-neg" id="copyNegBtn"><i class="fas fa-arrow-down"></i> Negative</button>
+      <button class="bs b-pos" id="copyPosBtn"><i class="fas fa-arrow-up"></i> <span data-i18n="copy_pos">Positive</span></button>
+      <button class="bs b-neg" id="copyNegBtn"><i class="fas fa-arrow-down"></i> <span data-i18n="copy_neg">Negative</span></button>
     </div>
     <div class="brow">
-      <button class="bs b-fav" id="saveFavBtn"><i class="fas fa-star"></i> Save Favourite</button>
+      <button class="bs b-fav" id="saveFavBtn"><i class="fas fa-star"></i> <span data-i18n="save_fav">Save Favourite</span></button>
       <div class="fav-wrap">
-        <button class="bs b-fav" id="favOpenBtn" style="white-space:nowrap;"><i class="fas fa-folder-open"></i> Saved ▾</button>
+        <button class="bs b-fav" id="favOpenBtn" style="white-space:nowrap;"><i class="fas fa-folder-open"></i> <span data-i18n="saved">Saved</span> ▾</button>
         <div class="fav-dropdown" id="favDropdown">
           <div class="fav-hd">
-            <span class="fav-ttl">Saved Library</span>
-            <button class="sec-clr" id="clearFavsBtn">Clear All</button>
+            <span class="fav-ttl" data-i18n="saved_library">Saved Library</span>
+            <button class="sec-clr" id="clearFavsBtn"><span data-i18n="clear_all">Clear All</span></button>
           </div>
-          <div class="fav-list" id="favList"><div class="fav-empty">No saved favourites yet</div></div>
+          <div class="fav-list" id="favList"><div class="fav-empty" data-i18n="fav_empty">No saved favourites yet</div></div>
         </div>
       </div>
     </div>
-    <button class="btn-rst" id="resetBtn"><i class="fas fa-rotate-left"></i> Reset All</button>
+    <button class="btn-rst" id="resetBtn"><i class="fas fa-rotate-left"></i> <span data-i18n="reset_all">Reset All</span></button>
   </div>
 </div><!-- /rp -->
 </div><!-- /layout -->
@@ -1437,7 +1722,7 @@ body.light .tag-box{background:#f0f2fa;}
 <!-- ── FOOTER ── -->
 <footer class="site-footer">
   <div class="footer-inner">
-    <span class="footer-logo">Anime Prompt Studio © 2026. All rights reserved.</span>
+    <span class="footer-logo" data-i18n="footer_copy">Anime Prompt Studio © 2026. All rights reserved.</span>
     <span class="footer-ver">v1.0.0</span>
   </div>
 </footer>
@@ -1447,12 +1732,12 @@ body.light .tag-box{background:#f0f2fa;}
   <div class="info-modal">
     <button class="info-close" id="aboutClose"><i class="fas fa-xmark"></i></button>
     <div class="info-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
-    <div class="info-title">About</div>
+    <div class="info-title" data-i18n="about">About</div>
     <div class="info-body">
-      <p>Anime Prompt Studio is a free, browser-based tool designed to help artists and enthusiasts craft detailed, high-quality prompts for AI image generation.</p>
-      <p>Built with a focus on anime and illustration styles, it gives you full control over character appearance, outfit, mood, scene, lighting, camera, and more — all in one place.</p>
-      <p>No account required. No data collected. Everything runs locally in your browser.</p>
-      <div class="info-sig">— Made with ✦ by MD.AI SYSTEMS</div>
+      <p data-i18n="about_p1">Anime Prompt Studio is a free, browser-based tool designed to help artists and enthusiasts craft detailed, high-quality prompts for AI image generation.</p>
+      <p data-i18n="about_p2">Built with a focus on anime and illustration styles, it gives you full control over character appearance, outfit, mood, scene, lighting, camera, and more — all in one place.</p>
+      <p data-i18n="about_p3">No account required. No data collected. Everything runs locally in your browser.</p>
+      <div class="info-sig" data-i18n="about_sig">— Made with ✦ by MD.AI SYSTEMS</div>
       <div style="margin-top:.5rem;display:inline-flex;align-items:center;gap:.4rem;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.2);border-radius:100px;padding:.22rem .7rem;font-size:.65rem;font-family:'DM Mono',monospace;color:var(--pl);font-weight:700;">v1.0.0</div>
     </div>
   </div>
@@ -1463,21 +1748,21 @@ body.light .tag-box{background:#f0f2fa;}
   <div class="info-modal">
     <button class="info-close" id="featuresClose"><i class="fas fa-xmark"></i></button>
     <div class="info-icon"><i class="fas fa-star"></i></div>
-    <div class="info-title">Features</div>
+    <div class="info-title" data-i18n="features">Features</div>
     <div class="info-body">
       <div class="feat-grid">
-        <div class="feat-item"><i class="fas fa-palette"></i><div><strong>13 Color Themes</strong><span>Fully themed UI that adapts to your style</span></div></div>
-        <div class="feat-item"><i class="fas fa-person"></i><div><strong>Full Character Builder</strong><span>Hair, eyes, skin, body, outfit and more</span></div></div>
-        <div class="feat-item"><i class="fas fa-shirt"></i><div><strong>50+ Clothing Options</strong><span>Organized by category — tops, bottoms, full outfits</span></div></div>
-        <div class="feat-item"><i class="fas fa-film"></i><div><strong>Anime Studio Styles</strong><span>Ghibli, Ufotable, MAPPA, Makoto Shinkai and more</span></div></div>
-        <div class="feat-item"><i class="fas fa-droplet"></i><div><strong>Color Grading</strong><span>16 palette options from pastel to cyberpunk</span></div></div>
-        <div class="feat-item"><i class="fas fa-camera"></i><div><strong>Camera Controls</strong><span>Shot range, angle, lens type and focus effects</span></div></div>
-        <div class="feat-item"><i class="fas fa-bolt"></i><div><strong>Prompt Strength Meter</strong><span>Detects conflicts, overloads and missing elements</span></div></div>
-        <div class="feat-item"><i class="fas fa-weight-hanging"></i><div><strong>Tag Weight Slider</strong><span>Click any tag to boost or reduce its influence</span></div></div>
-        <div class="feat-item"><i class="fas fa-heart"></i><div><strong>Favourites System</strong><span>Save and reload your best prompt combinations</span></div></div>
-        <div class="feat-item"><i class="fas fa-magnifying-glass-chart"></i><div><strong>Image Analyzer</strong><span>Extract and reverse-engineer prompts from images</span></div></div>
-        <div class="feat-item"><i class="fas fa-shuffle"></i><div><strong>Randomizer</strong><span>Generate a full random character in one click</span></div></div>
-        <div class="feat-item"><i class="fas fa-fire"></i><div><strong>NSFW Mode</strong><span>Age-gated adult content section</span></div></div>
+        <div class="feat-item"><i class="fas fa-palette"></i><div><strong data-i18n="feat_themes_t">13 Color Themes</strong><span data-i18n="feat_themes_d">Fully themed UI that adapts to your style</span></div></div>
+        <div class="feat-item"><i class="fas fa-person"></i><div><strong data-i18n="feat_char_t">Full Character Builder</strong><span data-i18n="feat_char_d">Hair, eyes, skin, body, outfit and more</span></div></div>
+        <div class="feat-item"><i class="fas fa-shirt"></i><div><strong data-i18n="feat_cloth_t">50+ Clothing Options</strong><span data-i18n="feat_cloth_d">Organized by category — tops, bottoms, full outfits</span></div></div>
+        <div class="feat-item"><i class="fas fa-film"></i><div><strong data-i18n="feat_studio_t">Anime Studio Styles</strong><span data-i18n="feat_studio_d">Ghibli, Ufotable, MAPPA, Makoto Shinkai and more</span></div></div>
+        <div class="feat-item"><i class="fas fa-droplet"></i><div><strong data-i18n="feat_color_t">Color Grading</strong><span data-i18n="feat_color_d">16 palette options from pastel to cyberpunk</span></div></div>
+        <div class="feat-item"><i class="fas fa-camera"></i><div><strong data-i18n="feat_cam_t">Camera Controls</strong><span data-i18n="feat_cam_d">Shot range, angle, lens type and focus effects</span></div></div>
+        <div class="feat-item"><i class="fas fa-bolt"></i><div><strong data-i18n="feat_meter_t">Prompt Strength Meter</strong><span data-i18n="feat_meter_d">Detects conflicts, overloads and missing elements</span></div></div>
+        <div class="feat-item"><i class="fas fa-weight-hanging"></i><div><strong data-i18n="feat_weight_t">Tag Weight Slider</strong><span data-i18n="feat_weight_d">Click any tag to boost or reduce its influence</span></div></div>
+        <div class="feat-item"><i class="fas fa-heart"></i><div><strong data-i18n="feat_favs_t">Favourites System</strong><span data-i18n="feat_favs_d">Save and reload your best prompt combinations</span></div></div>
+        <div class="feat-item"><i class="fas fa-magnifying-glass-chart"></i><div><strong data-i18n="feat_img_t">Image Analyzer</strong><span data-i18n="feat_img_d">Extract and reverse-engineer prompts from images</span></div></div>
+        <div class="feat-item"><i class="fas fa-shuffle"></i><div><strong data-i18n="feat_rand_t">Randomizer</strong><span data-i18n="feat_rand_d">Generate a full random character in one click</span></div></div>
+        <div class="feat-item"><i class="fas fa-fire"></i><div><strong data-i18n="feat_nsfw_t">NSFW Mode</strong><span data-i18n="feat_nsfw_d">Age-gated adult content section</span></div></div>
       </div>
     </div>
   </div>
@@ -1488,42 +1773,84 @@ body.light .tag-box{background:#f0f2fa;}
   <div class="info-modal info-modal-wide">
     <button class="info-close" id="tipsClose"><i class="fas fa-xmark"></i></button>
     <div class="info-icon"><i class="fas fa-lightbulb"></i></div>
-    <div class="info-title">Tips & Tricks</div>
+    <div class="info-title" data-i18n="tips">Tips & Tricks</div>
     <div class="info-body">
       <div class="tip-list">
         <div class="tip-item">
           <div class="tip-num">01</div>
-          <div><strong>Start with Style</strong><p>Always pick an Art Style or Anime Studio first — it's the single most impactful tag for the final look.</p></div>
+          <div><strong data-i18n="tip1_t">Start with Style</strong><p data-i18n="tip1_d">Always pick an Art Style or Anime Studio first — it's the single most impactful tag for the final look.</p></div>
         </div>
         <div class="tip-item">
           <div class="tip-num">02</div>
-          <div><strong>Use the Strength Meter</strong><p>Watch the Prompt Strength score. Conflicts (red) hurt quality the most — fix those before adding more tags.</p></div>
+          <div><strong data-i18n="tip2_t">Use the Strength Meter</strong><p data-i18n="tip2_d">Watch the Prompt Strength score. Conflicts (red) hurt quality the most — fix those before adding more tags.</p></div>
         </div>
         <div class="tip-item">
           <div class="tip-num">03</div>
-          <div><strong>Lighting is Everything</strong><p>Add at least one lighting type. Rim Light + one ambient source gives dramatic, professional-looking results.</p></div>
+          <div><strong data-i18n="tip3_t">Lighting is Everything</strong><p data-i18n="tip3_d">Add at least one lighting type. Rim Light + one ambient source gives dramatic, professional-looking results.</p></div>
         </div>
         <div class="tip-item">
           <div class="tip-num">04</div>
-          <div><strong>Tag Weight Slider</strong><p>Click any tag in the prompt box to open the weight slider. Boost key elements like style or lighting above 1.3 for more impact.</p></div>
+          <div><strong data-i18n="tip4_t">Tag Weight Slider</strong><p data-i18n="tip4_d">Click any tag in the prompt box to open the weight slider. Boost key elements like style or lighting above 1.3 for more impact.</p></div>
         </div>
         <div class="tip-item">
           <div class="tip-num">05</div>
-          <div><strong>Quality Tags Matter</strong><p>Always include 3–4 quality tags: Masterpiece, Best Quality, Ultra Detailed. These are expected by most anime models.</p></div>
+          <div><strong data-i18n="tip5_t">Quality Tags Matter</strong><p data-i18n="tip5_d">Always include 3–4 quality tags: Masterpiece, Best Quality, Ultra Detailed. These are expected by most anime models.</p></div>
         </div>
         <div class="tip-item">
           <div class="tip-num">06</div>
-          <div><strong>Less is More</strong><p>3–4 lighting types or 5+ effects will confuse the model. Keep each category focused — the Overload warning will alert you.</p></div>
+          <div><strong data-i18n="tip6_t">Less is More</strong><p data-i18n="tip6_d">3–4 lighting types or 5+ effects will confuse the model. Keep each category focused — the Overload warning will alert you.</p></div>
         </div>
         <div class="tip-item">
           <div class="tip-num">07</div>
-          <div><strong>Save Your Favourites</strong><p>Found a great combination? Hit the ♡ button to save it. You can load it any time from the Favourites menu.</p></div>
+          <div><strong data-i18n="tip7_t">Save Your Favourites</strong><p data-i18n="tip7_d">Found a great combination? Hit the ♡ button to save it. You can load it any time from the Favourites menu.</p></div>
         </div>
         <div class="tip-item">
           <div class="tip-num">08</div>
-          <div><strong>Use Extra Tags</strong><p>The Extra Positive Tags field is perfect for model-specific tokens or very niche details not covered by the builder.</p></div>
+          <div><strong data-i18n="tip8_t">Use Extra Tags</strong><p data-i18n="tip8_d">The Extra Positive Tags field is perfect for model-specific tokens or very niche details not covered by the builder.</p></div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ GENDER MODAL ═══ -->
+<div class="gender-overlay" id="genderOverlay">
+  <div class="gender-modal">
+    <button class="gender-modal-close" id="genderModalClose"><i class="fas fa-xmark"></i></button>
+    <div class="gender-modal-title">Select Gender</div>
+    <div class="gender-modal-sub" id="genderModalSub">Character 1</div>
+    <div class="gender-opts">
+
+      <!-- Female -->
+      <button class="gender-opt-btn opt-female" data-gender="female">
+        <div class="gender-opt-sil"><i class="fa-solid fa-person-dress"></i></div>
+        <div class="gender-opt-info">
+          <span class="gender-opt-name">Female</span>
+          <span class="gender-opt-tag">1girl</span>
+        </div>
+      </button>
+
+      <!-- Male -->
+      <button class="gender-opt-btn opt-male" data-gender="male">
+        <div class="gender-opt-sil"><i class="fa-solid fa-person"></i></div>
+        <div class="gender-opt-info">
+          <span class="gender-opt-name">Male</span>
+          <span class="gender-opt-tag">1boy</span>
+        </div>
+      </button>
+
+      <!-- Futanari -->
+      <button class="gender-opt-btn opt-futa" data-gender="futa">
+        <div class="gender-opt-sil"><i class="fa-solid fa-person-half-dress"></i></div>
+        <div class="gender-opt-info">
+          <span class="gender-opt-name">Futanari</span>
+          <span class="gender-opt-tag">androgynous, futanari</span>
+        </div>
+      </button>
+
+      <button class="gender-modal-reset" id="genderModalReset">
+        <i class="fas fa-rotate-left"></i> Remove this character
+      </button>
     </div>
   </div>
 </div>
@@ -1575,39 +1902,107 @@ body.light .tag-box{background:#f0f2fa;}
 ════════════════════════════════════════
 -->
 
+<!-- ═══ WELCOME MODAL ═══ -->
+<div class="wlc-overlay" id="wlcOverlay">
+  <div class="wlc-modal">
+
+    <!-- Header glow bar -->
+    <div class="wlc-bar"></div>
+
+    <!-- Logo area -->
+    <div class="wlc-top">
+      <div class="wlc-logo-ico">✦</div>
+      <div class="wlc-badge">v1.0.0</div>
+    </div>
+
+    <div class="wlc-title">Anime Prompt Studio</div>
+    <div class="wlc-sub" data-i18n="wlc_sub">Your ultimate AI image prompt builder — free, fast, no account needed.</div>
+
+    <div class="wlc-divider"></div>
+
+    <!-- Features grid -->
+    <div class="wlc-features">
+      <div class="wlc-feat">
+        <div class="wlc-feat-ico"><i class="fas fa-person"></i></div>
+        <div class="wlc-feat-txt"><strong data-i18n="wlc_feat1_t">Full Character Builder</strong><span data-i18n="wlc_feat1_d">Hair, eyes, skin, body, outfit & more</span></div>
+      </div>
+      <div class="wlc-feat">
+        <div class="wlc-feat-ico"><i class="fas fa-palette"></i></div>
+        <div class="wlc-feat-txt"><strong data-i18n="wlc_feat2_t">5 Color Themes</strong><span data-i18n="wlc_feat2_d">Fully themed UI that adapts to your style</span></div>
+      </div>
+      <div class="wlc-feat">
+        <div class="wlc-feat-ico"><i class="fas fa-bolt"></i></div>
+        <div class="wlc-feat-txt"><strong data-i18n="wlc_feat3_t">Prompt Strength Meter</strong><span data-i18n="wlc_feat3_d">Detects conflicts & missing elements</span></div>
+      </div>
+      <div class="wlc-feat">
+        <div class="wlc-feat-ico"><i class="fas fa-heart"></i></div>
+        <div class="wlc-feat-txt"><strong data-i18n="wlc_feat4_t">Favourites System</strong><span data-i18n="wlc_feat4_d">Save & reload your best combinations</span></div>
+      </div>
+      <div class="wlc-feat">
+        <div class="wlc-feat-ico"><i class="fas fa-shuffle"></i></div>
+        <div class="wlc-feat-txt"><strong data-i18n="wlc_feat5_t">One-Click Randomizer</strong><span data-i18n="wlc_feat5_d">Generate a full character instantly</span></div>
+      </div>
+      <div class="wlc-feat">
+        <div class="wlc-feat-ico"><i class="fas fa-weight-hanging"></i></div>
+        <div class="wlc-feat-txt"><strong data-i18n="wlc_feat6_t">Tag Weight Slider</strong><span data-i18n="wlc_feat6_d">Fine-tune every tag's influence</span></div>
+      </div>
+    </div>
+
+    <div class="wlc-divider"></div>
+
+    <!-- About project -->
+    <div class="wlc-about">
+      <div class="wlc-about-ico"><i class="fas fa-wand-magic-sparkles"></i></div>
+      <div class="wlc-about-body">
+        <strong data-i18n="wlc_about_title">About this project</strong>
+        <p data-i18n="wlc_about_body">Anime Prompt Studio is a passion project built by <span class="wlc-brand">MD.AI SYSTEMS</span> — a team focused on making AI tools accessible and enjoyable for everyone. This tool runs entirely in your browser, stores nothing on any server, and is completely free.</p>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <button class="wlc-btn" id="wlcStart">
+      <i class="fas fa-wand-magic-sparkles"></i> <span data-i18n="start_building">Start Building</span>
+    </button>
+    <div class="wlc-no-show" style="padding:.8rem 1.8rem 1.4rem;text-align:center;font-size:.65rem;color:var(--tx3);">
+      <i class="fas fa-shield-halved" style="margin-right:.3rem;"></i><span data-i18n="wlc_footer">No account needed · No data collected · Runs in your browser</span>
+    </div>
+
+  </div>
+</div>
+
 <!-- ═══ AGE GATE MODAL ═══ -->
 <div class="ag-overlay" id="agOverlay">
   <div class="ag-modal">
     <div class="ag-warning-icon">
       <i class="fas fa-triangle-exclamation"></i>
     </div>
-    <div class="ag-title">Adults Only — 18+</div>
-    <div class="ag-title-en">NSFW Content Warning</div>
+    <div class="ag-title" data-i18n="ag_title">Adults Only — 18+</div>
+    <div class="ag-title-en" data-i18n="ag_subtitle">NSFW Content Warning</div>
     <div class="ag-divider"></div>
     <div class="ag-body">
-      <p>This section contains mature content intended for adults only.</p>
-      <p>By proceeding, you confirm the following:</p>
+      <p data-i18n="ag_body1">This section contains mature content intended for adults only.</p>
+      <p data-i18n="ag_body2">By proceeding, you confirm the following:</p>
     </div>
     <div class="ag-checks">
-      <div class="ag-check"><i class="fas fa-circle-check"></i> I am 18 years of age or older</div>
-      <div class="ag-check"><i class="fas fa-circle-check"></i> I take full responsibility for my use of this content</div>
-      <div class="ag-check"><i class="fas fa-circle-check"></i> Accessing this content is legal in my country or region</div>
-      <div class="ag-check"><i class="fas fa-circle-check"></i> I will not use generated prompts to create illegal content</div>
+      <div class="ag-check"><i class="fas fa-circle-check"></i> <span data-i18n="ag_check1">I am 18 years of age or older</span></div>
+      <div class="ag-check"><i class="fas fa-circle-check"></i> <span data-i18n="ag_check2">I take full responsibility for my use of this content</span></div>
+      <div class="ag-check"><i class="fas fa-circle-check"></i> <span data-i18n="ag_check3">Accessing this content is legal in my country or region</span></div>
+      <div class="ag-check"><i class="fas fa-circle-check"></i> <span data-i18n="ag_check4">I will not use generated prompts to create illegal content</span></div>
     </div>
     <div class="ag-disclaimer">
       <i class="fas fa-shield-halved"></i>
-      <span>The creator of this tool bears <strong>no responsibility</strong> for any misuse, harmful content generation, or violation of third-party platform terms. This tool generates text prompts only. You are solely responsible for how you use them.</span>
+      <span data-i18n="ag_disclaimer">The creator of this tool bears <strong>no responsibility</strong> for any misuse, harmful content generation, or violation of third-party platform terms. This tool generates text prompts only. You are solely responsible for how you use them.</span>
     </div>
     <div class="ag-actions">
       <button class="ag-btn-confirm" id="agCancel">
-        <i class="fas fa-xmark"></i> No, I am Under 18
+        <i class="fas fa-xmark"></i> <span data-i18n="ag_no">No, I am Under 18</span>
       </button>
       <button class="ag-btn-cancel" id="agConfirm">
-        <i class="fas fa-check"></i> Yes, I am 18 or Older
+        <i class="fas fa-check"></i> <span data-i18n="ag_yes">Yes, I am 18 or Older</span>
       </button>
     </div>
     <div class="ag-footer">
-      ⚠️ For artistic prompt generation purposes only
+      <span data-i18n="ag_footer">⚠️ For artistic prompt generation purposes only</span>
     </div>
   </div>
 </div>
@@ -1617,6 +2012,7 @@ body.light .tag-box{background:#f0f2fa;}
    STATE
 ═══════════════════════════════════ */
 const S={
+  characters:[null,null,null],
   charCount:null,age:null,skin:null,body:null,
   hairColor1:null,hairColor2:null,hairstyle:null,
   eyeColor:null,eyeShape:null,
@@ -1698,7 +2094,7 @@ const SKINS=[
    BLUEPRINT CELLS
 ═══════════════════════════════════ */
 const BP_CELLS=[
-  {id:'bp-char',   icon:'fa-users',               lbl:'Characters', keys:['charCount']},
+  {id:'bp-char',   icon:'fa-users',               lbl:'Characters', keys:['charCount','characters']},
   {id:'bp-age',    icon:'fa-cake-candles',         lbl:'Age',        keys:['age']},
   {id:'bp-skin',   icon:'fa-circle-half-stroke',   lbl:'Skin & Body',keys:['skin','body']},
   {id:'bp-hair',   icon:'fa-scissors',             lbl:'Hair',       keys:['hairColor1','hairstyle']},
@@ -1808,13 +2204,16 @@ function makeSingle(gid,lbl,val,k){
     if(l.startsWith('—')){
       const sep=document.createElement('div');
       sep.className='og-sep';
-      sep.textContent=l.replace(/—/g,'').trim();
+      const txt=l.replace(/—/g,'').trim();
+      sep.textContent=txt;
+      sep.setAttribute('data-en', txt);
       g.appendChild(sep);
       return;
     }
     const v=val?val[i]:l.toLowerCase();
     const b=document.createElement('button');
     b.className='ob'+(S[k]===v?' on':'');
+    b.setAttribute('data-en', l);
     b.innerHTML=`<span>${l}</span>`;
     b.addEventListener('click',()=>{
       if(S[k]===v){S[k]=null;b.classList.remove('on');}
@@ -1831,6 +2230,7 @@ function makeMulti(gid,lbl,arr,nsfw=false,inlineHide=false){
     const v=l.toLowerCase();
     const b=document.createElement('button');
     b.className='ob'+(nsfw?' rb':'')+(inlineHide?' nsfw-item':'')+(S[arr].includes(v)?' on':'');
+    b.setAttribute('data-en', l);
     b.innerHTML=`<span>${l}</span>`;
     b.addEventListener('click',()=>{
       b.classList.toggle('on');
@@ -1851,6 +2251,7 @@ function renderColors(gid,arr,sk,toggleable=false){
     b.className='cb'+(isOn?' on':'');
     const muted=col.m+'cc'; b.style.cssText=`background:${muted};color:${fg};border-color:${isOn?'rgba(255,255,255,.8)':'transparent'};`;
     b.title=col.n;
+    b.setAttribute('data-en', col.n);
     b.innerHTML=`<span>${col.n}</span>`;
     b.addEventListener('click',()=>{
       if(toggleable&&S[sk]===col.id){
@@ -1879,6 +2280,7 @@ function renderSkins(){
     b.className='sb'+(S.skin===s.val?' on':'');
     b.style.cssText=`background:${s.bg};color:${s.fg};border-color:${S.skin===s.val?'white':s.bg}`;
     b.innerHTML=`<span>${s.lbl}</span>`;
+    b.setAttribute('data-en', s.lbl);
     b.addEventListener('click',()=>{
       if(S.skin===s.val){S.skin=null;b.classList.remove('on');b.style.borderColor=s.bg;}
       else{
@@ -1915,10 +2317,132 @@ function toggleNSFW(on){
 /* ═══════════════════════════════════
    INIT
 ═══════════════════════════════════ */
+/* ═══════════════════════════════════
+   CHARACTER CARDS SYSTEM
+═══════════════════════════════════ */
+// Silhouette SVG strings per gender
+const SIL = {
+  female: `<i class="fa-solid fa-person-dress"></i>`,
+  male:   `<i class="fa-solid fa-person"></i>`,
+  futa:   `<i class="fa-solid fa-person-half-dress"></i>`,
+  unset:  `<i class="fa-solid fa-person-circle-plus"></i>`
+};
+
+const GENDER_CFG = {
+  female: { cls:'female', label:'Female',   prompt:'1girl'                },
+  male:   { cls:'male',   label:'Male',     prompt:'1boy'                 },
+  futa:   { cls:'futa',   label:'Futanari', prompt:'androgynous, futanari'}
+};
+
+function buildCharCountText(){
+  const active = S.characters.filter(Boolean);
+  if(!active.length) return '';
+  const c={female:0,male:0,futa:0};
+  active.forEach(g=>c[g]++);
+  const parts=[];
+  if(c.female===1)parts.push('1girl'); else if(c.female>1)parts.push(c.female+'girls');
+  if(c.male===1)  parts.push('1boy');  else if(c.male>1)  parts.push(c.male+'boys');
+  if(c.futa>0)    parts.push('androgynous, futanari');
+  if(active.length>=2) parts.push('multiple characters');
+  return parts.join(', ');
+}
+
+function updateCharWarn(){
+  const active = S.characters.filter(Boolean).length;
+  const warn = document.getElementById('charWarn');
+  if(warn) warn.classList.toggle('vis', active >= 2);
+}
+
+function renderCharCards(){
+  const row = document.getElementById('charCardsRow');
+  if(!row) return;
+  row.innerHTML='';
+
+  S.characters.forEach((gender,i)=>{
+    const isActive = gender !== null;
+    const cfg = isActive ? GENDER_CFG[gender] : null;
+
+    const card = document.createElement('div');
+    card.className = 'char-card' + (isActive ? ' active gc-'+gender : '');
+    card.dataset.idx = i;
+
+    card.innerHTML = `
+      ${isActive ? `<div class="char-card-del" data-idx="${i}">×</div>` : ''}
+      <div class="char-silhouette">${isActive ? SIL[gender] : SIL.unset}</div>
+      <div class="char-card-num">Char ${i+1}</div>
+      <div class="char-card-badge ${isActive ? cfg.cls : 'unset'}">${isActive ? cfg.label : 'Set gender'}</div>
+    `;
+
+    card.addEventListener('click', e=>{
+      if(e.target.closest('.char-card-del')) return;
+      openGenderModal(i);
+    });
+
+    const del = card.querySelector('.char-card-del');
+    if(del) del.addEventListener('click', e=>{
+      e.stopPropagation();
+      S.characters[i]=null;
+      renderCharCards(); updateCharWarn(); rebuild();
+    });
+
+    row.appendChild(card);
+  });
+}
+
+/* Gender modal */
+let _gIdx = null;
+
+function openGenderModal(idx){
+  _gIdx = idx;
+  const cur = S.characters[idx];
+  const sub = document.getElementById('genderModalSub');
+  if(sub) sub.textContent = 'Character '+(idx+1);
+  document.querySelectorAll('.gender-opt-btn').forEach(btn=>{
+    const g=btn.dataset.gender;
+    btn.className = 'gender-opt-btn opt-'+g + (cur===g?' sel-'+g:'');
+  });
+  document.getElementById('genderOverlay').classList.add('open');
+}
+
+function closeGenderModal(){
+  document.getElementById('genderOverlay').classList.remove('open');
+  _gIdx=null;
+}
+
+function initGenderModal(){
+  document.querySelectorAll('.gender-opt-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      if(_gIdx===null) return;
+      S.characters[_gIdx]=btn.dataset.gender;
+      closeGenderModal();
+      renderCharCards(); updateCharWarn(); rebuild();
+    });
+  });
+  document.getElementById('genderModalClose').addEventListener('click', closeGenderModal);
+  document.getElementById('genderModalReset').addEventListener('click',()=>{
+    if(_gIdx===null) return;
+    S.characters[_gIdx]=null;
+    closeGenderModal();
+    renderCharCards(); updateCharWarn(); rebuild();
+  });
+  document.getElementById('genderOverlay').addEventListener('click', e=>{
+    if(e.target===document.getElementById('genderOverlay')) closeGenderModal();
+  });
+}
+
+function initCharCards(){
+  renderCharCards();
+  document.getElementById('charCardsClrBtn').addEventListener('click',()=>{
+    S.characters=[null,null,null];
+    renderCharCards(); updateCharWarn(); rebuild();
+  });
+}
+
 function init(){
   buildBlueprint();
   /* Character */
-  makeSingle('charCountGrid',D.charCount.lbl,D.charCount.val,'charCount');
+  initCharCards();
+  initGenderModal();
   makeSingle('ageGrid',   D.age.lbl,    D.age.val,   'age');
   renderSkins();
   makeSingle('bodyGrid',  D.body.lbl,   D.body.val,  'body');
@@ -2098,7 +2622,7 @@ function attachEvents(){
     navigator.clipboard.writeText(`Positive:\n${pos}\n\nNegative:\n${neg}`).then(()=>{
       const b=document.getElementById('copyBtn');
       b.innerHTML='<i class="fas fa-check"></i> Copied!';b.classList.add('ok');
-      setTimeout(()=>{b.innerHTML='<i class="fas fa-copy"></i> Copy Full Prompt';b.classList.remove('ok');},2000);
+      setTimeout(()=>{b.innerHTML='<i class="fas fa-copy"></i> <span data-i18n="copy_full">Copy Full Prompt</span>';b.classList.remove('ok');},2000);
       toast('Full prompt copied!');
     });
   });
@@ -2174,7 +2698,7 @@ function buildPosText(){
   const p=[];
   // FIX 9: Quality ALWAYS first
   if(S.quality.length)p.push(S.quality.join(', '));
-  if(S.charCount)p.push(S.charCount);
+  const _ct=buildCharCountText(); if(_ct)p.push(_ct); else if(S.charCount)p.push(S.charCount);
   if(S.age)p.push(S.age);
   if(S.body)p.push(S.body);
   if(S.skin)p.push(S.skin);
@@ -2267,13 +2791,8 @@ function buildPosGroups(){
   if(S.quality.length) add('q',[S.quality.join(', ')]);
   // Character
   const ch=[];
-  if(S.charCount){
-    // gender implied by charCount (1girl, 1man etc) — only add if androgynous
-    ch.push(S.charCount);
-    if(S.gender&&S.gender==='androgynous') ch.push('androgynous');
-  } else if(S.gender){
-    ch.push(S.gender);
-  }
+  const _ct2=buildCharCountText();
+  if(_ct2) ch.push(_ct2); else if(S.charCount) ch.push(S.charCount);
   if(S.age) ch.push(S.age);
   if(S.body) ch.push(S.body);
   if(S.skin) ch.push(S.skin);
@@ -2477,7 +2996,7 @@ function renderPromptChips(el, groups, extraArr, negCls){
   el.innerHTML='';
   if(!groups.length&&!extraArr.length){
     el.className='ptxt'+(negCls?' neg':'')+' empty';
-    el.textContent=negCls?'Select avoids above, or add in the box below…':'Start selecting options on the left…';
+    el.textContent=negCls?(typeof t==='function'?t('neg_empty'):'Select avoids above, or add in the box below…'):(typeof t==='function'?t('prompt_empty'):'Start selecting options on the left…');
     return;
   }
   el.className='ptxt'+(negCls?' neg':'');
@@ -2504,7 +3023,7 @@ function rebuild(){
   } else {
     pe.classList.add('flash');
     setTimeout(()=>pe.classList.remove('flash'),500);
-    document.getElementById('posWC').textContent=(pos.split(',').length+S.extraPos.length)+' tags';
+    document.getElementById('posWC').textContent=(pos.split(',').length+S.extraPos.length)+' '+(typeof t==='function'?t('tags'):'tags');
   }
 
   // Negative
@@ -2514,10 +3033,10 @@ function rebuild(){
     renderPromptChips(ne,negItems,S.extraNeg,true);
     ne.classList.add('flash');
     setTimeout(()=>ne.classList.remove('flash'),500);
-    document.getElementById('negWC').textContent=(S.negatives.length+S.negBody.length+S.negQuality.length+S.extraNeg.length)+' tags';
+    document.getElementById('negWC').textContent=(S.negatives.length+S.negBody.length+S.negQuality.length+S.extraNeg.length)+' '+(typeof t==='function'?t('tags'):'tags');
   } else {
     ne.className='ptxt neg empty';
-    ne.textContent='Select avoids above, or add in the box below…';
+    ne.textContent = (typeof t==='function') ? t('neg_empty') : 'Select avoids above, or add in the box below…';
     document.getElementById('negWC').textContent='';
   }
 
@@ -2533,7 +3052,10 @@ function updateBlueprint(){
   let n=0;
   BP_CELLS.forEach(cell=>{
     const el=document.getElementById(cell.id);if(!el)return;
-    const active=cell.keys.some(k=>Array.isArray(S[k])?S[k].length>0:!!S[k]);
+    const active=cell.keys.some(k=>{
+      if(k==='characters') return S.characters.some(Boolean);
+      return Array.isArray(S[k])?S[k].length>0:!!S[k];
+    });
     const was=el.classList.contains('on');
     el.classList.toggle('on',active);
     const valEl=el.querySelector('.bp-val');
@@ -2564,7 +3086,7 @@ function analyzePrompt(){
 
   /* ── SCORING: points for coverage ── */
   // Core character (30pts)
-  if(S.age || S.charCount)      score += 5;
+  if(S.age || S.charCount || S.characters.some(Boolean)) score += 5;
   if(S.skin || S.body)          score += 5;
   if(S.hairColor1 || S.hairstyle) score += 7;
   if(S.eyeColor  || S.eyeShape)   score += 5;
@@ -2710,7 +3232,7 @@ function updateCounter(){ analyzePrompt(); } // keep old call sites working
 function renderFavList(){
   const list=document.getElementById('favList');
   list.innerHTML='';
-  if(!S.favourites.length){list.innerHTML='<div class="fav-empty">No saved favourites yet</div>';return;}
+  if(!S.favourites.length){list.innerHTML='<div class="fav-empty" data-i18n="fav_empty">No saved favourites yet</div>';return;}
   S.favourites.forEach((f,i)=>{
     const item=document.createElement('div');
     item.className='fav-item';
@@ -2935,13 +3457,15 @@ function randomize(){
 ═══════════════════════════════════ */
 function resetAll(silent=false){
   Object.keys(S).forEach(k=>{
-    if(k==='favourites') return;
+    if(k==='favourites'||k==='characters') return;
     if(k==='negBody'||k==='negQuality'){S[k]=[];return;}
     if(k==='nsfw') S[k]=false;
     else if(Array.isArray(S[k])) S[k]=[];
     else S[k]=null;
   });
   S.extraPos=[];S.extraNeg=[];S.weights={};
+  S.characters=[null,null,null];
+  renderCharCards(); updateCharWarn();
   /* Reset UI */
   document.querySelectorAll('.ob,.cw,.cb').forEach(x=>x.classList.remove('on'));
   document.querySelectorAll('.cb').forEach(b=>b.style.borderColor='transparent');
@@ -2951,11 +3475,11 @@ function resetAll(silent=false){
   renderTagBoxes();
   /* Clear prompt boxes immediately to empty state */
   const pe=document.getElementById('promptText');
-  pe.textContent='Start selecting options on the left…';
+  pe.textContent=(typeof t==='function'?t('prompt_empty'):'Start selecting options on the left…');
   pe.className='ptxt empty';
   document.getElementById('posWC').textContent='';
   const ne=document.getElementById('negativeText');
-  ne.textContent='Select avoids above, or use the tag box below…';
+  ne.textContent=(typeof t==='function'?t('neg_empty'):'Select avoids above, or use the tag box below…');
   ne.className='ptxt neg empty';
   document.getElementById('negWC').textContent='';
   updateBlueprint();
@@ -3087,8 +3611,961 @@ function toast(msg,type=''){
   });
 })();
 
+// ── WELCOME MODAL ──
+(function(){
+  const overlay = document.getElementById('wlcOverlay');
+  const btn     = document.getElementById('wlcStart');
+  if(!overlay) return;
+
+  function closeWelcome(){
+    overlay.classList.remove('open');
+  }
+
+  btn.addEventListener('click', closeWelcome);
+  overlay.addEventListener('click', e=>{ if(e.target===overlay) closeWelcome(); });
+
+  // Show every time
+  overlay.classList.add('open');
+})();
+
+/* ═══════════════════════════════════
+   i18n — LANGUAGE SYSTEM (EN + AR)
+═══════════════════════════════════ */
+const LANG_FLAGS = {en:'EN', ar:'AR', ja:'JA'};
+
+const UI = {
+  en: {
+    /* ── Header ── */
+    random:'Random', nsfw:'NSFW', saved:'Saved',
+    tab_style:'Style', tab_mood:'Mood', tab_scene:'Scene', tab_look:'Look', tab_outfit:'Outfit',
+    tab_camera:'Camera', tab_quality:'Quality', tab_character:'Character',
+    tab_tools:'Tools', tab_avoid:'Avoid',
+    /* ── Prompts ── */
+    positive_prompt:'Positive Prompt', negative_prompt:'Negative Prompt',
+    copy_full:'Copy Full Prompt', copy_pos:'Positive', copy_neg:'Negative',
+    save_fav:'Save Favourite', saved_library:'Saved Library', fav_empty:'No saved favourites yet',
+    reset_all:'Reset All', footer_copy:'Anime Prompt Studio © 2026. All rights reserved.',
+    clear:'Clear', clear_all:'Clear All',
+    prompt_empty:'Start selecting options on the right…',
+    neg_empty:'Select avoids above, or add in the box below…',
+    placeholder_pos:'＋ Extra Positive Tags — Enter or Tab',
+    placeholder_neg:'＋ Extra Negative Tags — Enter or Tab',
+    tags:' tags',
+    /* ── Blueprint & Strength ── */
+    blueprint_ttl:'Character Blueprint',
+    prompt_strength:'Prompt Strength',
+    /* ── Info menus ── */
+    color_themes:'Color Themes', help_info:'Help & Info',
+    about:'About', features:'Features', tips:'Tips & Tricks',
+    language:'Language',
+    /* ── Misc ── */
+    girls:'Girls', boys:'Boys', start_building:'Start Building',
+    /* ── Section titles ── */
+    sec_color_grading:'Color Grading', sec_anime_studio:'Anime Studio / Director Style',
+    sec_art_style:'Art Style', sec_era:'Era', sec_line_style:'Line Style',
+    sec_shadows:'Shadows', sec_glow:'Glow & Bloom', sec_skin_smooth:'Skin Smoothness',
+    sec_quality_tags:'Quality Tags', sec_lighting:'Lighting',
+    sec_characters:'Characters in Scene', sec_age:'Age Group',
+    sec_skin_tone:'Skin Tone', sec_body:'Body Type', sec_hairstyle:'Hairstyle',
+    sec_hair_color1:'Hair Color (Primary)', sec_hair_color2:'Hair Ombré (2nd Color)',
+    sec_eye_shape:'Eye Shape', sec_eye_color:'Eye Color',
+    sec_clothing:'Clothing Type', sec_clothing_acc:'Clothing Accessories',
+    sec_sock_color:'Sock Color', sec_sock_length:'Sock Length',
+    sec_footwear:'Footwear', sec_face_acc:'Face Accessories',
+    sec_expression:'Expression', sec_pose:'Pose & Action',
+    sec_effects:'Special Effects', sec_liquids:'Liquids & Materials',
+    sec_weapons:'Weapons', sec_props:'Props & Objects',
+    sec_electronics:'Electronics', sec_other:'Other Items',
+    sec_environment:'Environment', sec_mood:'Mood / Atmosphere',
+    sec_shot_range:'Shot Range', sec_camera_angle:'Camera Angle',
+    sec_looking:'Looking Direction', sec_lens_type:'Lens Type',
+    sec_lens_effect:'Lens Effect', sec_body_parts:'Body Parts Focus',
+    sec_neg_prompt:'Negative Prompt', sec_tools:'Tools', sec_look:'Look', sec_outfit:'Outfit',
+    /* ── Negative tab ── */
+    what_to_avoid:'What To Avoid',
+    avoid_desc:'Select anything you want excluded from the final image.',
+    neg_body_anatomy:'Body & Anatomy', neg_image_quality:'Image Quality',
+    body_parts_note:'Focus camera on specific body parts — NSFW mode only.',
+    /* ── Blueprint labels ── */
+    bp_char:'Characters', bp_age:'Age', bp_skin:'Skin & Body',
+    bp_hair:'Hair', bp_eyes:'Eyes', bp_outfit:'Outfit',
+    bp_mood:'Mood', bp_tools:'Tools', bp_scene:'Scene',
+    bp_camera:'Camera', bp_quality:'Quality',
+    /* ── About modal ── */
+    about_p1:'Anime Prompt Studio is a free, browser-based tool designed to help artists and enthusiasts craft detailed, high-quality prompts for AI image generation.',
+    about_p2:'Built with a focus on anime and illustration styles, it gives you full control over character appearance, outfit, mood, scene, lighting, camera, and more — all in one place.',
+    about_p3:'No account required. No data collected. Everything runs locally in your browser.',
+    about_sig:'— Made with ✦ by MD.AI SYSTEMS',
+    /* ── Features modal ── */
+    feat_themes_t:'13 Color Themes', feat_themes_d:'Fully themed UI that adapts to your style',
+    feat_char_t:'Full Character Builder', feat_char_d:'Hair, eyes, skin, body, outfit and more',
+    feat_cloth_t:'50+ Clothing Options', feat_cloth_d:'Organized by category — tops, bottoms, full outfits',
+    feat_studio_t:'Anime Studio Styles', feat_studio_d:'Ghibli, Ufotable, MAPPA, Makoto Shinkai and more',
+    feat_color_t:'Color Grading', feat_color_d:'16 palette options from pastel to cyberpunk',
+    feat_cam_t:'Camera Controls', feat_cam_d:'Shot range, angle, lens type and focus effects',
+    feat_meter_t:'Prompt Strength Meter', feat_meter_d:'Detects conflicts, overloads and missing elements',
+    feat_weight_t:'Tag Weight Slider', feat_weight_d:'Click any tag to boost or reduce its influence',
+    feat_favs_t:'Favourites System', feat_favs_d:'Save and reload your best prompt combinations',
+    feat_img_t:'Image Analyzer', feat_img_d:'Extract and reverse-engineer prompts from images',
+    feat_rand_t:'Randomizer', feat_rand_d:'Generate a full random character in one click',
+    feat_nsfw_t:'NSFW Mode', feat_nsfw_d:'Age-gated adult content section',
+    /* ── Tips modal ── */
+    tip1_t:'Start with Style', tip1_d:"Always pick an Art Style or Anime Studio first — it's the single most impactful tag for the final look.",
+    tip2_t:'Use the Strength Meter', tip2_d:'Watch the Prompt Strength score. Conflicts (red) hurt quality the most — fix those before adding more tags.',
+    tip3_t:'Lighting is Everything', tip3_d:'Add at least one lighting type. Rim Light + one ambient source gives dramatic, professional-looking results.',
+    tip4_t:'Tag Weight Slider', tip4_d:'Click any tag in the prompt box to open the weight slider. Boost key elements like style or lighting above 1.3 for more impact.',
+    tip5_t:'Quality Tags Matter', tip5_d:'Always include 3–4 quality tags: Masterpiece, Best Quality, Ultra Detailed. These are expected by most anime models.',
+    tip6_t:'Less is More', tip6_d:'3–4 lighting types or 5+ effects will confuse the model. Keep each category focused — the Overload warning will alert you.',
+    tip7_t:'Save Your Favourites', tip7_d:'Found a great combination? Hit the ♡ button to save it. You can load it any time from the Favourites menu.',
+    tip8_t:'Use Extra Tags', tip8_d:'The Extra Positive Tags field is perfect for model-specific tokens or very niche details not covered by the builder.',
+    /* ── Welcome modal ── */
+    wlc_sub:'Your ultimate AI image prompt builder — free, fast, no account needed.',
+    wlc_about_title:'About this project',
+    wlc_about_body:'Anime Prompt Studio is a passion project built by <span class="wlc-brand">MD.AI SYSTEMS</span> — a team focused on making AI tools accessible and enjoyable for everyone. This tool runs entirely in your browser, stores nothing on any server, and is completely free.',
+    wlc_footer:'No account needed · No data collected · Runs in your browser',
+    wlc_feat1_t:'Full Character Builder', wlc_feat1_d:'Hair, eyes, skin, body, outfit & more',
+    wlc_feat2_t:'5 Color Themes', wlc_feat2_d:'Fully themed UI that adapts to your style',
+    wlc_feat3_t:'Prompt Strength Meter', wlc_feat3_d:'Detects conflicts & missing elements',
+    wlc_feat4_t:'Favourites System', wlc_feat4_d:'Save & reload your best combinations',
+    wlc_feat5_t:'One-Click Randomizer', wlc_feat5_d:'Generate a full character instantly',
+    wlc_feat6_t:'Tag Weight Slider', wlc_feat6_d:"Fine-tune every tag's influence",
+    /* ── Age Gate ── */
+    ag_title:'Adults Only — 18+', ag_subtitle:'NSFW Content Warning',
+    ag_body1:'This section contains mature content intended for adults only.',
+    ag_body2:'By proceeding, you confirm the following:',
+    ag_check1:'I am 18 years of age or older',
+    ag_check2:'I take full responsibility for my use of this content',
+    ag_check3:'Accessing this content is legal in my country or region',
+    ag_check4:'I will not use generated prompts to create illegal content',
+    ag_disclaimer:'The creator of this tool bears <strong>no responsibility</strong> for any misuse, harmful content generation, or violation of third-party platform terms. This tool generates text prompts only. You are solely responsible for how you use them.',
+    ag_no:'No, I am Under 18', ag_yes:'Yes, I am 18 or Older',
+    ag_footer:'⚠️ For artistic prompt generation purposes only',
+  },
+  ar: {
+    /* ── Header ── */
+    random:'عشوائي', nsfw:'محتوى ناضج', saved:'المحفوظات',
+    tab_style:'الأسلوب', tab_mood:'المزاج', tab_scene:'المشهد', tab_look:'المظهر', tab_outfit:'الزي',
+    tab_camera:'الكاميرا', tab_quality:'الجودة', tab_character:'الشخصية',
+    tab_tools:'الأدوات', tab_avoid:'تجنب',
+    /* ── Prompts ── */
+    positive_prompt:'البرومبت الإيجابي', negative_prompt:'البرومبت السلبي',
+    copy_full:'نسخ البرومبت كاملاً', copy_pos:'إيجابي', copy_neg:'سلبي',
+    save_fav:'حفظ كمفضلة', saved_library:'المكتبة المحفوظة', fav_empty:'لا توجد مفضلات محفوظة بعد',
+    reset_all:'إعادة تعيين الكل', footer_copy:'Anime Prompt Studio © 2026. جميع الحقوق محفوظة.',
+    clear:'مسح', clear_all:'مسح الكل',
+    prompt_empty:'ابدأ باختيار الخيارات…',
+    neg_empty:'اختر ما تريد تجنبه أعلاه أو أضفه في الحقل أدناه…',
+    placeholder_pos:'＋ تاغات إيجابية إضافية — Enter أو Tab',
+    placeholder_neg:'＋ تاغات سلبية إضافية — Enter أو Tab',
+    tags:' تاغ',
+    /* ── Blueprint & Strength ── */
+    blueprint_ttl:'مخطط الشخصية',
+    prompt_strength:'قوة البرومبت',
+    /* ── Info menus ── */
+    color_themes:'ألوان الثيم', help_info:'مساعدة ومعلومات',
+    about:'حول', features:'المميزات', tips:'نصائح وحيل',
+    language:'اللغة',
+    /* ── Misc ── */
+    girls:'بنات', boys:'أولاد', start_building:'ابدأ الآن',
+    /* ── Section titles ── */
+    sec_color_grading:'تدرج الألوان', sec_anime_studio:'أسلوب الاستوديو الأنيمي',
+    sec_art_style:'أسلوب الرسم', sec_era:'الحقبة الزمنية', sec_line_style:'أسلوب الخطوط',
+    sec_shadows:'الظلال', sec_glow:'التوهج والإشراق', sec_skin_smooth:'نعومة البشرة',
+    sec_quality_tags:'تاغات الجودة', sec_lighting:'الإضاءة',
+    sec_characters:'الشخصيات في المشهد', sec_age:'الفئة العمرية',
+    sec_skin_tone:'لون البشرة', sec_body:'نوع الجسم', sec_hairstyle:'تسريحة الشعر',
+    sec_hair_color1:'لون الشعر الأساسي', sec_hair_color2:'لون الشعر الثانوي',
+    sec_eye_shape:'شكل العينين', sec_eye_color:'لون العينين',
+    sec_clothing:'نوع الملابس', sec_clothing_acc:'إكسسوارات الملابس',
+    sec_sock_color:'لون الجوارب', sec_sock_length:'طول الجوارب',
+    sec_footwear:'الأحذية', sec_face_acc:'إكسسوارات الوجه',
+    sec_expression:'التعبير', sec_pose:'الوضعية والحركة',
+    sec_effects:'التأثيرات الخاصة', sec_liquids:'السوائل والمواد',
+    sec_weapons:'الأسلحة', sec_props:'الأدوات والأشياء',
+    sec_electronics:'الإلكترونيات', sec_other:'أشياء أخرى',
+    sec_environment:'البيئة والمكان', sec_mood:'المزاج والجو العام',
+    sec_shot_range:'نطاق اللقطة', sec_camera_angle:'زاوية الكاميرا',
+    sec_looking:'اتجاه النظر', sec_lens_type:'نوع العدسة',
+    sec_lens_effect:'تأثير العدسة', sec_body_parts:'تركيز الكاميرا على الجسم',
+    sec_neg_prompt:'البرومبت السلبي', sec_tools:'الأدوات', sec_look:'المظهر', sec_outfit:'الزي',
+    /* ── Negative tab ── */
+    what_to_avoid:'ما يجب تجنبه',
+    avoid_desc:'اختر كل ما تريد استبعاده من الصورة النهائية.',
+    neg_body_anatomy:'الجسم والتشريح', neg_image_quality:'جودة الصورة',
+    body_parts_note:'تركيز الكاميرا على أجزاء محددة — يتطلب تفعيل وضع المحتوى الناضج.',
+    /* ── Blueprint labels ── */
+    bp_char:'الشخصيات', bp_age:'العمر', bp_skin:'البشرة والجسم',
+    bp_hair:'الشعر', bp_eyes:'العيون', bp_outfit:'الزي',
+    bp_mood:'المزاج', bp_tools:'الأدوات', bp_scene:'المشهد',
+    bp_camera:'الكاميرا', bp_quality:'الجودة',
+    /* ── About modal ── */
+    about_p1:'Anime Prompt Studio أداة مجانية تعمل في المتصفح، مصممة لمساعدة الفنانين والمهتمين على صياغة برومبتات تفصيلية عالية الجودة لتوليد الصور بالذكاء الاصطناعي.',
+    about_p2:'مبنية بتركيز على أسلوب الأنيمي والرسوم التوضيحية، تمنحك تحكماً كاملاً في مظهر الشخصية والزي والمزاج والمشهد والإضاءة والكاميرا — كل شيء في مكان واحد.',
+    about_p3:'لا حساب مطلوب. لا بيانات تُجمع. كل شيء يعمل محلياً في متصفحك.',
+    about_sig:'— صُنع بـ ✦ بواسطة MD.AI SYSTEMS',
+    /* ── Features modal ── */
+    feat_themes_t:'١٣ ثيم ملوّن', feat_themes_d:'واجهة مخصصة تتكيف مع أسلوبك',
+    feat_char_t:'بناء شخصية كامل', feat_char_d:'شعر، عيون، بشرة، جسم، ملابس والمزيد',
+    feat_cloth_t:'+٥٠ خيار ملابس', feat_cloth_d:'منظمة بالفئات — أعلى، أسفل، أطقم كاملة',
+    feat_studio_t:'أساليب الاستوديو الأنيمي', feat_studio_d:'غيبلي، يوفوتابل، ماببا، ماكوتو شينكاي والمزيد',
+    feat_color_t:'تدرج الألوان', feat_color_d:'١٦ خيار لوحة من الباستيل حتى السيبربانك',
+    feat_cam_t:'التحكم بالكاميرا', feat_cam_d:'نطاق اللقطة، الزاوية، نوع العدسة وتأثيرات التركيز',
+    feat_meter_t:'مقياس قوة البرومبت', feat_meter_d:'يكتشف التعارضات والزيادات والعناصر المفقودة',
+    feat_weight_t:'شريط وزن التاغ', feat_weight_d:'انقر أي تاغ لرفع أو خفض تأثيره',
+    feat_favs_t:'نظام المفضلة', feat_favs_d:'احفظ وأعد تحميل أفضل تركيباتك',
+    feat_img_t:'محلل الصور', feat_img_d:'استخرج وعكس هندسة البرومبتات من الصور',
+    feat_rand_t:'الاختيار العشوائي', feat_rand_d:'توليد شخصية كاملة بنقرة واحدة',
+    feat_nsfw_t:'وضع المحتوى الناضج', feat_nsfw_d:'قسم محتوى للبالغين مع تحقق من العمر',
+    /* ── Tips modal ── */
+    tip1_t:'ابدأ بالأسلوب', tip1_d:'اختر دائماً أسلوب رسم أو استوديو أنيمي أولاً — فهو أكثر تاغ يؤثر على النتيجة النهائية.',
+    tip2_t:'استخدم مقياس القوة', tip2_d:'راقب نقاط قوة البرومبت. التعارضات (الحمراء) تضر الجودة أكثر — عالجها قبل إضافة المزيد.',
+    tip3_t:'الإضاءة كل شيء', tip3_d:'أضف نوع إضاءة واحداً على الأقل. Rim Light مع مصدر ضوء محيطي يعطي نتائج درامية واحترافية.',
+    tip4_t:'شريط وزن التاغ', tip4_d:'انقر أي تاغ في صندوق البرومبت لفتح شريط الوزن. ارفع العناصر الرئيسية كالأسلوب والإضاءة فوق ١.٣ لتأثير أقوى.',
+    tip5_t:'تاغات الجودة مهمة', tip5_d:'أضف دائماً ٣-٤ تاغات جودة: Masterpiece, Best Quality, Ultra Detailed — تتوقعها معظم نماذج الأنيمي.',
+    tip6_t:'الأقل هو الأكثر', tip6_d:'٣-٤ أنواع إضاءة أو ٥+ تأثيرات ستربك النموذج. ركز كل فئة — تحذير Overload سيُنبهك.',
+    tip7_t:'احفظ مفضلاتك', tip7_d:'وجدت تركيبة رائعة؟ اضغط زر ♡ لحفظها. يمكنك تحميلها في أي وقت من قائمة المفضلة.',
+    tip8_t:'استخدم التاغات الإضافية', tip8_d:'حقل التاغات الإيجابية الإضافية مثالي للتوكنات الخاصة بالنموذج أو التفاصيل الدقيقة غير المغطاة.',
+    /* ── Welcome modal ── */
+    wlc_sub:'أفضل أداة لبناء برومبتات الذكاء الاصطناعي — مجانية، سريعة، لا حساب مطلوب.',
+    wlc_about_title:'حول هذا المشروع',
+    wlc_about_body:'Anime Prompt Studio مشروع بُني بشغف من قِبل <span class="wlc-brand">MD.AI SYSTEMS</span> — فريق يركز على جعل أدوات الذكاء الاصطناعي متاحة وممتعة للجميع. تعمل هذه الأداة بالكامل في متصفحك، ولا تحفظ أي شيء على أي خادم، وهي مجانية تماماً.',
+    wlc_footer:'لا حساب مطلوب · لا بيانات تُجمع · يعمل في متصفحك',
+    wlc_feat1_t:'بناء شخصية كامل', wlc_feat1_d:'شعر، عيون، بشرة، جسم، ملابس والمزيد',
+    wlc_feat2_t:'٥ ثيمات ملونة', wlc_feat2_d:'واجهة مخصصة تتكيف مع أسلوبك',
+    wlc_feat3_t:'مقياس قوة البرومبت', wlc_feat3_d:'يكتشف التعارضات والعناصر المفقودة',
+    wlc_feat4_t:'نظام المفضلة', wlc_feat4_d:'احفظ وأعد تحميل أفضل تركيباتك',
+    wlc_feat5_t:'اختيار عشوائي بنقرة', wlc_feat5_d:'ولّد شخصية كاملة فوراً',
+    wlc_feat6_t:'شريط وزن التاغ', wlc_feat6_d:'ضبط دقيق لتأثير كل تاغ',
+    /* ── Age Gate ── */
+    ag_title:'للبالغين فقط — +١٨', ag_subtitle:'تحذير: محتوى ناضج',
+    ag_body1:'يحتوي هذا القسم على محتوى ناضج مخصص للبالغين فقط.',
+    ag_body2:'بالمتابعة، فأنت تؤكد التالي:',
+    ag_check1:'عمري ١٨ عاماً أو أكثر',
+    ag_check2:'أتحمل المسؤولية الكاملة عن استخدامي لهذا المحتوى',
+    ag_check3:'الوصول لهذا المحتوى قانوني في بلدي أو منطقتي',
+    ag_check4:'لن أستخدم البرومبتات المُنشأة لإنتاج محتوى غير قانوني',
+    ag_disclaimer:'منشئ هذه الأداة <strong>لا يتحمل أي مسؤولية</strong> عن أي سوء استخدام أو إنتاج محتوى ضار أو انتهاك لشروط منصات خارجية. هذه الأداة تُنتج نصوص برومبت فقط. أنت وحدك المسؤول عن طريقة استخدامها.',
+    ag_no:'لا، عمري أقل من ١٨', ag_yes:'نعم، عمري ١٨ أو أكثر',
+    ag_footer:'⚠️ لأغراض توليد برومبتات فنية فقط',
+  }
+};
+
+/* ── Option button labels (EN→AR) ── */
+const OPT_AR = {
+  // ── Characters ──
+  '1 Girl':'فتاة واحدة','1 Man':'رجل واحد','2 Girls':'فتاتان','2 Men':'رجلان',
+  '1 Girl + 1 Man':'فتاة ورجل','3+ Girls':'٣+ فتيات','3+ Men':'٣+ رجال','Mixed Group':'مجموعة مختلطة',
+  // ── Age ──
+  'Toddler (0–3)':'طفل رضيع','Child (4–8)':'طفل','Preteen (9–12)':'مراهق مبكر',
+  'Teen (13–17)':'مراهق','Young Adult (18–25)':'شاب','Adult (26–35)':'بالغ',
+  'Middle-Aged (36–50)':'متوسط العمر','Elderly (51+)':'كبير السن',
+  // ── Gender ──
+  'Feminine':'أنثوي','Masculine':'ذكوري','Androgynous':'محايد الجنس',
+  // ── Body ──
+  'Petite':'نحيلة','Slim':'رشيق','Athletic':'رياضي','Toned':'متناسق','Curvy':'ممتلئة',
+  'Hourglass':'شكل الساعة الرملية','Muscular':'عضلي','Chubby':'ممتلئ قليلاً','Tall':'طويل','Short':'قصير',
+  'Slim Waist':'خصر رفيع','Big Butt':'مؤخرة كبيرة','Thick Thighs':'فخذان سميكتان',
+  'Curvy Hips':'وركان عريضان','Small Breasts':'صدر صغير','Large Breasts':'صدر كبير',
+  'Huge Breasts':'صدر ضخم',
+  // ── Skin ──
+  'Fair/Pale':'فاتحة جداً','Light':'فاتحة','Medium':'متوسطة','Tan':'سمراء خفيفة','Deep':'سمراء','Dark':'داكنة',
+  // ── Hairstyle ──
+  'Long Straight':'مستقيم طويل','Long Wavy':'متموج طويل','Long Curly':'مجعد طويل',
+  'Twin Tails':'ذيلان','High Ponytail':'ذيل حصان علوي','Side Ponytail':'ذيل حصان جانبي',
+  'Braid':'ضفيرة','Double Braid':'ضفيرتان','Bun':'كعكة','Messy Bun':'كعكة مبعثرة',
+  'Short Bob':'بوب قصير','Pixie Cut':'بيكسي','Hime Cut':'هيمي','Fluffy':'مفرفش',
+  'Wet Hair':'شعر مبلل',
+  // ── Hair Colors ──
+  'White':'أبيض','Silver':'فضي','Blonde':'أشقر','Gold':'ذهبي','Peach':'خوخي',
+  'Coral':'مرجاني','Red':'أحمر','Auburn':'بني أحمر','Pink':'وردي','Lavender':'خزامى',
+  'Purple':'بنفسجي','Magenta':'فوشيا','Blue':'أزرق','Indigo':'نيلي','Cyan':'سماوي',
+  'Teal':'أزرق مخضر','Mint':'نعناعي','Green':'أخضر','Brown':'بني','Black':'أسود',
+  'Navy':'كحلي',
+  // ── Eye Shape ──
+  'Large Round':'كبير مستدير','Almond':'لوزي','Upturned':'مرفوع','Downturned':'منخفض',
+  'Cat-like':'قط','Doe Eyes':'عيون غزالة','Hooded':'مغطى',
+  // ── Eye Colors ──
+  'Violet':'بنفسجي فاتح','Grey':'رمادي','Emerald':'زمردي','Sapphire':'ياقوتي','Rainbow':'قوس قزح',
+  'Jade':'يشمي','Amber':'كهرماني',
+  // ── Expression ──
+  'Happy':'سعيد','Sad':'حزين','Angry':'غاضب','Shy':'خجول','Confident':'واثق',
+  'Gentle Smile':'ابتسامة لطيفة','Laughing':'ضاحك','Crying':'باكي','Scared':'خائف',
+  'Stoic':'هادئ','Seductive':'مغرٍ','Tired':'متعب','Surprised':'مندهش',
+  'Playful':'مرح','Mysterious':'غامض','Dreamy':'حالم','Dramatic':'درامي',
+  'Shocked':'مصدوم','Eyes Closed':'عيون مغلقة',
+  // ── Clothing Separators ──
+  '— Tops —':'— قمصان —','— Bottoms —':'— سراويل —','— Dresses —':'— فساتين —',
+  '— Sets —':'— طقم —','— Uniforms —':'— زي —','— Specialty —':'— خاص —',
+  // ── Clothing ──
+  'T-Shirt':'تيشيرت','Crop Top':'توب قصير','Tied Crop Top':'توب مربوط',
+  'Off-Shoulder Top':'توب كتف مكشوف','Tank Top':'قميص بلا أكمام',
+  'Tube Top':'توب أنبوبي','Sleeveless Top':'بلا أكمام',
+  'Long Sleeve Shirt':'قميص طويل الأكمام','Button-Up Shirt':'قميص بأزرار',
+  'Oversized Shirt':'قميص كبير','Graphic Tee':'تيشيرت مطبوع',
+  'Polo Shirt':'بولو','Ribbed Top':'توب مضلع','Halter Top':'هالتر توب',
+  'Hoodie':'هودي','Zip-Up Hoodie':'هودي بسحاب','Oversized Hoodie':'هودي كبير',
+  'Sweatshirt':'سويت شيرت',
+  'Jeans':'جينز','Skinny Jeans':'جينز ضيق','Wide-Leg Jeans':'جينز واسع',
+  'Ripped Jeans':'جينز ممزق','Shorts':'شورت','Denim Shorts':'شورت جينز',
+  'Mini Shorts':'شورت قصير','High-Waist Shorts':'شورت خصر عالي',
+  'Jogger Pants':'جوغر','Sweatpants':'سويت بانت','Cargo Pants':'كارغو',
+  'Leggings':'ليغنز','Pleated Skirt':'تنورة مكسرات','Mini Skirt':'تنورة قصيرة',
+  'Plaid Skirt':'تنورة مربعات','Long Skirt':'تنورة طويلة','Denim Skirt':'تنورة جينز',
+  'Micro Skirt':'تنورة مايكرو','Skirt Lifted':'تنورة مرفوعة',
+  'Little Black Dress':'فستان أسود صغير','Evening Gown':'فستان سهرة',
+  'Wedding Dress':'فستان زفاف',
+  'School Uniform':'زي مدرسي','Sailor Uniform':'زي بحري','Tracksuit':'بدلة رياضية',
+  'Casual Streetwear':'ملابس كاجوال','Sporty Outfit':'زي رياضي',
+  'Sleepwear / Pajamas':'بيجاما','Swimsuit':'مايوه','One-Piece Swimsuit':'مايوه كامل',
+  'Swimwear':'ملابس سباحة','Bikini':'بيكيني','Micro Bikini':'بيكيني مايكرو',
+  'Formal Suit':'بدلة رسمية','Blazer & Pants':'بليزر وبنطال',
+  'Magical Girl':'فتاة سحرية','Maid Outfit':'زي خادمة','Gothic Lolita':'غوثيك لوليتا',
+  'Sweet Lolita':'سويت لوليتا','Idol Outfit':'زي أيدول','Cyberpunk Outfit':'زي سيبربانك',
+  'Kimono':'كيمونو','Yukata':'يوكاتا','Fantasy Armor':'درع خيالي',
+  'Ninja Outfit':'زي نينجا','Military Uniform':'زي عسكري',
+  'Lingerie':'لانجري','See-through':'شفاف','Sheer':'شفاف خفيف',
+  'Naked':'عارية','Nude':'عارية','Topless':'بلا توب','No Bra':'بلا حمالة',
+  'Panties Visible':'ملابس داخلية ظاهرة',
+  // ── Accessories ──
+  'Ribbon Bow':'ربطة شريط','Belt':'حزام','Choker':'طوق','Backpack':'حقيبة ظهر',
+  'Suspenders':'حمالات','Gloves':'قفازات','Scarf':'وشاح','Cape':'رداء',
+  'Apron':'مريلة','Tie':'ربطة عنق',
+  'Glasses':'نظارات','Round Glasses':'نظارات دائرية','Sunglasses':'نظارات شمسية',
+  'Flower Crown':'تاج ورد','Headband':'عصابة رأس','Headphones':'سماعات',
+  'Hair Clip':'مشبك شعر','Eye Patch':'رقعة عين','Mask':'قناع','Veil':'طرحة',
+  'Halo':'هالة','Horns':'قرون','Crown':'تاج','Animal Ears':'آذان حيوان',
+  'Collar & Leash':'طوق وسلسلة','Handcuffs/BDSM':'قيود',
+  // ── Footwear ──
+  'Sneakers':'أحذية رياضية','Boots':'بوت','Heels':'كعب عالٍ','Sandals':'صندل',
+  'Loafers':'لوفر','Barefoot':'حافي القدمين','Platform':'بلاتفورم',
+  'School Shoes':'حذاء مدرسي',
+  // ── Sock ──
+  'Thigh-High':'حتى الفخذ','Over-Knee':'فوق الركبة','Knee-High':'حتى الركبة','Ankle':'كاحل',
+  // ── Sock Color ──
+  'Striped':'مخطط',
+  // ── Pose ──
+  'Standing':'وقوف','Sitting':'جلوس','Kneeling':'ركوع','Crouching':'انحناء',
+  'Lying Down':'استلقاء','Running':'ركض','Jumping':'قفز','Dancing':'رقص',
+  'Fighting Stance':'وضعية قتال','Floating':'طفو','Stretching':'تمدد',
+  'Reading':'قراءة','Eating':'أكل','Drinking':'شرب','Sleeping':'نوم',
+  'In Bed':'في السرير','Between Legs':'بين الأرجل','Spread Legs':'أرجل مفتوحة',
+  'On All Fours':'على الأربع','Self-Touching':'تلمس ذاتي',
+  'Fingering':'إيروتيك','Tied Up':'مربوط',
+  // ── Effects ──
+  'Fire':'نار','Lightning':'برق','Electricity':'كهرباء','Ice Crystals':'بلورات ثلج',
+  'Water Splash':'رشة ماء','Smoke':'دخان','Sparkles':'لمعان','Particles':'جسيمات',
+  'Energy Orbs':'كرات طاقة','Magical Aura':'هالة سحرية','Magical Glow':'توهج سحري',
+  'Stars':'نجوم','Rose':'وردة','Cherry Blossoms':'أزهار الكرز','Dew Drops':'قطرات ندى',
+  'Glistening':'لامع','Ethereal Glow':'توهج أثيري','Rain-Soaked':'مبلل بالمطر',
+  'Wet/Soaked':'مبلل','Sweat':'عرق','Sweat Droplets':'قطرات عرق',
+  'Tears':'دموع','Body Oil':'زيت جسم','Dripping':'يقطر',
+  'Erect Nipples':'حلمات منتصبة','Cum':'سائل منوي','Cum on Face':'سائل على الوجه',
+  'Cum on Body':'سائل على الجسم','Cum Inside':'سائل داخلي',
+  'Milk/Lactation':'حليب','Urine/Squirt':'سائل','Vaginal Fluid':'إفراز أنثوي',
+  'Anal Fluid':'إفراز شرجي','Feces (Scat)':'برازي','Semen Stain':'بقعة','Fecal Stain':'بقعة',
+  'Urine Stain':'بقعة',
+  // ── Scene/Environment ──
+  'Forest':'غابة','Beach':'شاطئ','Desert':'صحراء','Mountains':'جبال',
+  'Space':'الفضاء','City Street':'شارع المدينة','Night City':'مدينة ليلية',
+  'Rooftop':'السطح','School':'مدرسة','Bedroom':'غرفة النوم','Bathroom':'حمام',
+  'Shower':'دش','Onsen':'حمام ياباني','Onsen Bath':'حوض ياباني',
+  'Hotel Room':'غرفة فندق','Locker Room':'غرفة تغيير','Sex Dungeon':'قبو',
+  'Castle':'قلعة','Fantasy Realm':'عالم خيالي','Cherry Blossom Park':'حديقة أزهار',
+  'Public Outdoor':'خارجي عام','Adult Club':'نادي',
+  // ── Mood ──
+  'Dramatic':'درامي','Dreamy':'حالم','Mysterious':'غامض','Playful':'مرح',
+  'Professional':'احترافي','Cinematic':'سينمائي','Normal':'طبيعي','None':'لا شيء',
+  // ── Art Style ──
+  'Anime':'أنيمي','Manga / Ink':'مانجا / حبر','Digital Painting':'رسم رقمي',
+  'Oil Painting':'ألوان زيتية','Watercolor':'ألوان مائية','Sketch / Pencil':'رسم بالقلم',
+  'Pixel Art':'فن بيكسل','16-bit Pixel Art':'بيكسل 16 بت','32-bit Pixel Art':'بيكسل 32 بت',
+  'Sprite Art':'فن الـ Sprite','Voxel Art':'فن فوكسل','Vector Art':'رسم متجهي',
+  'Chibi':'شيبي','Cel Shading':'تظليل خلية','Concept Art':'رسم مفاهيمي',
+  'Fantasy Art':'فن خيالي','Painterly':'لوحاتي','Flat Design':'تصميم مسطح',
+  'Low Poly':'بوليغون منخفض','Textured':'نسيج','Dark Ink':'حبر داكن',
+  // ── Era ──
+  '1980s':'الثمانينيات','1990s':'التسعينيات','2000s':'الألفية','2010s':'العقد الثاني',
+  '2020s':'العقد الثالث','Retro 90s Anime':'أنيمي تسعينيات',
+  // ── Line Style ──
+  'Bold Lines':'خطوط سميكة','Medium Lines':'خطوط متوسطة','Thin Lines':'خطوط رفيعة',
+  'Thick Lines':'خطوط سميكة جداً','No Outline':'بلا خطوط','Soft Edges':'حواف ناعمة',
+  // ── Shadows ──
+  'Hard Shadows':'ظلال قوية','Soft Shadows':'ظلال ناعمة','Medium Shadows':'ظلال متوسطة',
+  'No Shadows':'بلا ظلال',
+  // ── Glow ──
+  'Soft Glow':'توهج ناعم','Golden Glow':'توهج ذهبي','Magical Glow':'توهج سحري',
+  'Warm Glow':'توهج دافئ','No Glow':'بلا توهج',
+  // ── Skin Smoothness ──
+  'Smooth Skin':'بشرة ناعمة','Silky':'حريري',
+  // ── Quality ──
+  'Masterpiece':'تحفة فنية','Best Quality':'أفضل جودة','Ultra Detailed':'تفاصيل فائقة',
+  'High Resolution':'دقة عالية','4K':'4K','8K':'8K','Award-Winning':'حائز على جوائز',
+  // ── Lighting ──
+  'Natural Light':'ضوء طبيعي','Sunlight':'ضوء الشمس','Golden Hour':'الساعة الذهبية',
+  'Moonlight':'ضوء القمر','Candlelight':'ضوء الشمعة','Neon Light':'ضوء نيون',
+  'Studio Light':'ضوء الاستوديو','Backlight':'إضاءة خلفية','Rim Light':'إضاءة حافة',
+  'Soft Diffused':'ناعم منتشر',
+  // ── Color Grading ──
+  'Warm Tones':'دافئة','Cool Tones':'باردة','Pastel Palette':'باستيل',
+  'Neon Palette':'نيون','HDR Colors':'HDR','Duotone':'ثنائي اللون',
+  'Vibrant / Saturated':'مشبع','Monochrome Red':'أحمر أحادي',
+  'Monochrome Blue':'أزرق أحادي','Cyberpunk Colors':'سيبربانك',
+  'Golden Hour Tones':'ذهبي','Earthy Tones':'ترابي',
+  'Black & White':'أبيض وأسود','Vintage / Faded':'عتيق',
+  'Muted / Desaturated':'مخفف','Flat Colors':'ألوان مسطحة',
+  // ── Anime Studio ──
+  'Studio Ghibli style':'ستوديو جيبلي','Makoto Shinkai style':'ماكوتو شينكاي',
+  'Kyoto Animation style':'كيوتو أنيميشن','MAPPA style':'ماپا',
+  'Ufotable style':'أوفوتيبل','Gainax style':'غاينكس','Madhouse style':'مادهاوس',
+  'Trigger style':'تريغر','Sailor Moon style':'سيلور مون','Evangelion style':'إيفانغيليون',
+  'Attack on Titan style':'تيتان','Naruto style':'ناروتو','Dragon Ball style':'دراغون بول',
+  'Demon Slayer style':'قاتل الشياطين','Your Name style':'اسمك','Akira style':'أكيرا',
+  // ── Shot Range ──
+  'Extreme Closeup':'تقريب أقصى','Face Closeup':'تقريب الوجه','Headshot':'لقطة الرأس',
+  'Bust Shot':'نصف الجسم','Waist Up':'من الخصر','Full Body':'جسم كامل',
+  'Full Environment':'البيئة الكاملة','Macro':'ماكرو',
+  'Nude Macro':'ماكرو عارية',
+  // ── Camera Angle ──
+  'Eye Level':'مستوى العين','Low Angle':'زاوية منخفضة','High Angle':'زاوية عالية',
+  'Focus Face':'تركيز الوجه','Focus Body':'تركيز الجسم','Standard':'قياسي',
+  'Crotch Shot':'لقطة سفلية','Panty Shot':'لقطة داخلية','Upskirt':'لقطة من أسفل',
+  'Closeup Breasts':'تقريب صدر','Closeup Nipples':'تقريب حلمات',
+  'Closeup Vagina':'تقريب أنثوي','Closeup Anus':'تقريب شرجي',
+  'Closeup Penis':'تقريب ذكوري',
+  // ── Looking Direction ──
+  'At Viewer':'نحو المشاهد','Away':'بعيداً','Up':'للأعلى','Down':'للأسفل','To the Side':'للجانب',
+  // ── Lens ──
+  'Wide Angle':'زاوية واسعة','Telephoto':'تيليفوتو',
+  '85mm Portrait':'٨٥مم بورتريه','Fisheye':'عين السمكة',
+  'Soft Focus':'تركيز ناعم','Sharp Focus':'تركيز حاد','Depth of Field':'عمق الحقل',
+  'Bokeh / Blurred BG':'بوكيه','Digital Camera':'كاميرا رقمية','Drone':'طائرة مسيّرة',
+  // ── Weapons ──
+  'Sword':'سيف','Katana':'كاتانا','Twin Blades':'شفرتان','Dagger':'خنجر','Axe':'فأس',
+  'Spear':'رمح','Bow & Arrow':'قوس وسهم','Crossbow':'قاطع عرضي','Rifle':'بندقية',
+  'Pistol':'مسدس','Sniper':'قناص','Machine Gun':'رشاش','Shotgun':'بندقية صيد',
+  'Bazooka':'بازوكا','Grenade':'قنبلة يدوية','Magic Staff':'عصا سحرية',
+  'Magic Wand':'عصا سحرية صغيرة','Scepter':'صولجان','Scythe':'منجل',
+  'Shield':'درع','Rope':'حبل','Bomb':'قنبلة','Hammer':'مطرقة','Twin Blades':'شفرتان',
+  // ── Props ──
+  'Book':'كتاب','Scroll':'لفافة','Map':'خريطة','Compass':'بوصلة','Lantern':'فانوس',
+  'Candle':'شمعة','Mirror':'مرآة','Potion Bottle':'زجاجة جرعة','Treasure Chest':'صندوق كنز',
+  'Rose':'وردة','Lollipop':'مصاصة','Teddy Bear':'دمية دب','Fan':'مروحة',
+  'Umbrella':'مظلة','Briefcase':'حقيبة عمل','Broom':'مكنسة',
+  'Letter/Envelope':'رسالة / مظروف','Flag':'علم','Guitar':'غيتار',
+  'Violin':'كمان','Microphone':'ميكروفون','Fishing Rod':'قضيب صيد',
+  'Diaper (Baby)':'حفاضة','Female Diaper':'حفاضة أنثوية','Sanitary Pad':'فوطة صحية',
+  'Sex Toy':'ألعاب','Dildo':'لعبة','Vibrator':'مدلك','Anal Plug':'سدادة',
+  // ── Electronics ──
+  'Smartphone':'هاتف ذكي','Laptop':'حاسوب محمول','Tablet':'لوح إلكتروني',
+  'Gaming Controller':'يد تحكم','Smart Watch':'ساعة ذكية',
+  'VR Headset':'نظارة VR','Camera':'كاميرا','TV Remote':'ريموت',
+  // ── Negative Prompt ──
+  'Bad Anatomy':'تشريح سيء','Deformed Hands':'أيدي مشوهة','Mutated Fingers':'أصابع طافرة',
+  'Extra Fingers':'أصابع زائدة','Missing Fingers':'أصابع مفقودة','Extra Limbs':'أطراف زائدة',
+  'Floating Limbs':'أطراف طائرة','Deformed Legs':'أرجل مشوهة','Missing Legs':'أرجل مفقودة',
+  'Extra Legs':'أرجل زائدة','Bad Feet':'أقدام سيئة','Disconnected Body':'جسم منفصل',
+  'Ugly Face':'وجه قبيح','Weird Proportions':'نسب غريبة','Duplicate Character':'شخصية مكررة',
+  'Blurry':'ضبابي','Low Quality':'جودة منخفضة','JPEG Artifacts':'تشوهات JPEG',
+  'Artifacts':'تشوهات','Noise/Grain':'ضوضاء / حبوب','Overexposed':'تعرض زائد',
+  'Underexposed':'تعرض ناقص','Watermark/Text':'علامة مائية','Cropped':'مقطوع',
+  'Out of Frame':'خارج الإطار','Washed Out':'باهت',
+  'Missing Limbs':'أطراف مفقودة',
+  // ── Clothing ──
+  'Café':'مقهى','Medical Kit':'حقيبة طبية','Porcelain':'بشرة كالخزف',
+  'Bare Legs':'أرجل مكشوفة','Bare Midriff':'بطن مكشوف',
+  'Cleavage':'فتحة الصدر','Torn Clothes':'ملابس ممزقة',
+  'Unbuttoned':'مفكوك الأزرار','Wet Clothes':'ملابس مبللة',
+  // ── NSFW Body ──
+  'Breasts':'نهود','Nipples':'حلمات','Visible Areolas':'هالات ظاهرة',
+  'Pasties Only':'لاصقات فقط',
+  'Penis (Male)':'عضو ذكري','Vagina':'عضو أنثوي','Anus':'فتحة خلفية',
+  'Female Discharge':'إفرازات أنثوية',
+  // ── NSFW Poses ──
+  'Missionary':'وضعية ميشنري','Cowgirl':'وضعية كاوغيرل',
+  'Reverse Cowgirl':'وضعية كاوغيرل معكوسة','Doggy Style':'وضعية دوغي',
+  'Oral':'فموي','Anal':'شرجي','Gangbang':'جماعي','Glory Hole':'ثقب',
+  // ── Camera Angles ──
+  "Bird's Eye":'عين الطير','Side Profile':'بروفايل جانبي','Over Shoulder':'فوق الكتف',
+};
+
+const OPT_LABELS = { ar: OPT_AR };
+
+/* ── Japanese UI strings ── */
+UI.ja = {
+  random:'ランダム', nsfw:'NSFW', saved:'保存済み',
+  tab_style:'スタイル', tab_mood:'ムード', tab_scene:'シーン', tab_look:'外見', tab_outfit:'衣装',
+  tab_camera:'カメラ', tab_quality:'品質', tab_character:'キャラ',
+  tab_tools:'道具', tab_avoid:'除外',
+  positive_prompt:'ポジティブ', negative_prompt:'ネガティブ',
+  copy_full:'全コピー', copy_pos:'ポジティブ', copy_neg:'ネガティブ',
+  save_fav:'お気に入り保存', saved_library:'保存ライブラリ', fav_empty:'保存済みなし',
+  reset_all:'全リセット', footer_copy:'Anime Prompt Studio © 2026. All rights reserved.',
+  clear:'クリア', clear_all:'全クリア',
+  prompt_empty:'右側からオプションを選択してください…',
+  neg_empty:'上で除外項目を選択するか、下に入力してください…',
+  placeholder_pos:'＋ 追加ポジティブタグ — EnterまたはTab',
+  placeholder_neg:'＋ 追加ネガティブタグ — EnterまたはTab',
+  tags:' タグ',
+  blueprint_ttl:'キャラクター設計図',
+  prompt_strength:'プロンプト強度',
+  color_themes:'カラーテーマ', help_info:'ヘルプ',
+  about:'概要', features:'機能', tips:'ヒント',
+  language:'言語',
+  girls:'女の子', boys:'男の子', start_building:'今すぐ始める',
+  sec_color_grading:'カラーグレーディング', sec_anime_studio:'スタジオ / 監督スタイル',
+  sec_art_style:'アートスタイル', sec_era:'時代', sec_line_style:'線のスタイル',
+  sec_shadows:'シャドウ', sec_glow:'グロー＆ブルーム', sec_skin_smooth:'肌の滑らかさ',
+  sec_quality_tags:'クオリティタグ', sec_lighting:'ライティング',
+  sec_characters:'シーンのキャラクター', sec_age:'年齢グループ',
+  sec_skin_tone:'肌の色', sec_body:'体型', sec_hairstyle:'髪型',
+  sec_hair_color1:'髪色（メイン）', sec_hair_color2:'グラデーション（サブ）',
+  sec_eye_shape:'目の形', sec_eye_color:'目の色',
+  sec_clothing:'服の種類', sec_clothing_acc:'服のアクセサリー',
+  sec_sock_color:'靴下の色', sec_sock_length:'靴下の長さ',
+  sec_footwear:'履き物', sec_face_acc:'顔のアクセサリー',
+  sec_expression:'表情', sec_pose:'ポーズ＆アクション',
+  sec_effects:'特殊効果', sec_liquids:'液体＆素材',
+  sec_weapons:'武器', sec_props:'小道具', sec_electronics:'電子機器', sec_other:'その他',
+  sec_environment:'環境', sec_mood:'ムード＆雰囲気',
+  sec_shot_range:'ショット範囲', sec_camera_angle:'カメラアングル',
+  sec_looking:'視線方向', sec_lens_type:'レンズタイプ',
+  sec_lens_effect:'レンズ効果', sec_body_parts:'ボディフォーカス',
+  sec_neg_prompt:'ネガティブ', sec_tools:'道具', sec_look:'外見', sec_outfit:'衣装',
+  what_to_avoid:'除外項目',
+  avoid_desc:'最終画像から除外したいものを選択してください。',
+  neg_body_anatomy:'ボディ＆解剖', neg_image_quality:'画像品質',
+  body_parts_note:'特定のボディパーツにカメラをフォーカス — NSFWモード限定。',
+  bp_char:'キャラ', bp_age:'年齢', bp_skin:'肌・体型',
+  bp_hair:'髪', bp_eyes:'目', bp_outfit:'衣装',
+  bp_mood:'ムード', bp_tools:'道具', bp_scene:'シーン',
+  bp_camera:'カメラ', bp_quality:'品質',
+  about_p1:'Anime Prompt Studioは、AIイメージ生成のための詳細で高品質なプロンプトを作成するための無料ブラウザツールです。',
+  about_p2:'アニメとイラストスタイルに特化して構築され、キャラクターの外見、衣装、ムード、シーン、ライティング、カメラなどを完全にコントロールできます。',
+  about_p3:'アカウント不要。データ収集なし。すべてブラウザ内でローカルに動作します。',
+  about_sig:'— MD.AI SYSTEMS が ✦ を込めて制作',
+  feat_themes_t:'13カラーテーマ', feat_themes_d:'スタイルに合わせて変わるテーマUI',
+  feat_char_t:'フルキャラクタービルダー', feat_char_d:'髪、目、肌、体型、衣装など',
+  feat_cloth_t:'50+の服装オプション', feat_cloth_d:'カテゴリ別に整理されたトップス・ボトムス・フルアウトフィット',
+  feat_studio_t:'アニメスタジオスタイル', feat_studio_d:'ジブリ、ufotable、MAPPA、新海誠など',
+  feat_color_t:'カラーグレーディング', feat_color_d:'パステルからサイバーパンクまで16パレット',
+  feat_cam_t:'カメラコントロール', feat_cam_d:'ショット範囲、角度、レンズタイプとフォーカス効果',
+  feat_meter_t:'プロンプト強度メーター', feat_meter_d:'コンフリクト、過負荷、欠落要素を検出',
+  feat_weight_t:'タグウェイトスライダー', feat_weight_d:'タグをクリックして影響力を調整',
+  feat_favs_t:'お気に入りシステム', feat_favs_d:'最高のプロンプトを保存してリロード',
+  feat_img_t:'画像アナライザー', feat_img_d:'画像からプロンプトを抽出・リバースエンジニアリング',
+  feat_rand_t:'ランダマイザー', feat_rand_d:'ワンクリックでランダムキャラを生成',
+  feat_nsfw_t:'NSFWモード', feat_nsfw_d:'年齢確認済みアダルトコンテンツ',
+  tip1_t:'スタイルから始める', tip1_d:'まずアートスタイルまたはアニメスタジオを選ぶ — 最終的な見た目に最も影響するタグです。',
+  tip2_t:'強度メーターを使う', tip2_d:'プロンプト強度スコアに注目。コンフリクト（赤）が品質を最も下げます。',
+  tip3_t:'ライティングがすべて', tip3_d:'少なくとも1つのライティングタイプを追加。リムライト＋環境光でドラマチックな結果に。',
+  tip4_t:'タグウェイトスライダー', tip4_d:'プロンプトボックスのタグをクリックしてウェイトスライダーを開く。スタイルやライティングは1.3以上に設定。',
+  tip5_t:'クオリティタグが重要', tip5_d:'Masterpiece、Best Quality、Ultra Detailedを必ず3〜4個含めること。',
+  tip6_t:'少ない方が多い', tip6_d:'3〜4種類のライティングや5個以上のエフェクトはモデルを混乱させます。オーバーロード警告が出たら注意。',
+  tip7_t:'お気に入りを保存', tip7_d:'良い組み合わせが見つかったら♡ボタンで保存。いつでもお気に入りメニューからロードできます。',
+  tip8_t:'追加タグを活用', tip8_d:'追加ポジティブタグフィールドはモデル固有のトークンや細かいディテールに最適です。',
+  wlc_sub:'最高のAIイメージプロンプトビルダー — 無料・高速・アカウント不要。',
+  wlc_about_title:'このプロジェクトについて',
+  wlc_about_body:'Anime Prompt Studioは<span class="wlc-brand">MD.AI SYSTEMS</span>が情熱を持って制作したプロジェクトです。AIツールを誰もが使いやすく楽しめるようにすることを目指しています。ブラウザ内で完全に動作し、サーバーには何も保存されず、完全無料です。',
+  wlc_footer:'アカウント不要 · データ収集なし · ブラウザで動作',
+  wlc_feat1_t:'フルキャラクタービルダー', wlc_feat1_d:'髪、目、肌、体型、衣装など',
+  wlc_feat2_t:'5カラーテーマ', wlc_feat2_d:'スタイルに合わせた完全テーマUI',
+  wlc_feat3_t:'プロンプト強度メーター', wlc_feat3_d:'コンフリクトと欠落要素を検出',
+  wlc_feat4_t:'お気に入りシステム', wlc_feat4_d:'最高の組み合わせを保存・リロード',
+  wlc_feat5_t:'ワンクリックランダマイザー', wlc_feat5_d:'フルキャラを即時生成',
+  wlc_feat6_t:'タグウェイトスライダー', wlc_feat6_d:'各タグの影響力を微調整',
+  ag_title:'18歳以上限定', ag_subtitle:'NSFWコンテンツ警告',
+  ag_body1:'このセクションには成人向けのコンテンツが含まれています。',
+  ag_body2:'続行することで、以下を確認します：',
+  ag_check1:'私は18歳以上です',
+  ag_check2:'このコンテンツの使用について全責任を負います',
+  ag_check3:'私の国または地域でこのコンテンツへのアクセスは合法です',
+  ag_check4:'生成されたプロンプトを違法なコンテンツ作成に使用しません',
+  ag_disclaimer:'このツールの作成者は、いかなる誤用、有害なコンテンツ生成、またはサードパーティプラットフォームの利用規約違反についても<strong>一切責任を負いません</strong>。このツールはテキストプロンプトのみを生成します。使用方法はお客様の責任です。',
+  ag_no:'いいえ、18歳未満です', ag_yes:'はい、18歳以上です',
+  ag_footer:'⚠️ 芸術的なプロンプト生成のみを目的としています',
+};
+
+/* ── Japanese option labels ── */
+OPT_LABELS.ja = {
+  // Characters
+  '1 Girl':'女の子1人','1 Man':'男性1人','2 Girls':'女の子2人','2 Men':'男性2人',
+  '1 Girl + 1 Man':'女の子と男性','3+ Girls':'女の子3人以上','3+ Men':'男性3人以上','Mixed Group':'混合グループ',
+  // Age
+  'Toddler (0–3)':'幼児(0〜3)','Child (4–8)':'子供(4〜8)','Preteen (9–12)':'小学生(9〜12)',
+  'Teen (13–17)':'ティーン(13〜17)','Young Adult (18–25)':'若者(18〜25)',
+  'Adult (26–35)':'成人(26〜35)','Middle-Aged (36–50)':'中年(36〜50)','Elderly (51+)':'高齢者(51+)',
+  // Gender
+  'Feminine':'女性的','Masculine':'男性的','Androgynous':'中性的',
+  // Body
+  'Petite':'小柄','Slim':'スリム','Athletic':'アスリート','Toned':'引き締まり','Curvy':'グラマー',
+  'Hourglass':'砂時計型','Muscular':'筋肉質','Chubby':'ぽっちゃり','Tall':'高身長','Short':'低身長',
+  // Skin
+  'Porcelain':'磁器肌','White':'白肌','Pink':'ピンク肌','Normal':'普通',
+  'Navy':'ネイビー','Black':'黒',
+  // Hairstyle
+  'Long Straight':'ロングストレート','Long Wavy':'ロングウェービー','Long Curly':'ロングカーリー',
+  'Twin Tails':'ツインテール','High Ponytail':'ハイポニー','Side Ponytail':'サイドポニー',
+  'Braid':'三つ編み','Double Braid':'ダブル三つ編み','Bun':'お団子','Messy Bun':'くしゃお団子',
+  'Short Bob':'ショートボブ','Pixie Cut':'ピクシーカット','Hime Cut':'姫カット','Fluffy':'ふわふわ',
+  'Wet Hair':'濡れ髪',
+  // Eye Shape
+  'Large Round':'大きな丸目','Almond':'アーモンド','Upturned':'上がり目','Downturned':'垂れ目',
+  'Cat-like':'猫目','Doe Eyes':'鹿目','Hooded':'奥二重',
+  // Expression
+  'Happy':'嬉しい','Sad':'悲しい','Angry':'怒り','Shy':'恥ずかしい','Confident':'自信',
+  'Gentle Smile':'穏やかな笑顔','Laughing':'笑い','Crying':'泣き','Scared':'怖い',
+  'Stoic':'無表情','Seductive':'誘惑','Tired':'疲れ','Shocked':'驚き','Playful':'遊び心','Mysterious':'神秘的',
+  'Dreamy':'夢見がち','Dramatic':'ドラマチック','Eyes Closed':'目を閉じて',
+  // Clothing
+  'T-Shirt':'Tシャツ','Crop Top':'クロップトップ','Tied Crop Top':'タイドクロップ','Off-Shoulder Top':'オフショルダー',
+  'Tank Top':'タンクトップ','Tube Top':'チューブトップ','Sleeveless Top':'ノースリーブ',
+  'Long Sleeve Shirt':'長袖シャツ','Button-Up Shirt':'ボタンシャツ','Oversized Shirt':'オーバーシャツ',
+  'Graphic Tee':'グラフィックT','Polo Shirt':'ポロシャツ','Ribbed Top':'リブトップ','Halter Top':'ホルタートップ',
+  'Hoodie':'パーカー','Zip-Up Hoodie':'ジップパーカー','Oversized Hoodie':'ビッグパーカー','Sweatshirt':'スウェット',
+  'Jeans':'ジーンズ','Skinny Jeans':'スキニー','Wide-Leg Jeans':'ワイドジーンズ','Ripped Jeans':'ダメージジーンズ',
+  'Shorts':'ショーツ','Denim Shorts':'デニムショーツ','Mini Shorts':'ミニショーツ',
+  'High-Waist Shorts':'ハイウエストショーツ','Jogger Pants':'ジョガーパンツ','Sweatpants':'スウェットパンツ',
+  'Cargo Pants':'カーゴパンツ','Leggings':'レギンス','Pleated Skirt':'プリーツスカート','Mini Skirt':'ミニスカート',
+  'Plaid Skirt':'チェックスカート','Long Skirt':'ロングスカート','Denim Skirt':'デニムスカート',
+  'School Uniform':'制服','Sailor Uniform':'セーラー服','Tracksuit':'ジャージ',
+  'Casual Streetwear':'カジュアル','Sporty Outfit':'スポーツウェア','Sleepwear / Pajamas':'パジャマ',
+  'Swimsuit':'水着','One-Piece Swimsuit':'ワンピース水着','Formal Suit':'フォーマルスーツ',
+  'Blazer & Pants':'ブレザーとパンツ','Little Black Dress':'リトルブラックドレス',
+  'Evening Gown':'イブニングドレス','Wedding Dress':'ウェディングドレス',
+  'Magical Girl':'魔法少女','Maid Outfit':'メイド服','Gothic Lolita':'ゴシックロリータ',
+  'Sweet Lolita':'スウィートロリータ','Idol Outfit':'アイドル衣装','Cyberpunk Outfit':'サイバーパンクコスチューム',
+  'Kimono':'着物','Yukata':'浴衣','Fantasy Armor':'ファンタジーアーマー','Ninja Outfit':'忍者衣装',
+  'Military Uniform':'軍服',
+  // Accessories
+  'Ribbon Bow':'リボン','Belt':'ベルト','Choker':'チョーカー','Backpack':'バックパック',
+  'Suspenders':'サスペンダー','Gloves':'グローブ','Scarf':'マフラー','Cape':'マント','Apron':'エプロン','Tie':'ネクタイ',
+  'Glasses':'メガネ','Round Glasses':'丸メガネ','Sunglasses':'サングラス',
+  'Flower Crown':'花冠','Headband':'ヘアバンド','Hair Clip':'ヘアクリップ',
+  'Eye Patch':'眼帯','Mask':'マスク','Veil':'ベール','Halo':'光輪','Horns':'ツノ',
+  'Crown':'王冠','Animal Ears':'けものミミ',
+  // Footwear
+  'Sneakers':'スニーカー','Boots':'ブーツ','Heels':'ヒール','Sandals':'サンダル',
+  'Loafers':'ローファー','Barefoot':'裸足','Platform':'厚底','School Shoes':'上履き',
+  // Sock
+  'Thigh-High':'太もも丈','Over-Knee':'ひざ上','Knee-High':'ひざ丈','Ankle':'アンクル',
+  // Pose
+  'Standing':'立ち','Sitting':'座り','Kneeling':'ひざまずき','Crouching':'しゃがみ',
+  'Lying Down':'寝転び','Running':'走り','Jumping':'ジャンプ','Dancing':'ダンス',
+  'Fighting Stance':'戦闘ポーズ','Floating':'浮遊','Stretching':'ストレッチ',
+  'Drinking':'飲み','Eating':'食べ','Reading':'読書','Sleeping':'睡眠',
+  // Effects
+  'Fire':'炎','Lightning':'稲妻','Ice Crystals':'氷の結晶','Electricity':'電気',
+  'Smoke':'煙','Stars':'星','Sparkles':'キラキラ','Energy Orbs':'エネルギー球',
+  'Particles':'パーティクル','Magical Aura':'魔法のオーラ','Magical Glow':'魔法の輝き',
+  'Ethereal Glow':'幻想的な輝き','Cherry Blossoms':'桜','Water Splash':'水しぶき',
+  'Dew Drops':'朝露','Golden Glow':'金色の輝き','Tears':'涙',
+  'Sweat':'汗','Glistening':'輝き',
+  // Environment
+  'School':'学校','Rooftop':'屋上','City Street':'都市の通り','Night City':'夜の都市',
+  'Beach':'ビーチ','Forest':'森','Mountains':'山','Desert':'砂漠','Space':'宇宙',
+  'Fantasy Realm':'異世界','Onsen':'温泉','Café':'カフェ','Bedroom':'寝室',
+  'Castle':'城','Cherry Blossom Park':'桜公園',
+  // Art Style
+  'Anime':'アニメ','Manga / Ink':'漫画／墨','Digital Painting':'デジタルペイント',
+  'Watercolor':'水彩','Oil Painting':'油彩','Sketch / Pencil':'スケッチ／鉛筆',
+  'Cel Shading':'セルシェーディング','Painterly':'絵画的','Concept Art':'コンセプトアート',
+  'Flat Design':'フラットデザイン','Vector Art':'ベクターアート','Pixel Art':'ピクセルアート',
+  '16-bit Pixel Art':'16bitピクセル','32-bit Pixel Art':'32bitピクセル',
+  'Sprite Art':'スプライト','Voxel Art':'ボクセルアート','Low Poly':'ローポリ',
+  'Fantasy Art':'ファンタジーアート','Cinematic':'シネマティック',
+  // Studio
+  'Studio Ghibli style':'スタジオジブリ風','Makoto Shinkai style':'新海誠風',
+  'Kyoto Animation style':'京都アニメーション風','MAPPA style':'MAPPA風',
+  'Ufotable style':'ufotable風','Trigger style':'トリガー風',
+  'Demon Slayer style':'鬼滅の刃風','Attack on Titan style':'進撃の巨人風',
+  'Gainax style':'ガイナックス風','Madhouse style':'マッドハウス風',
+  'Naruto style':'ナルト風','Dragon Ball style':'ドラゴンボール風',
+  'Sailor Moon style':'セーラームーン風','Evangelion style':'エヴァンゲリオン風',
+  'Akira style':'AKIRA風','Your Name style':'君の名は風',
+  // Era
+  '1980s':'1980年代','1990s':'1990年代','2000s':'2000年代','2010s':'2010年代','2020s':'2020年代',
+  'Retro 90s Anime':'レトロ90年代アニメ',
+  // Line Style
+  'Thin Lines':'細線','Medium Lines':'中線','Thick Lines':'太線',
+  'Bold Lines':'極太線','Dark Ink':'濃い墨','No Outline':'輪郭なし','Soft Edges':'ソフトエッジ',
+  // Shadows
+  'No Shadows':'影なし','Soft Shadows':'柔らかい影','Medium Shadows':'中程度の影','Hard Shadows':'強い影',
+  // Glow
+  'No Glow':'グローなし','Soft Glow':'柔らかいグロー','Warm Glow':'暖かいグロー','Magical Glow':'魔法のグロー',
+  // Skin Smooth
+  'Normal':'普通','Smooth Skin':'なめらか肌','Silky':'シルキー','Sheer':'透け感','Textured':'テクスチャー',
+  // Color Grading
+  'Muted / Desaturated':'くすみカラー','Warm Tones':'ウォームトーン','Cool Tones':'クールトーン',
+  'Pastel Palette':'パステル','Neon Palette':'ネオン','HDR Colors':'HDR','Duotone':'デュオトーン',
+  'Vibrant / Saturated':'ビビッド','Monochrome Red':'赤モノクロ','Monochrome Blue':'青モノクロ',
+  'Cyberpunk Colors':'サイバーパンク','Golden Hour Tones':'ゴールデンアワー','Earthy Tones':'アーシー',
+  'Black & White':'白黒','Vintage / Faded':'ヴィンテージ',
+  // Lighting
+  'Natural Light':'自然光','Sunlight':'陽光','Golden Hour':'ゴールデンアワー',
+  'Moonlight':'月明かり','Candlelight':'キャンドル光','Neon Light':'ネオン光',
+  'Studio Light':'スタジオ光','Backlight':'バックライト','Rim Light':'リムライト',
+  'Soft Diffused':'柔らかい拡散光','Dramatic':'ドラマチック',
+  // Quality
+  'Masterpiece':'傑作','Best Quality':'最高品質','Ultra Detailed':'超精細',
+  'High Resolution':'高解像度','4K':'4K','8K':'8K','Award-Winning':'受賞作品',
+  // Negative
+  'Bad Anatomy':'解剖異常','Deformed Hands':'変形した手','Mutated Fingers':'変異した指',
+  'Extra Fingers':'余分な指','Missing Fingers':'指の欠如','Extra Limbs':'余分な手足',
+  'Floating Limbs':'浮遊する手足','Deformed Legs':'変形した脚','Missing Legs':'脚の欠如',
+  'Extra Legs':'余分な脚','Bad Feet':'異常な足','Disconnected Body':'分離した体',
+  'Ugly Face':'醜い顔','Weird Proportions':'変な比率','Duplicate Character':'重複キャラ',
+  'Blurry':'ぼやけ','Low Quality':'低品質','JPEG Artifacts':'JPEGアーティファクト',
+  'Artifacts':'アーティファクト','Noise/Grain':'ノイズ/グレイン','Overexposed':'露出過多',
+  'Underexposed':'露出不足','Watermark/Text':'透かし','Cropped':'切り取り',
+  'Out of Frame':'フレーム外','Flat Colors':'フラットカラー','Washed Out':'色褪せ',
+  // Shot Range
+  'Extreme Closeup':'超接写','Face Closeup':'顔接写','Headshot':'ヘッドショット',
+  'Bust Shot':'バストショット','Waist Up':'ウエストアップ','Full Body':'全身',
+  'Full Environment':'全景','Macro':'マクロ',
+  // Camera
+  'Eye Level':'目線','Low Angle':'ローアングル','High Angle':'ハイアングル',
+  "Bird's Eye":'俯瞰','Side Profile':'横顔','Over Shoulder':'肩越し',
+  'Focus Face':'顔フォーカス','Focus Body':'体フォーカス','Standard':'標準',
+  // Looking
+  'At Viewer':'視聴者へ','Away':'そっぽ','Up':'上','Down':'下','To the Side':'横',
+  // Lens
+  'Wide Angle':'広角','Telephoto':'望遠','85mm Portrait':'85mmポートレート','Fisheye':'魚眼',
+  'Soft Focus':'ソフトフォーカス','Sharp Focus':'シャープフォーカス','Depth of Field':'被写界深度',
+  'Bokeh / Blurred BG':'ボケ','Digital Camera':'デジカメ','Drone':'ドローン',
+  // Weapons
+  'Sword':'剣','Katana':'刀','Twin Blades':'双剣','Dagger':'短剣','Axe':'斧',
+  'Spear':'槍','Bow & Arrow':'弓矢','Crossbow':'クロスボウ','Rifle':'ライフル',
+  'Pistol':'ピストル','Sniper':'スナイパー','Machine Gun':'機関銃','Shotgun':'ショットガン',
+  'Bazooka':'バズーカ','Grenade':'手榴弾','Magic Staff':'魔法の杖',
+  'Magic Wand':'魔法の棒','Scepter':'王笏','Scythe':'鎌',
+  'Shield':'盾','Rope':'縄','Bomb':'爆弾',
+  // Props
+  'Book':'本','Scroll':'巻物','Map':'地図','Compass':'コンパス','Lantern':'ランタン',
+  'Candle':'ろうそく','Mirror':'鏡','Potion Bottle':'ポーション瓶','Treasure Chest':'宝箱',
+  'Rose':'バラ','Lollipop':'ロリポップ','Teddy Bear':'テディベア','Fan':'扇子',
+  'Umbrella':'傘','Briefcase':'ブリーフケース','Broom':'ほうき','Letter/Envelope':'手紙/封筒',
+  'Flag':'旗','Guitar':'ギター','Violin':'バイオリン','Microphone':'マイク',
+  // Electronics
+  'Smartphone':'スマホ','Laptop':'ラップトップ','Tablet':'タブレット',
+  'Gaming Controller':'ゲームコントローラー','Smart Watch':'スマートウォッチ','Headphones':'ヘッドフォン',
+  'VR Headset':'VRヘッドセット','Camera':'カメラ','TV Remote':'リモコン',
+  // Other
+  'Medical Kit':'救急箱','Crown':'王冠','Trophy':'トロフィー',
+  // Liquids/Materials
+  'Rain-Soaked':'雨濡れ','Water Splash':'水しぶき','Body Oil':'ボディオイル',
+  'Sweat Droplets':'汗の雫','Dripping':'滴り',
+  // Hair/Eye Colors
+  'White':'白','Silver':'銀','Blonde':'金髪','Gold':'ゴールド','Peach':'ピーチ',
+  'Coral':'コーラル','Red':'赤','Auburn':'オーバーン','Pink':'ピンク','Magenta':'マゼンタ',
+  'Purple':'紫','Violet':'バイオレット','Lavender':'ラベンダー','Indigo':'インディゴ',
+  'Blue':'青','Cyan':'シアン','Teal':'ティール','Mint':'ミント','Emerald':'エメラルド',
+  'Green':'緑','Jade':'翡翠','Brown':'茶','Amber':'琥珀','Grey':'グレー','Rainbow':'虹',
+  'Sapphire':'サファイア',
+  // Mood
+  'Mysterious':'神秘的','Professional':'プロフェッショナル',
+  // NSFW
+  'Bare Legs':'素足','Bare Midriff':'へそ出し','Cleavage':'胸元','Torn Clothes':'破れた服',
+  'Unbuttoned':'ボタン開け','Wet Clothes':'濡れた服',
+  'Breasts':'胸','Nipples':'乳首','Visible Areolas':'乳輪','Pasties Only':'パスティーのみ',
+  'Penis (Male)':'男性器','Vagina':'女性器','Anus':'肛門','Female Discharge':'女性の分泌物',
+  'Missionary':'正常位','Cowgirl':'騎乗位','Reverse Cowgirl':'逆騎乗位','Doggy Style':'後背位',
+  'Oral':'オーラル','Anal':'アナル','Gangbang':'乱交','Glory Hole':'グローリーホール',
+  // Clothing items
+  'Striped':'ストライプ',
+};
+
+/* ── Language detection: saved > device > EN default ── */
+function detectLang(){
+  const saved = localStorage.getItem('aps_lang');
+  if(saved && UI[saved]) return saved;
+  const nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+  if(nav.startsWith('ar')) return 'ar';
+  if(nav.startsWith('ja')) return 'ja';
+  return 'en';
+}
+let _lang = detectLang();
+
+function t(key){ return (UI[_lang]||UI.en)[key] || (UI.en)[key] || key; }
+function optLabel(en){
+  const map = OPT_LABELS[_lang];
+  return map ? (map[en]||en) : en;
+}
+
+
+
+function applyLang(lang){
+  _lang = lang;
+  localStorage.setItem('aps_lang', lang);
+  const isRtl = lang === 'ar';
+
+  document.documentElement.setAttribute('lang', lang);
+
+  // HTML-containing keys (use innerHTML not textContent)
+  const htmlKeys = new Set(['wlc_about_body','ag_disclaimer']);
+
+  // Update all data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const val = t(key);
+    if(!val) return;
+    if(htmlKeys.has(key)) el.innerHTML = val;
+    else el.textContent = val;
+  });
+
+  // Update placeholders
+  const pi = document.getElementById('posTagInput');
+  const ni = document.getElementById('negTagInput');
+  if(pi) pi.placeholder = t('placeholder_pos');
+  if(ni) ni.placeholder = t('placeholder_neg');
+
+  // Update empty prompt states
+  const pe = document.getElementById('promptText');
+  const ne = document.getElementById('negativeText');
+  if(pe && pe.classList.contains('empty')) pe.textContent = t('prompt_empty');
+  if(ne && ne.classList.contains('empty')) ne.textContent = t('neg_empty');
+
+  // Translate ALL option buttons (.ob, .cb)
+  document.querySelectorAll('.ob,.cb').forEach(btn => {
+    const en = btn.getAttribute('data-en');
+    if(!en) return;
+    const span = btn.querySelector('span');
+    const translated = optLabel(en);
+    if(span) span.textContent = translated;
+    else btn.textContent = translated;
+  });
+
+  // Translate separator divs
+  document.querySelectorAll('.og-sep').forEach(sep => {
+    const en = sep.getAttribute('data-en') || sep.textContent;
+    if(!sep.getAttribute('data-en')) sep.setAttribute('data-en', en);
+    sep.textContent = optLabel(en);
+  });
+
+  // Translate Blueprint cell labels
+  const bpMap = {
+    'bp-char':'bp_char','bp-age':'bp_age','bp-skin':'bp_skin',
+    'bp-hair':'bp_hair','bp-eyes':'bp_eyes','bp-outfit':'bp_outfit',
+    'bp-mood':'bp_mood','bp-tools':'bp_tools','bp-scene':'bp_scene',
+    'bp-camera':'bp_camera','bp-quality':'bp_quality'
+  };
+  Object.entries(bpMap).forEach(([id,key])=>{
+    const el = document.getElementById(id);
+    if(el){ const lbl=el.querySelector('.bp-lbl'); if(lbl) lbl.textContent=t(key); }
+  });
+
+  // Translate skin tone buttons (they use title attribute)
+  document.querySelectorAll('.sb').forEach(btn => {
+    const en = btn.getAttribute('data-en');
+    if(!en) return;
+    const span = btn.querySelector('span');
+    const translated = optLabel(en);
+    if(span) span.textContent = translated;
+  });
+
+  // Update flag button text (EN / AR label)
+  document.getElementById('langFlag').textContent = LANG_FLAGS[lang]||'🌐';
+
+  // Update active state
+  document.querySelectorAll('.lang-opt').forEach(b=>{
+    b.classList.toggle('on', b.dataset.lang===lang);
+  });
+
+  document.getElementById('langTray').classList.remove('open');
+}
+
+// Lang tray toggle
+document.getElementById('langBtn').addEventListener('click', e=>{
+  e.stopPropagation();
+  document.getElementById('langTray').classList.toggle('open');
+});
+document.querySelectorAll('.lang-opt').forEach(b=>{
+  b.addEventListener('click', ()=>applyLang(b.dataset.lang));
+});
+document.addEventListener('click', e=>{
+  if(!e.target.closest('#langWrap')) document.getElementById('langTray').classList.remove('open');
+});
+
 initModal();
 init();
+// Re-apply lang after init() builds all buttons
+applyLang(_lang);
+
+// ── PROMPT OPTIMIZER ──────────────────────────────────────────
+(function(){
+  const btn    = document.getElementById('optimizerBtn');
+  const input  = document.getElementById('optimizerInput');
+  const output = document.getElementById('optimizerOutput');
+  const status = document.getElementById('optimizerStatus');
+  const insBtn = document.getElementById('optimizerInsertBtn');
+  if(!btn) return;
+
+  const SYSTEM = `You are an expert anime AI image prompt engineer specializing in models like NovelAI, Stable Diffusion (anime checkpoints), and ComfyUI anime pipelines.
+
+Your task: Convert any user description (in any language) into a highly optimized, model-ready anime prompt.
+
+Rules:
+- Output ONLY the final prompt — no explanations, no labels, no markdown
+- Use comma-separated English tags in the standard booru/danbooru tag format
+- Start with quality boosters: masterpiece, best quality, ultra-detailed, highly detailed
+- Include art style tags: anime style, 2d, illustration
+- Translate and expand the user's description into relevant tags
+- Add complementary tags that enhance the scene naturally
+- End with technical quality tags: sharp focus, vibrant colors, intricate details
+- Keep it under 120 words total
+- Never include: realistic, photorealistic, 3d render`;
+
+  btn.addEventListener('click', async () => {
+    const text = input.value.trim();
+    if(!text){ status.textContent = '⚠ اكتب وصفاً أولاً'; return; }
+
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحسين...';
+    status.textContent = '';
+    output.style.display = 'none';
+    insBtn.style.display = 'none';
+
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 300,
+          system: SYSTEM,
+          messages: [{ role: 'user', content: text }]
+        })
+      });
+
+      if(!res.ok) throw new Error(`API error ${res.status}`);
+      const data = await res.json();
+      const result = (data.content||[]).map(b=>b.text||'').join('').trim();
+
+      output.textContent = result;
+      output.style.display = 'block';
+      insBtn.style.display = 'flex';
+      status.textContent = '✓ تم';
+
+      insBtn.onclick = () => {
+        // Append optimized prompt to the extra/custom field if it exists, else show copied msg
+        const extraField = document.getElementById('extraPos');
+        if(extraField){
+          extraField.value = (extraField.value ? extraField.value + ', ' : '') + result;
+          extraField.dispatchEvent(new Event('input'));
+          status.textContent = '✓ تمت الإضافة للبرومبت';
+        } else {
+          navigator.clipboard.writeText(result).then(()=>{ status.textContent = '✓ تم النسخ'; });
+        }
+      };
+
+    } catch(e) {
+      status.textContent = '✗ خطأ: ' + (e.message||'فشل الاتصال');
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-wand-magic-sparkles"></i> Optimize Prompt / تحسين';
+    }
+  });
+})();
+
 </script>
 </body>
 </html>
