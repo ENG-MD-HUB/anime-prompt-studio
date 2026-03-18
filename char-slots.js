@@ -481,12 +481,9 @@ function csBuildSaveBar(charIdx){
 var csLibrary = JSON.parse(localStorage.getItem('aps_charLib') || '[]');
 
 function csLibSave(charIdx){
-  /* Read name: from slot (always synced via mirror/blur), then from card input as fallback */
   var name = '';
-  /* 1. Try slot._name (updated on every input event via mirror) */
   if(charIdx === activeChar && S._name) name = S._name.trim();
   if(!name && charSlots[charIdx] && charSlots[charIdx]._name) name = charSlots[charIdx]._name.trim();
-  /* 2. Fallback: read directly from IDC card input */
   if(!name){
     var row = document.getElementById('charCardsRow');
     if(row){
@@ -510,7 +507,14 @@ function csLibSave(charIdx){
   };
   csLibrary.unshift(entry);
   localStorage.setItem('aps_charLib', JSON.stringify(csLibrary));
-  csToast('✓ Saved "'+name+'" to library','ok');
+
+  /* ── Cloud sync ── */
+  var uid = window._currentUser ? window._currentUser.uid : null;
+  if(uid && window._fbCharLib){
+    window._fbCharLib.save(uid, entry).catch(function(e){ console.warn('charLib save:', e); });
+  }
+
+  csToast('✓ Saved "'+name+'"'+(uid?' ☁️':''),'ok');
   csRenderTabs();
   csRenderLibrary();
 }
@@ -530,6 +534,13 @@ function csLibLoad(entry, charIdx){
 function csLibDelete(id){
   csLibrary = csLibrary.filter(function(c){ return c.id!==id; });
   localStorage.setItem('aps_charLib', JSON.stringify(csLibrary));
+
+  /* ── Cloud sync ── */
+  var uid = window._currentUser ? window._currentUser.uid : null;
+  if(uid && window._fbCharLib){
+    window._fbCharLib.del(uid, id).catch(function(e){ console.warn('charLib del:', e); });
+  }
+
   csRenderLibrary();
   csToast('Deleted','ok');
 }
